@@ -46,7 +46,7 @@ class FormField implements SortableInterface
      * @var Collection|OptionValue[]
      *
      * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue")
-     * @ORM\JoinTable(name="form_field_to_option_value",
+     * @ORM\JoinTable(name="dynamic_form_field_to_option_value",
      *      joinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id")}
      *      )

@@ -10,7 +10,7 @@ use DynamicFormBundle\Entity\AbstractEntity;
  *
  * @package DynamicFormBundle\Entity\Value
  */
-class ObjectValue extends BaseValue
+class EntityValue extends BaseValue
 {
     /**
      * @var AbstractEntity

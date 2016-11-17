@@ -15,4 +15,5 @@ class FormTypes
     const CHECKBOX_GROUP = 'checkbox_group';
     const RADIO_GROUP = 'radio_group';
     const FILE = 'file';
+    const ENTITY = 'entity';
 }
