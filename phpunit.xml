@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://phpunit.de/manual/4.1/en/appendixes.configuration.html -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
+         backupGlobals="false"
+         colors="true"
+         bootstrap="Tests/Fixtures/app/bootstrap.php">
+
+    <testsuites>
+        <testsuite name="DynamicFormBundle">
+            <directory>Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">.</directory>
+            <exclude>
+                <file>DynamicFormBundle.php</file>
+                <directory>DependencyInjection</directory>
+                <directory>Entity</directory>
+                <directory>Tests</directory>
+                <directory>DataFixtures</directory>
+                <directory>Resources</directory>
+                <directory>vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <php>
+        <ini name="memory_limit" value="-1" />
+        <ini name="xdebug.idekey" value="PHPSTORM" />
+        <server name="KERNEL_DIR" value="Tests/Fixtures/app/" />
+    </php>
+
+</phpunit>

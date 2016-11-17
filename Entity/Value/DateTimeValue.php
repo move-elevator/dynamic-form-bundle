@@ -1,0 +1,36 @@
+<?php
+
+namespace DynamicFormBundle\Entity\Value;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ *
+ * @package DynamicFormBundle\Entity\Value
+ */
+class DateTimeValue extends BaseValue
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_time_content", type="datetime")
+     */
+    private $dateTimeContent;
+
+    /**
+     * @return \DateTime
+     */
+    public function getContent()
+    {
+        return $this->dateTimeContent;
+    }
+
+    /**
+     * @param \DateTime $content
+     */
+    public function setContent(\DateTime $content = null)
+    {
+        $this->dateTimeContent = $content;
+    }
+}

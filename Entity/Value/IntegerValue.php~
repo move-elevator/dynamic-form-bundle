@@ -1,0 +1,36 @@
+<?php
+
+namespace DynamicFormBundle\Entity\Value;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ *
+ * @package DynamicFormBundle\Entity\Value
+ */
+class IntegerValue extends BaseValue
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="integer_value", type="integer")
+     */
+    private $value;
+
+    /**
+     * @return float
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param integer $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}

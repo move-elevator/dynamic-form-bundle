@@ -1,0 +1,33 @@
+framework:
+  secret: 'dynamic_form'
+  test: true
+  serializer:
+    enabled: true
+  router:
+    resource: "%kernel.root_dir%/config/routing.yml"
+  templating:
+    engines: ['twig']
+  form: ~
+
+twig:
+  paths:
+    '%kernel.root_dir%/views': ~
+  form: ~
+
+doctrine:
+  dbal:
+    default_connection: 'sqlite'
+    connections:
+      sqlite:
+        driver: 'pdo_sqlite'
+        memory: true
+  orm:
+    default_entity_manager: 'default'
+    entity_managers:
+      default:
+        connection: 'sqlite'
+        mappings:
+          DynamicFormBundle: ~
+
+dynamic_form:
+  file_upload_dir: 'uploads'

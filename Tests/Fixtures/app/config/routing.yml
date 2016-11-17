@@ -1,0 +1,7 @@
+_errors:
+  resource: "@TwigBundle/Resources/config/routing/errors.xml"
+  prefix:   /_error
+
+cce_twig_error_test:
+  path:      error/{code}.{_format}
+  defaults:  { _controller: twig.controller.preview_error:previewErrorPageAction, code: 404, _format: html }

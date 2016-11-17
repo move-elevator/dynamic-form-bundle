@@ -1,0 +1,11 @@
+{%- block dynamic_form -%}
+    {{ form_start(form) }}
+    {% for element in form.vars.elements -%}
+        {% if element is FormElement %}
+            {{ form_element(element) }}
+        {% else %}
+            {{ form_row(form.children[element.name]) }}
+        {% endif %}
+    {%- endfor %}
+    {{ form_end(form) }}
+{% endblock %}

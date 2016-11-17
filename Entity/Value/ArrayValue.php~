@@ -1,0 +1,36 @@
+<?php
+
+namespace DynamicFormBundle\Entity\Value;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ *
+ * @package DynamicFormBundle\Entity\Value
+ */
+class ArrayValue extends BaseValue
+{
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="array_value", type="json_array")
+     */
+    private $value;
+
+    /**
+     * @return array
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param array $value
+     */
+    public function setValue(array $value = [])
+    {
+        $this->value = $value;
+    }
+}

@@ -1,0 +1,86 @@
+<?php
+
+namespace AppBundle\Entity\FormField;
+
+use AppBundle\Entity\FormType\FieldOption;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table
+ * @ORM\Entity
+ *
+ * @package AppBundle\Entity
+ */
+class FieldOptionValue
+{
+    /**
+     * @var int
+     *
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text")
+     */
+    private $value;
+
+    /**
+     * @var FieldOption
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FormType\FieldOption")
+     * @ORM\JoinColumn(name="option_id", referencedColumnName="id", nullable=false)
+     */
+    private $option;
+
+    /**
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $value
+     *
+     * @return FieldOptionValue
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param FieldOption $option
+     *
+     * @return FieldOptionValue
+     */
+    public function setOption(FieldOption $option)
+    {
+        $this->option = $option;
+
+        return $this;
+    }
+
+    /**
+     * @return FieldOption
+     */
+    public function getOption()
+    {
+        return $this->option;
+    }
+}

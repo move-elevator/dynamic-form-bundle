@@ -1,0 +1,37 @@
+<?php
+
+namespace DynamicFormBundle\Entity\Value;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ *
+ * @package DynamicFormBundle\Entity\Value
+ */
+class StringValue extends BaseValue
+{
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="string_value", type="string")
+     */
+    private $value;
+
+    /**
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param string $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
+}

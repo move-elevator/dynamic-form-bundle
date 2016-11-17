@@ -1,0 +1,66 @@
+{
+  "name": "fjogeleit/dynamic-form-bundle",
+  "description": "DynamicForm creates database driven forms and persist results",
+  "type": "symfony-bundle",
+  "time": "2016-11-15",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "Frank Jogeleit",
+      "email": "frank.jogeleit@web.de"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "symfony/symfony": "^2.7",
+    "doctrine/orm": "^2.5",
+    "doctrine/doctrine-bundle": "~1.4",
+    "doctrine/doctrine-fixtures-bundle": "^2.3",
+    "hautelook/alice-bundle": "^1.4"
+  },
+  "require-dev": {
+    "move-elevator/symfony-coding-standard": "dev-master",
+    "tm/tooly-composer-script": "^1.0"
+  },
+  "autoload": {
+    "psr-4": { "DynamicFormBundle\\": "" }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "Tooly\\ScriptHandler::installPharTools"
+    ],
+    "post-update-cmd": [
+      "Tooly\\ScriptHandler::installPharTools"
+    ]
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "extra": {
+    "tools": {
+      "phpunit": {
+        "url": "https://phar.phpunit.de/phpunit-5.6.0.phar"
+      },
+      "phpcpd": {
+        "url": "https://phar.phpunit.de/phpcpd.phar",
+        "force-replace": true
+      },
+      "phpcs": {
+        "url": "https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar",
+        "force-replace": true
+      },
+      "phpmd-extension": {
+        "url": "https://github.com/mi-schi/phpmd-extension/releases/download/stable/phpmd-extension.phar",
+        "force-replace": true
+      },
+      "phpmetrics": {
+        "url": "https://github.com/Halleck45/PhpMetrics/raw/master/build/phpmetrics.phar",
+        "force-replace": true
+      },
+      "pdepend": {
+        "url": "http://static.pdepend.org/php/latest/pdepend.phar",
+        "force-replace": true
+      }
+    }
+  }
+}

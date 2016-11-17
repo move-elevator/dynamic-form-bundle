@@ -1,0 +1,7 @@
+{%- block form_element -%}
+    {% if element.elementType == constant('DynamicFormBundle\\Statics\\FormElements::TEXT') %}
+        <p id ="{{ element.anchor }}">{{ element.text }}</p>
+    {% elseif element.elementType == constant('DynamicFormBundle\\Statics\\FormElements::HEADLINE') %}
+        <h1 id ="{{ element.anchor }}">{{ element.text }}</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,73 @@
+services:
+  dynamic_form.twig.form_element.extention:
+    class: DynamicFormBundle\Twig\FormElementExtension
+    tags:
+      - { name: twig.extension }
+
+  dynamic_form.twig.dynamic_form.extention:
+    class: DynamicFormBundle\Twig\DynamicFormExtension
+    tags:
+      - { name: twig.extension }
+
+  dynamic_form.file_value.listener:
+    class: DynamicFormBundle\EventListener\Values\FileListener
+    arguments: ["%kernel.root_dir%", "%dynamic_form.file_upload_dir%"]
+    tags:
+      - { name: doctrine.orm.entity_listener }
+
+  dynamic_form.type:
+    class: DynamicFormBundle\Form\Type\DynamicFormType
+    arguments: ["@dynamic_form.type_configuration.registry", "@dynamic_form.data_mapper"]
+    tags:
+      - { name: form.type }
+
+  dynamic_form.data_mapper:
+    class: DynamicFormBundle\Services\FormType\DynamicFormDataMapper
+    arguments: ["@dynamic_form.result_field_builder"]
+
+  dynamic_form.result_field_builder:
+    class: DynamicFormBundle\Services\DynamicResultFieldBuilder
+    arguments: ["@dynamic_form.type_configuration.registry"]
+
+  dynamic_form.type_configuration.registry:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\Registry'
+
+  dynamic_form.text.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.textarea.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.checkbox_group.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\CheckboxGroupTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.radio_group.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\RadioGroupTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.select.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\SelectTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.date.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\DateTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.date_time.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\DateTimeTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }
+
+  dynamic_form.file.type_configuration:
+    class: 'DynamicFormBundle\Services\FormType\Configuration\FileTypeConfiguration'
+    tags:
+      - { name: 'form.type_configuration' }

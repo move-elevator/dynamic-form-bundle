@@ -1,0 +1,140 @@
+DynamicFormBundle\Entity\DynamicForm:
+  example_form:
+    name: 'example'
+
+DynamicFormBundle\Entity\DynamicForm\FormField:
+  name:
+    name: 'name'
+    formType: '@textfield'
+    form: '@example_form'
+    position: '3'
+    optionValues:
+      - '@name_required'
+      - '@name_label'
+  visit:
+    name: 'visit'
+    formType: '@file'
+    form: '@example_form'
+    position: '11'
+    optionValues:
+      - '@visit_required'
+      - '@visit_label'
+  description:
+    name: 'description'
+    formType: '@textarea'
+    form: '@example_form'
+    position: '4'
+    optionValues:
+      - '@description_label'
+  start:
+    name: 'start'
+    formType: '@date'
+    form: '@example_form'
+    position: '5'
+  break:
+    name: 'break'
+    formType: '@datetime'
+    form: '@example_form'
+    position: '6'
+  gender_radio:
+    name: 'gender_radio'
+    formType: '@radio'
+    form: '@example_form'
+    position: '8'
+    optionValues:
+      - '@gender_required'
+      - '@gender_label'
+      - '@gender_choices'
+  gender_check:
+    name: 'gender_check'
+    formType: '@checkbox'
+    form: '@example_form'
+    position: '9'
+    optionValues:
+      - '@gender_required'
+      - '@gender_label'
+      - '@gender_choices'
+  gender_select:
+    name: 'gender_select'
+    formType: '@select'
+    form: '@example_form'
+    position: '10'
+    optionValues:
+      - '@gender_required'
+      - '@gender_label'
+      - '@gender_choices'
+
+DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline:
+  text_headline:
+    text: '@form_headline'
+    form: '@example_form'
+    position: '1'
+  text_headline_gender:
+    text: '@form_headline_gender'
+    form: '@example_form'
+    position: '7'
+
+DynamicFormBundle\Entity\DynamicForm\FormElement\FormText:
+  text_description:
+    text: '@form_description'
+    form: '@example_form'
+    position: '2'
+
+
+DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue:
+  name_required:
+    option: 'required'
+    value: '@name_required_value'
+  name_label:
+    option: 'label'
+    value: '@name_label_value'
+  visit_required:
+    option: 'required'
+    value: '@visit_required_value'
+  visit_label:
+    option: 'label'
+    value: '@visit_label_value'
+  description_label:
+    option: 'label'
+    value: '@description_label_value'
+  gender_required:
+    option: 'required'
+    value: '@gender_required_value'
+  gender_label:
+    option: 'label'
+    value: '@gender_label_value'
+  gender_choices:
+    option: 'choices'
+    value: '@gender_choices_value'
+
+DynamicFormBundle\Entity\Value\StringValue:
+  name_label_value:
+    content: 'Nachname'
+  visit_label_value:
+    content: 'Visitenkarte'
+  gender_label_value:
+    content: 'Geschlecht'
+  description_label_value:
+    content: 'Beschreibung'
+  form_headline:
+    content: 'Headline'
+  form_headline_gender:
+    content: 'Gender'
+
+DynamicFormBundle\Entity\Value\TextValue:
+  form_description:
+    content: 'Beschreibung'
+
+DynamicFormBundle\Entity\Value\BooleanValue:
+  name_required_value:
+    content: false
+  gender_required_value:
+    content: false
+  visit_required_value:
+    content: false
+
+DynamicFormBundle\Entity\Value\ArrayValue:
+  gender_choices_value:
+    content:
+      männlich: 'm'
+      weiblich: 'f'

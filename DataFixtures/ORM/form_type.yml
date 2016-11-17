@@ -1,0 +1,17 @@
+DynamicFormBundle\Entity\DynamicForm\FormField\FormType:
+  textfield:
+    name: 'text'
+  textarea:
+    name: 'textarea'
+  select:
+    name: 'select'
+  checkbox:
+    name: 'checkbox_group'
+  radio:
+    name: 'radio_group'
+  datetime:
+    name: 'datetime'
+  date:
+    name: 'date'
+  file:
+    name: 'file'
