@@ -18,6 +18,11 @@ class DateTimeValue extends BaseValue
      */
     private $dateTimeContent;
 
+    public function __construct()
+    {
+        $this->dateTimeContent = new \DateTime();
+    }
+
     /**
      * @return \DateTime
      */

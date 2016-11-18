@@ -4,6 +4,8 @@ namespace DynamicFormBundle\Statics\FieldOptions;
 
 use DynamicFormBundle\Entity\Value\BooleanValue;
 use DynamicFormBundle\Entity\Value\StringValue;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
  * @package DynamicFormBundle\Statics\FieldOptions
@@ -12,17 +14,20 @@ class BaseOptions
 {
     const LABEL = [
         'name' => 'label',
-        'value_class' => StringValue::class
+        'value_class' => StringValue::class,
+        'form_type' => TextType::class
     ];
 
     const REQUIRED = [
         'name' => 'required',
-        'value_class' => BooleanValue::class
+        'value_class' => BooleanValue::class,
+        'form_type' => CheckboxType::class
     ];
 
     const DISABLED = [
         'name' => 'disabled',
-        'value_class' => BooleanValue::class
+        'value_class' => BooleanValue::class,
+        'form_type' => CheckboxType::class
     ];
 
     /**
@@ -35,7 +40,10 @@ class BaseOptions
         $options = [];
 
         foreach ($reflection->getConstants() as $option) {
-            $options[$option['name']] = $option['value_class'];
+            $name = $option['name'];
+            unset($option['name']);
+
+            $options[$name] = $option;
         }
 
         return $options;

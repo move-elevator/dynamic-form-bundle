@@ -16,7 +16,7 @@ class DynamicFormTypePass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $configurationRegistry = $container->findDefinition('dynamic_form.type_configuration.registry');
+        $configurationRegistry = $container->findDefinition('dynamic_form.form_type.configuration.registry');
         $configurations = $container->findTaggedServiceIds('form.type_configuration');
 
         foreach (array_keys($configurations) as $id) {

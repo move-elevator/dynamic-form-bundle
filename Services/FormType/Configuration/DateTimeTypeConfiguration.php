@@ -3,7 +3,8 @@
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
 use DynamicFormBundle\Entity\Value\DateTimeValue;
-use DynamicFormBundle\Statics\FieldOptions\DateTimeOptions;
+use DynamicFormBundle\Services\FormType\ConfigurationInterface;
+use DynamicFormBundle\Statics\FormFieldOptions\DateTimeOptions;
 use DynamicFormBundle\Statics\FormTypes;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 

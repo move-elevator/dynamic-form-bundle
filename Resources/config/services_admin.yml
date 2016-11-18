@@ -1,0 +1,46 @@
+services:
+  dynamic_form.admin.form_field.form_type:
+    class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
+    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.form_field.option_field_configurator']
+    tags:
+      - { name: 'form.type' }
+
+  dynamic_form.admin.form_field.option_field_configurator:
+    class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator'
+    arguments: ['@dynamic_form.admin.form_field.option.registry', '@dynamic_form.option_filter']
+
+  dynamic_form.admin.option_value.factory:
+    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory'
+    arguments: ['@dynamic_form.admin.form_field.option.registry']
+
+  dynamic_form.admin.form_field.factory:
+    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory'
+    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.option_value.factory']
+
+  dynamic_form.admin.form_field.option.registry:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry'
+
+  dynamic_form.admin.form_field.label.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\LabelConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }
+
+  dynamic_form.admin.form_field.required.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\RequiredConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }
+
+  dynamic_form.admin.form_field.disabled.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DisabledConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }
+
+  dynamic_form.admin.form_field.choices.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\ChoicesConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }
+
+  dynamic_form.admin.form_field.date_time.empty_data.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DateTime\EmptyDataConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }

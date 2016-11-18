@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *     "bool"="DynamicFormBundle\Entity\Value\BooleanValue",
  *     "array"="DynamicFormBundle\Entity\Value\ArrayValue",
  *     "datetime"="DynamicFormBundle\Entity\Value\DateTimeValue",
- *     "entity"="DynamicFormBundle\Entity\Value\EntityValue",
+ *     "object"="DynamicFormBundle\Entity\Value\ObjectValue",
  *     "file"="DynamicFormBundle\Entity\Value\FileValue"
  * })
  *

@@ -89,6 +89,7 @@ class DynamicForm extends BaseModel
      */
     public function addField(FormField $field)
     {
+        $field->setForm($this);
         $this->fields[$field->getName()] = $field;
 
         return $this;

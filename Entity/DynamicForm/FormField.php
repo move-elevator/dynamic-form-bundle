@@ -11,8 +11,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="dynamic_form_field")
+ *
+ * @ORM\Entity
+ * @ORM\EntityListeners({
+ *     "DynamicFormBundle\Admin\EventListener\DynamicForm\FormFieldListener"
+ * })
  *
  * @package DynamicFormBundle\Entity
  */
@@ -45,8 +49,8 @@ class FormField implements SortableInterface
     /**
      * @var Collection|OptionValue[]
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue")
-     * @ORM\JoinTable(name="dynamic_form_field_to_option_value",
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="form_field_to_option_value",
      *      joinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id")}
      *      )
@@ -164,7 +168,7 @@ class FormField implements SortableInterface
      */
     public function addOptionValue(OptionValue $optionValue)
     {
-        $this->optionValues[] = $optionValue;
+        $this->optionValues[$optionValue->getName()] = $optionValue;
 
         return $this;
     }
@@ -183,6 +187,26 @@ class FormField implements SortableInterface
     public function getOptionValues()
     {
         return $this->optionValues;
+    }
+
+    /**
+     * @param string $option
+     *
+     * @return boolean
+     */
+    public function hasOptionValues($option)
+    {
+        return $this->optionValues->containsKey($option);
+    }
+
+    /**
+     * @param string $option
+     *
+     * @return OptionValue
+     */
+    public function getOptionValue($option)
+    {
+        return $this->optionValues->get($option);
     }
 
     /**

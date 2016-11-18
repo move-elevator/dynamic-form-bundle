@@ -83,27 +83,35 @@ DynamicFormBundle\Entity\DynamicForm\FormElement\FormText:
 
 DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue:
   name_required:
+    name: 'required'
     option: 'required'
     value: '@name_required_value'
   name_label:
+    name: 'label'
     option: 'label'
     value: '@name_label_value'
   visit_required:
+    name: 'required'
     option: 'required'
     value: '@visit_required_value'
   visit_label:
+    name: 'label'
     option: 'label'
     value: '@visit_label_value'
   description_label:
+    name: 'label'
     option: 'label'
     value: '@description_label_value'
   gender_required:
+    name: 'required'
     option: 'required'
     value: '@gender_required_value'
   gender_label:
+    name: 'label'
     option: 'label'
     value: '@gender_label_value'
   gender_choices:
+    name: 'choices'
     option: 'choices'
     value: '@gender_choices_value'
 

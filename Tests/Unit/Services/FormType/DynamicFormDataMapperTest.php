@@ -11,7 +11,7 @@ use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Services\DynamicResultFieldBuilder;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 use DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration;
-use DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration;
+use DynamicFormBundle\Services\FormType\Configuration\ContactConfiguration;
 use DynamicFormBundle\Services\FormType\DynamicFormDataMapper;
 use DynamicFormBundle\Tests\Utility\IteratorWrapper;
 use Symfony\Component\Form\Form;
@@ -29,7 +29,7 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $registry = new Registry();
-        $registry->addConfiguration(new TextTypeConfiguration());
+        $registry->addConfiguration(new ContactConfiguration());
         $registry->addConfiguration(new TextAreaTypeConfiguration());
         $builder = new DynamicResultFieldBuilder($registry);
 

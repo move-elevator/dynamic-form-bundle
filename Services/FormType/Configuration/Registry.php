@@ -2,6 +2,8 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
+use DynamicFormBundle\Services\FormType\ConfigurationInterface;
+
 /**
  * @package DynamicFormBundle\Services\FormType\Configuration
  */

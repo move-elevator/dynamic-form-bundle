@@ -42,6 +42,7 @@ class DynamicFormDataMapper implements DataMapperInterface
         }
 
         $forms = iterator_to_array($forms);
+        $this->fieldBuilder->initFields($data, $this->dynamicForm);
 
         foreach ($data->getFieldValues() as $fieldValue) {
             $name = $fieldValue->getName();

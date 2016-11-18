@@ -24,9 +24,16 @@ class FormType
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
     private $name;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", options={"default":true})
+     */
+    private $active = true;
 
     /**
      * @param string $name
@@ -62,5 +69,21 @@ class FormType
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param boolean $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 }

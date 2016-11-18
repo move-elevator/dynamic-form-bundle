@@ -4,7 +4,7 @@ namespace DynamicFormBundle\Tests\Unit\Statics\FieldOptions;
 
 use DynamicFormBundle\Entity\Value\BooleanValue;
 use DynamicFormBundle\Entity\Value\StringValue;
-use DynamicFormBundle\Statics\FieldOptions\BaseOptions;
+use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Statics\FieldOptions

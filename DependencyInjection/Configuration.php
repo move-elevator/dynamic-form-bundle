@@ -23,6 +23,13 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('file_upload_dir')
                     ->isRequired()
                 ->end()
+                ->arrayNode('form_field')
+                    ->children()
+                        ->arrayNode('disable_options')
+                            ->prototype('scalar')->end()
+                        ->end()
+                    ->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

@@ -4,7 +4,8 @@ namespace DynamicFormBundle\Services\FormType\Configuration;
 
 use DynamicFormBundle\Entity\Value\ArrayValue;
 use DynamicFormBundle\Form\BaseType\CheckboxGroupType;
-use DynamicFormBundle\Statics\FieldOptions\ChoiceOptions;
+use DynamicFormBundle\Services\FormType\ConfigurationInterface;
+use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\FormTypes;
 
 /**

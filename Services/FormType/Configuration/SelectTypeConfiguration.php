@@ -4,7 +4,8 @@ namespace DynamicFormBundle\Services\FormType\Configuration;
 
 use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Form\BaseType\SelectType;
-use DynamicFormBundle\Statics\FieldOptions\ChoiceOptions;
+use DynamicFormBundle\Services\FormType\ConfigurationInterface;
+use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\FormTypes;
 
 

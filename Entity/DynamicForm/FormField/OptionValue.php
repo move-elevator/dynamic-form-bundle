@@ -2,6 +2,7 @@
 
 namespace DynamicFormBundle\Entity\DynamicForm\FormField;
 
+use DynamicFormBundle\Model\DynamicForm\FormField\OptionValue as BaseModel;
 use DynamicFormBundle\Entity\Value\BaseValue;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @package DynamicFormBundle\Entity
  */
-class OptionValue
+class OptionValue extends BaseModel
 {
     /**
      * @var int
@@ -25,7 +26,7 @@ class OptionValue
     /**
      * @var BaseValue
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue")
+     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="value_id", referencedColumnName="id", nullable=false)
      */
     private $value;
@@ -33,9 +34,28 @@ class OptionValue
     /**
      * @var string
      *
-     * @ORM\Column(name="option_name", type="string")
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="field_option")
      */
     private $option;
+
+    /**
+     * @param string    $name
+     * @param string    $option
+     * @param BaseValue $value
+     */
+    public function __construct($name = null, $option = null, BaseValue $value = null)
+    {
+        $this->name = $name;
+        $this->option = $option;
+        $this->value = $value;
+    }
 
     /**
      * @return integer
@@ -43,6 +63,22 @@ class OptionValue
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -83,13 +119,5 @@ class OptionValue
     public function getOption()
     {
         return $this->option;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRealValue()
-    {
-        return $this->getValue()->getContent();
     }
 }
