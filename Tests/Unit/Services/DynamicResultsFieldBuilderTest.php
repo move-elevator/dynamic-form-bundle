@@ -12,7 +12,7 @@ use DynamicFormBundle\Entity\Value\TextValue;
 use DynamicFormBundle\Services\DynamicResultFieldBuilder;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 use DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration;
-use DynamicFormBundle\Services\FormType\Configuration\ContactConfiguration;
+use DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration;
 
 /**
  * @package DynamicFormBundle\Tests\Unit
@@ -27,8 +27,8 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $registry = new Registry();
-        $registry->addConfiguration(new ContactConfiguration());
-        $registry->addConfiguration(new TextAreaTypeConfiguration());
+        $registry->addConfiguration(new TextTypeConfiguration);
+        $registry->addConfiguration(new TextAreaTypeConfiguration);
 
         $this->builder = new DynamicResultFieldBuilder($registry);
     }

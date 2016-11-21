@@ -2,9 +2,9 @@
 
 namespace DynamicFormBundle\Tests\Unit\Services\FormType\Configuration;
 
+use DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration;
 use DynamicFormBundle\Statics\FormTypes;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
-use DynamicFormBundle\Services\FormType\Configuration\ContactConfiguration;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Services\FormType\Configuration
@@ -19,12 +19,12 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->registry = new Registry();
-        $this->registry->addConfiguration(new ContactConfiguration());
+        $this->registry->addConfiguration(new TextTypeConfiguration);
     }
 
     public function testGetExistingConfigurationReturnObject()
     {
-        $this->assertInstanceOf(ContactConfiguration::class, $this->registry->getConfiguration(FormTypes::TEXT));
+        $this->assertInstanceOf(TextTypeConfiguration::class, $this->registry->getConfiguration(FormTypes::TEXT));
     }
 
     /**

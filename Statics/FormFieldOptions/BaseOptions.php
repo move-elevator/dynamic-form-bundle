@@ -10,6 +10,7 @@ class BaseOptions
     const LABEL = 'label';
     const REQUIRED = 'required';
     const DISABLED = 'disabled';
+    const PLACEHOLDER = 'placeholder';
 
     /**
      * @return array

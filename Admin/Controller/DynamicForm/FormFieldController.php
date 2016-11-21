@@ -51,8 +51,8 @@ class FormFieldController extends Controller
     }
 
     /**
-     * @param Request     $request
-     * @param FormField   $formField
+     * @param Request   $request
+     * @param FormField $formField
      *
      * @Route("/{fieldId}/edit")
      *

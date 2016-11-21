@@ -2,16 +2,11 @@
 
 namespace DynamicFormBundle\Admin\Form\Type\DynamicForm;
 
-use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormField\OptionValueType;
 use DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Services\FormField\OptionFilter;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;

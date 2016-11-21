@@ -5,7 +5,7 @@ namespace DynamicFormBundle\Form\Type;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicResult;
-use DynamicFormBundle\Services\FormField\OptionFilter;
+use DynamicFormBundle\Services\FormField\OptionBuilder;
 use DynamicFormBundle\Statics\FormElements;
 use DynamicFormBundle\Model\SortableInterface;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
@@ -33,20 +33,20 @@ class DynamicFormType extends AbstractType
     private $dataMapper;
 
     /**
-     * @var OptionFilter
+     * @var OptionBuilder
      */
-    private $optionFilter;
+    private $optionBuilder;
 
     /**
      * @param Registry              $registry
      * @param DynamicFormDataMapper $dataMapper
-     * @param OptionFilter          $optionFilter
+     * @param OptionBuilder         $optionBuilder
      */
-    public function __construct(Registry $registry, DynamicFormDataMapper $dataMapper, OptionFilter $optionFilter)
+    public function __construct(Registry $registry, DynamicFormDataMapper $dataMapper, OptionBuilder $optionBuilder)
     {
         $this->registry = $registry;
         $this->dataMapper = $dataMapper;
-        $this->optionFilter = $optionFilter;
+        $this->optionBuilder = $optionBuilder;
     }
 
     /**
@@ -103,28 +103,10 @@ class DynamicFormType extends AbstractType
      */
     private function buildField(FormBuilderInterface $builder, FormField $field)
     {
-        $options = array_merge(['required' => false], $this->getFormOptions($field));
+        $options = array_merge(['required' => false], $this->optionBuilder->build($field));
         $configuration = $this->registry->getConfiguration($field->getFormType()->getName());
 
         $builder->add($field->getName(), $configuration->getFormTypeClass(), $options);
-    }
-
-    /**
-     * @param FormField $formField
-     *
-     * @return array
-     */
-    private function getFormOptions(FormField $formField)
-    {
-        $options = [];
-
-        foreach ($formField->getOptionValues() as $optionValue) {
-            $options[$optionValue->getOption()] = $optionValue->getRealValue();
-        }
-
-        $this->optionFilter->removeDisabledOptions($options);
-
-        return $options;
     }
 
     /**

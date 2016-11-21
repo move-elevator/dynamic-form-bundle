@@ -17,13 +17,17 @@ services:
 
   dynamic_form.type:
     class: 'DynamicFormBundle\Form\Type\DynamicFormType'
-    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.data_mapper', '@dynamic_form.option_filter']
+    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.data_mapper', '@dynamic_form.option_builder']
     tags:
       - { name: 'form.type' }
 
   dynamic_form.data_mapper:
     class: 'DynamicFormBundle\Services\FormType\DynamicFormDataMapper'
     arguments: ['@dynamic_form.result_field_builder']
+
+  dynamic_form.option_builder:
+    class: 'DynamicFormBundle\Services\FormField\OptionBuilder'
+    arguments: ['@dynamic_form.option_filter']
 
   dynamic_form.option_filter:
     class: 'DynamicFormBundle\Services\FormField\OptionFilter'

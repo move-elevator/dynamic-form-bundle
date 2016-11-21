@@ -12,7 +12,7 @@ abstract class OptionValue
     /**
      * @return BaseValue
      */
-    abstract function getValue();
+    abstract public function getValue();
 
     /**
      * @return mixed
@@ -25,6 +25,8 @@ abstract class OptionValue
     }
 
     /**
+     * @param mixed $value
+     *
      * @return mixed
      */
     public function setRealValue($value)

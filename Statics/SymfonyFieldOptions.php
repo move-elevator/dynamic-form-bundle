@@ -13,4 +13,7 @@ class SymfonyFieldOptions
     const EMPTY_DATA = 'empty_data';
 
     const CHOICES = 'choices';
+
+
+    const ATTR_PLACEHOLDER = 'attr.placeholder';
 }

@@ -39,6 +39,22 @@ class DynamicFormExtension extends \Twig_Extension
      */
     public function formElement(\Twig_Environment $environment, FormElement $formElement)
     {
-        return $environment->render('@DynamicForm/block/form_element.html.twig', ['element' => $formElement]);
+        return $environment->render($this->elementToTemplate($formElement), ['element' => $formElement]);
+    }
+
+    /**
+     * @param FormElement $element
+     *
+     * @return string
+     */
+    private function elementToTemplate(FormElement $element)
+    {
+        $reflect = new \ReflectionClass(get_class($element));
+
+        $snakeCase = preg_replace_callback('/([a-z])([A-Z])/', function($match) {
+            return strtolower(sprintf('%s_%s', $match[1], $match[2]));
+        }, $reflect->getShortName());
+
+        return sprintf('@DynamicForm/block/form_element/%s.html.twig', $snakeCase);
     }
 }

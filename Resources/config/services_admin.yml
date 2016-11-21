@@ -44,3 +44,8 @@ services:
     class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DateTime\EmptyDataConfiguration'
     tags:
       - { name: 'form_field.option_configuration' }
+
+  dynamic_form.admin.form_field.placeholder.option:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\PlaceholderConfiguration'
+    tags:
+      - { name: 'form_field.option_configuration' }

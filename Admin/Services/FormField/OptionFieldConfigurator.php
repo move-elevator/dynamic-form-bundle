@@ -40,7 +40,7 @@ class OptionFieldConfigurator
      */
     public function configFields(FormInterface $form, FormField $formField)
     {
-        foreach($formField->getOptionValues() as $optionValue) {
+        foreach ($formField->getOptionValues() as $optionValue) {
             $configuration = $this->registry->getConfiguration($optionValue->getName());
             $form->add($optionValue->getName(), $configuration->getFormTypeClass(), $this->getFormOptions($configuration));
         }
@@ -54,8 +54,8 @@ class OptionFieldConfigurator
      */
     public function mapToForms(FormField $formField, array $forms)
     {
-        foreach($formField->getOptionValues() as $option) {
-            if(true === array_key_exists($option->getName(), $forms)) {
+        foreach ($formField->getOptionValues() as $option) {
+            if (true === array_key_exists($option->getName(), $forms)) {
                 $forms[$option->getName()]->setData($option->getRealValue());
             }
         }
@@ -67,8 +67,8 @@ class OptionFieldConfigurator
      */
     public function mapToOptionValues(FormField $formField, array $forms)
     {
-        foreach($formField->getOptionValues() as $option) {
-            if(true === array_key_exists($option->getName(), $forms)) {
+        foreach ($formField->getOptionValues() as $option) {
+            if (true === array_key_exists($option->getName(), $forms)) {
                 $data = $forms[$option->getName()]->getData();
                 $option->setRealValue($data);
             }
