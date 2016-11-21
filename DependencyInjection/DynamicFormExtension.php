@@ -22,7 +22,11 @@ class DynamicFormExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('dynamic_form.file_upload_dir', $config['file_upload_dir']);
-        $container->setParameter('dynamic_form.form_field.disable_options', $config['form_field']['disable_options']);
+        $container->setParameter('dynamic_form.form_field.disable_options', []);
+
+        if (true === isset($config['form_field']['disable_options'])) {
+            $container->setParameter('dynamic_form.form_field.disable_options', $config['form_field']['disable_options']);
+        }
 
         $locator = new FileLocator(__DIR__ . '/../Resources/config/');
         $loader  = new YamlFileLoader($container, $locator);

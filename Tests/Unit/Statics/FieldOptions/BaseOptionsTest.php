@@ -14,9 +14,10 @@ class BaseOptionsTest extends \PHPUnit_Framework_TestCase
     public function testAllReturnExpectedStructure()
     {
         $expected = [
-            'label' => StringValue::class,
-            'required' => BooleanValue::class,
-            'disabled' => BooleanValue::class,
+            'LABEL' => 'label',
+            'REQUIRED' => 'required',
+            'DISABLED' => 'disabled',
+            'PLACEHOLDER' => 'placeholder'
         ];
 
         $this->assertEquals($expected, BaseOptions::all());

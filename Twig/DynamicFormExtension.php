@@ -51,9 +51,9 @@ class DynamicFormExtension extends \Twig_Extension
     {
         $reflect = new \ReflectionClass(get_class($element));
 
-        $snakeCase = preg_replace_callback('/([a-z])([A-Z])/', function($match) {
-            return strtolower(sprintf('%s_%s', $match[1], $match[2]));
-        }, $reflect->getShortName());
+        $snakeCase = strtolower(preg_replace_callback('/([a-z])([A-Z])/', function($match) {
+            return sprintf('%s_%s', $match[1], $match[2]);
+        }, $reflect->getShortName()));
 
         return sprintf('@DynamicForm/block/form_element/%s.html.twig', $snakeCase);
     }

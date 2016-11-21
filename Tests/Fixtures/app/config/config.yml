@@ -12,7 +12,6 @@ framework:
 twig:
   paths:
     '%kernel.root_dir%/views': ~
-  form: ~
 
 doctrine:
   dbal:

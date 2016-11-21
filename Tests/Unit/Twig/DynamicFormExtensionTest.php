@@ -33,7 +33,7 @@ class DynamicFormExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testFormElementFunctionExecuteTwigRendererWithExpectedTemplate()
     {
-        $this->extension->formElement($this->getTwigEnvironment('@DynamicForm/block/form_element.html.twig'), new FormHeadline);
+        $this->extension->formElement($this->getTwigEnvironment('@DynamicForm/block/form_element/form_headline.html.twig'), new FormHeadline);
     }
 
     private function getTwigEnvironment($expectedTemplate)

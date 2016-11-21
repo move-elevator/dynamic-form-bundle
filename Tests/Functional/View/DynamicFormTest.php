@@ -47,7 +47,7 @@ class DynamicFormTest extends WebTestCase
         $this->assertContains('<p id ="text_element_3">Beschreibung</p>', $content);
 
         // render description as textarea
-        $this->assertContains('<textarea id="dynamic_form_description" name="dynamic_form[description]" required="required"></textarea>', $content);
+        $this->assertContains('<textarea id="dynamic_form_description" name="dynamic_form[description]"></textarea>', $content);
         // render Visit as fileupload
         $this->assertContains('<input type="file" id="dynamic_form_visit" name="dynamic_form[visit]" />', $content);
         // render name as text-input
