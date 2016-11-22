@@ -130,6 +130,7 @@ class DynamicForm extends BaseModel
      */
     public function addElement(FormElement $element)
     {
+        $element->setForm($this);
         $this->elements[] = $element;
 
         return $this;

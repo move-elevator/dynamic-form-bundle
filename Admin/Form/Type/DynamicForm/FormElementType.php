@@ -40,7 +40,7 @@ class FormElementType extends AbstractType
     /**
      * @param FormEvent $event
      */
-    public function addOptionFields(FormEvent $event)
+    public function addFields(FormEvent $event)
     {
         /** @var FormElement $formElement */
         $formElement = $event->getData();

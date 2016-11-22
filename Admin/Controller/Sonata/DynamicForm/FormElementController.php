@@ -63,7 +63,7 @@ class FormElementController extends Controller
      *
      * @Route("/{elementId}/edit")
      *
-     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
      * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response

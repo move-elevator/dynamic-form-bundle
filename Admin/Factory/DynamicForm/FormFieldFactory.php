@@ -11,7 +11,7 @@ use DynamicFormBundle\Services\FormType\Configuration\Registry;
 /**
  * @package DynamicFormBundle\Admin\Factory\DynamicForm
  */
-class FormFieldFactory
+class FormFieldFactory extends SortableFactory
 {
     /**
      * @var Registry
@@ -71,29 +71,5 @@ class FormFieldFactory
 
             $formField->addOptionValue($this->optionFactory->create($option));
         }
-    }
-
-    /**
-     * @param DynamicForm $form
-     *
-     * @return integer
-     */
-    private function calculatePosition(DynamicForm $form)
-    {
-        $position = 0;
-
-        $sortableElements = array_merge(
-            $form->getElements()->toArray(),
-            $form->getFields()->toArray()
-        );
-
-        /** @var SortableInterface $sortable */
-        foreach ($sortableElements as $sortable) {
-            if ($position < $sortable->getPosition()) {
-                $position = $sortable->getPosition();
-            }
-        }
-
-        return ++$position;
     }
 }

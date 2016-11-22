@@ -59,6 +59,8 @@ services:
   dynamic_form.admin.form_element.type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType'
     arguments: ['@dynamic_form.admin.form_element.registry']
+    tags:
+      - { name: 'form.type' }
 
   dynamic_form.admin.form_element.template_guesser:
     class: 'DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser'
@@ -74,9 +76,9 @@ services:
   dynamic_form.admin.form_element.headline:
     class: 'DynamicFormBundle\Admin\Services\FormElement\FormHeadlineConfiguration'
     tags:
-      - { name: 'form_element.onfiguration' }
+      - { name: 'form_element.configuration' }
 
   dynamic_form.admin.form_element.text:
     class: 'DynamicFormBundle\Admin\Services\FormElement\FormTextConfiguration'
     tags:
-      - { name: 'form_element.onfiguration' }
+      - { name: 'form_element.configuration' }

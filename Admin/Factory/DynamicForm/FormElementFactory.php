@@ -9,7 +9,7 @@ use DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry;
 /**
  * @package DynamicFormBundle\Admin\Factory\DynamicForm
  */
-class FormElementFactory
+class FormElementFactory extends SortableFactory
 {
     /**
      * @var Registry
@@ -33,12 +33,13 @@ class FormElementFactory
     public function create(DynamicForm $form, $name)
     {
         $configuration = $this->registry->getConfiguration($name);
-
+        /** @var FormElement $formElement */
         $formElement = $configuration->getFormElement();
         $formElement = new $formElement;
 
         $value = $configuration->getValueClass();
-        $formElement->setText($value);
+        $formElement->setText(new $value);
+        $formElement->setPosition($this->calculatePosition($form));
 
         $form->addElement($formElement);
 

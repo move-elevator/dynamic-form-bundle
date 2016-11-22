@@ -30,7 +30,7 @@ abstract class FormElement implements SortableInterface
     /**
      * @var TextValue
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue")
+     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="value_id", referencedColumnName="id", nullable=false)
      */
     protected $text;
