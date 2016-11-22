@@ -2,9 +2,9 @@
 
 namespace DynamicFormBundle\Admin\Controller\Sonata\DynamicForm;
 
-use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType;
+use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType;
 use DynamicFormBundle\Entity\DynamicForm;
-use DynamicFormBundle\Entity\DynamicForm\FormField;
+use DynamicFormBundle\Entity\DynamicForm\FormElement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,28 +14,28 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * @package DynamicFormBundle\Admin\Controller\Sonata\DynamicForm
  *
- * @Route("form/{formId}/form-field")
+ * @Route("form/{formId}/form-element")
  */
-class FormFieldController extends Controller
+class FormElementController extends Controller
 {
     /**
      * @param Request     $request
-     * @param string      $formType
+     * @param string      $formElementType
      * @param DynamicForm $dynamicForm
      *
-     * @Route("/{formType}/create")
+     * @Route("/{formElementType}/create")
      *
      * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
-    public function createAction(Request $request, $formType, DynamicForm $dynamicForm)
+    public function createAction(Request $request, $formElementType, DynamicForm $dynamicForm)
     {
-        $formField = $this
-            ->get('dynamic_form.admin.form_field.factory')
-            ->create($dynamicForm, $formType);
+        $formElement = $this
+            ->get('dynamic_form.admin.form_element.factory')
+            ->create($dynamicForm, $formElementType);
 
-        $form = $this->createForm(FormFieldType::class, $formField);
+        $form = $this->createForm(FormElementType::class, $formElement);
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
@@ -44,13 +44,13 @@ class FormFieldController extends Controller
                 ->getManager()
                 ->flush($dynamicForm);
 
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formfield_edit', [
+            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formelement_edit', [
                 'formId' => $dynamicForm->getId(),
-                'fieldId' => $formField->getId(),
+                'elementId' => $formElement->getId(),
             ]);
         }
 
-        return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
+        return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
             'form' => $form->createView(),
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);
@@ -59,23 +59,18 @@ class FormFieldController extends Controller
     /**
      * @param Request     $request
      * @param DynamicForm $dynamicForm
-     * @param FormField   $formField
+     * @param FormElement $formElement
      *
-     * @Route("/{fieldId}/edit")
+     * @Route("/{elementId}/edit")
      *
-     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"elementId": "id"}})
      * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
-    public function editAction(Request $request, DynamicForm $dynamicForm, FormField $formField)
+    public function editAction(Request $request, DynamicForm $dynamicForm, FormElement $formElement)
     {
-
-        $this
-            ->get('dynamic_form.admin.form_field.factory')
-            ->initOptions($formField);
-
-        $form = $this->createForm(FormFieldType::class, $formField);
+        $form = $this->createForm(FormElementType::class, $formElement);
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
@@ -87,7 +82,7 @@ class FormFieldController extends Controller
             return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
-        return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
+        return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
             'form' => $form->createView(),
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);

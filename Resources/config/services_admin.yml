@@ -18,7 +18,7 @@ services:
     arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.option_value.factory']
 
   dynamic_form.admin.form_field.template_guesser:
-    class: 'DynamicFormBundle\Admin\Services\FormField\FormFieldTemplateGuesser'
+    class: 'DynamicFormBundle\Admin\Services\FormField\TemplateGuesser'
     arguments: ['@templating']
 
   dynamic_form.admin.form_field.option.registry:
@@ -53,3 +53,30 @@ services:
     class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\PlaceholderConfiguration'
     tags:
       - { name: 'form_field.option_configuration' }
+
+
+
+  dynamic_form.admin.form_element.type:
+    class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType'
+    arguments: ['@dynamic_form.admin.form_element.registry']
+
+  dynamic_form.admin.form_element.template_guesser:
+    class: 'DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser'
+    arguments: ['@templating']
+
+  dynamic_form.admin.form_element.factory:
+    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormElementFactory'
+    arguments: ['@dynamic_form.admin.form_element.registry']
+
+  dynamic_form.admin.form_element.registry:
+    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry'
+
+  dynamic_form.admin.form_element.headline:
+    class: 'DynamicFormBundle\Admin\Services\FormElement\FormHeadlineConfiguration'
+    tags:
+      - { name: 'form_element.onfiguration' }
+
+  dynamic_form.admin.form_element.text:
+    class: 'DynamicFormBundle\Admin\Services\FormElement\FormTextConfiguration'
+    tags:
+      - { name: 'form_element.onfiguration' }

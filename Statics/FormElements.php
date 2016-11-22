@@ -7,6 +7,6 @@ namespace DynamicFormBundle\Statics;
  */
 class FormElements
 {
-    const TEXT = 'text_element';
-    const HEADLINE = 'headline_element';
+    const TEXT = 'form_text';
+    const HEADLINE = 'form_element';
 }
