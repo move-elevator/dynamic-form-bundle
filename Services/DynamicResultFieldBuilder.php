@@ -42,7 +42,7 @@ class DynamicResultFieldBuilder
                 continue;
             }
 
-            $config = $this->configRegistry->getConfiguration($field->getFormType()->getName());
+            $config = $this->configRegistry->getConfiguration($field->getFormType());
             $valueClass = $config->getValueClass();
             $value = new $valueClass;
 

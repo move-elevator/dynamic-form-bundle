@@ -4,7 +4,6 @@ namespace DynamicFormBundle\Entity\DynamicForm;
 
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
-use DynamicFormBundle\Entity\DynamicForm\FormField\FormType;
 use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -58,10 +57,9 @@ class FormField implements SortableInterface
     private $optionValues;
 
     /**
-     * @var FormType
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\FormType")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="string")
      */
     private $formType;
 
@@ -73,10 +71,10 @@ class FormField implements SortableInterface
     private $position;
 
     /**
-     * @param string   $name
-     * @param FormType $formType
+     * @param string $name
+     * @param string $formType
      */
-    public function __construct($name = null, FormType $formType = null)
+    public function __construct($name = null, $formType = null)
     {
         $this->optionValues = new ArrayCollection();
         $this->name = $name;
@@ -128,11 +126,11 @@ class FormField implements SortableInterface
     }
 
     /**
-     * @param FormType $formType
+     * @param string $formType
      *
      * @return FormField
      */
-    public function setFormType(FormType $formType)
+    public function setFormType($formType)
     {
         $this->formType = $formType;
 
@@ -140,7 +138,7 @@ class FormField implements SortableInterface
     }
 
     /**
-     * @return FormType
+     * @return string
      */
     public function getFormType()
     {

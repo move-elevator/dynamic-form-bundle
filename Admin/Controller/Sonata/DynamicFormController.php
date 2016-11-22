@@ -1,6 +1,6 @@
 <?php
 
-namespace DynamicFormBundle\Admin\Controller;
+namespace DynamicFormBundle\Admin\Controller\Sonata;
 
 use DynamicFormBundle\Admin\Form\Type\DynamicFormType;
 use DynamicFormBundle\Entity\DynamicForm;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @package DynamicFormBundle\Admin\Controller
+ * @package DynamicFormBundle\Admin\Sonata\Controller
  *
  * @Route("form")
  */
@@ -39,10 +39,13 @@ class DynamicFormController extends Controller
             $entityManager->persist($dynamicForm);
             $entityManager->flush();
 
-            $this->redirectToRoute('dynamicform_admin_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+            $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
-        return $this->render('@DynamicForm/admin/form/dynamic_form_form.html.twig', ['form' => $form->createView()]);
+        return $this->render('@DynamicForm/sonata-admin/form/dynamic_form.html.twig', [
+            'form' => $form->createView(),
+            'admin_pool' => $this->container->get('sonata.admin.pool')
+        ]);
     }
 
     /**
@@ -61,10 +64,13 @@ class DynamicFormController extends Controller
         if (true === $form->isValid()) {
             $this
                 ->getDoctrine()
-                ->getEntityManager()
+                ->getManager()
                 ->flush();
         }
 
-        return $this->render('@DynamicForm/admin/form/dynamic_form_form.html.twig', ['form' => $form->createView(), 'dynamicForm' => $dynamicForm]);
+        return $this->render('@DynamicForm/sonata-admin/form/dynamic_form.html.twig', [
+            'form' => $form->createView(),
+            'admin_pool' => $this->container->get('sonata.admin.pool')
+        ]);
     }
 }

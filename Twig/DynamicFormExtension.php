@@ -57,4 +57,12 @@ class DynamicFormExtension extends \Twig_Extension
 
         return sprintf('@DynamicForm/block/form_element/%s.html.twig', $snakeCase);
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'dynamic_form_extension';
+    }
 }

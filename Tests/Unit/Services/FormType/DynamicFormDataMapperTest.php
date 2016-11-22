@@ -6,7 +6,6 @@ use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicResult;
 use DynamicFormBundle\Entity\DynamicResult\FieldValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\DynamicForm\FormField\FormType;
 use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Services\DynamicResultFieldBuilder;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
@@ -50,8 +49,8 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
         $result = new DynamicResult();
 
         $dynamicForm = new DynamicForm();
-        $dynamicForm->addField(new FormField('name', new FormType('text')));
-        $dynamicForm->addField(new FormField('description', new FormType('textarea')));
+        $dynamicForm->addField(new FormField('name', 'text'));
+        $dynamicForm->addField(new FormField('description', 'textarea'));
 
         $form = new IteratorWrapper([
             'name' => $this->getFormFieldMock(0, 1),
@@ -75,8 +74,8 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
         $result->addFieldValue($fieldValue);
 
         $dynamicForm = new DynamicForm();
-        $dynamicForm->addField(new FormField('name', new FormType('text')));
-        $dynamicForm->addField(new FormField('description', new FormType('textarea')));
+        $dynamicForm->addField(new FormField('name', 'text'));
+        $dynamicForm->addField(new FormField('description', 'textarea'));
 
         $form = new IteratorWrapper([
             'name' => $this->getFormFieldMock(1),

@@ -28,4 +28,12 @@ class FormElementExtension extends \Twig_Extension
     {
         return $formText instanceOf FormElement;
     }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'form_element_extension';
+    }
 }

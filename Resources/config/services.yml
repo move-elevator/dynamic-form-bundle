@@ -39,6 +39,7 @@ services:
 
   dynamic_form.form_type.configuration.registry:
     class: 'DynamicFormBundle\Services\FormType\Configuration\Registry'
+    arguments: ['%dynamic_form.form_field.disable_form_types%']
 
   dynamic_form.text.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration'

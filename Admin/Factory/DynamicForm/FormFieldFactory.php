@@ -5,7 +5,6 @@ namespace DynamicFormBundle\Admin\Factory\DynamicForm;
 use DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\DynamicForm\FormField\FormType;
 use DynamicFormBundle\Model\SortableInterface;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 
@@ -36,11 +35,11 @@ class FormFieldFactory
 
     /**
      * @param DynamicForm $form
-     * @param FormType    $formType
+     * @param string      $formType
      *
      * @return FormField
      */
-    public function create(DynamicForm $form, FormType $formType)
+    public function create(DynamicForm $form, $formType)
     {
         $formField = new FormField();
         $formField->setFormType($formType);
@@ -63,7 +62,7 @@ class FormFieldFactory
             return;
         }
 
-        $config = $this->registry->getConfiguration($formField->getFormType()->getName());
+        $config = $this->registry->getConfiguration($formField->getFormType());
 
         foreach ($config->getAvailableOptions() as $option) {
             if (true === $formField->hasOptionValues($option)) {

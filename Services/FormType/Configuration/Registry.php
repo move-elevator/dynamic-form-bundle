@@ -12,7 +12,20 @@ class Registry
     /**
      * @var ConfigurationInterface[]
      */
-    private $configurations;
+    private $configurations = [];
+
+    /**
+     * @var array
+     */
+    private $disabledTypes;
+
+    /**
+     * @param array $disabledTypes
+     */
+    public function __construct(array $disabledTypes = [])
+    {
+        $this->disabledTypes = $disabledTypes;
+    }
 
     /**
      * @param ConfigurationInterface $configuration
@@ -33,6 +46,18 @@ class Registry
             throw new \LogicException(sprintf('No Configuration found for %s', $name));
         }
 
+        if (true === in_array($name, $this->disabledTypes)) {
+            throw new \LogicException(sprintf('FormType %s is not available', $name));
+        }
+
         return $this->configurations[$name];
+    }
+
+    /**
+     * @return array
+     */
+    public function getAvailableTypes()
+    {
+        return array_diff(array_keys($this->configurations), $this->disabledTypes);
     }
 }

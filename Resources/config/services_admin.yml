@@ -17,6 +17,10 @@ services:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory'
     arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.option_value.factory']
 
+  dynamic_form.admin.form_field.template_guesser:
+    class: 'DynamicFormBundle\Admin\Services\FormField\FormFieldTemplateGuesser'
+    arguments: ['@templating']
+
   dynamic_form.admin.form_field.option.registry:
     class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry'
 

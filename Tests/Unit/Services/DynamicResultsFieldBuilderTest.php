@@ -6,7 +6,6 @@ use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicResult;
 use DynamicFormBundle\Entity\DynamicResult\FieldValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\DynamicForm\FormField\FormType;
 use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Entity\Value\TextValue;
 use DynamicFormBundle\Services\DynamicResultFieldBuilder;
@@ -38,8 +37,8 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
         $result = new DynamicResult();
 
         $form = new DynamicForm();
-        $form->addField(new FormField('name', new FormType('text')));
-        $form->addField(new FormField('description', new FormType('textarea')));
+        $form->addField(new FormField('name', 'text'));
+        $form->addField(new FormField('description', 'textarea'));
 
         $this->builder->initFields($result, $form);
 
@@ -50,11 +49,11 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDoNotInitExistingFields()
     {
-        $nameField = new FormField('name', new FormType('text'));
+        $nameField = new FormField('name', 'text');
 
         $form = new DynamicForm();
         $form->addField($nameField);
-        $form->addField(new FormField('description', new FormType('textarea')));
+        $form->addField(new FormField('description', 'textarea'));
 
         $result = new DynamicResult();
         $result->addFieldValue(new FieldValue($nameField));

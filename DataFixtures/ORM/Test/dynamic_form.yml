@@ -5,7 +5,7 @@ DynamicFormBundle\Entity\DynamicForm:
 DynamicFormBundle\Entity\DynamicForm\FormField:
   name:
     name: 'name'
-    formType: '@textfield'
+    formType: 'text'
     form: '@example_form'
     position: '3'
     optionValues:
@@ -13,7 +13,7 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
       - '@name_label'
   visit:
     name: 'visit'
-    formType: '@file'
+    formType: 'file'
     form: '@example_form'
     position: '11'
     optionValues:
@@ -21,24 +21,24 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
       - '@visit_label'
   description:
     name: 'description'
-    formType: '@textarea'
+    formType: 'textarea'
     form: '@example_form'
     position: '4'
     optionValues:
       - '@description_label'
   start:
     name: 'start'
-    formType: '@date'
+    formType: 'date'
     form: '@example_form'
     position: '5'
   break:
     name: 'break'
-    formType: '@datetime'
+    formType: 'datetime'
     form: '@example_form'
     position: '6'
   gender_radio:
     name: 'gender_radio'
-    formType: '@radio'
+    formType: 'radio_group'
     form: '@example_form'
     position: '8'
     optionValues:
@@ -47,7 +47,7 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
       - '@gender_choices'
   gender_check:
     name: 'gender_check'
-    formType: '@checkbox'
+    formType: 'checkbox_group'
     form: '@example_form'
     position: '9'
     optionValues:
@@ -56,7 +56,7 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
       - '@gender_choices'
   gender_select:
     name: 'gender_select'
-    formType: '@select'
+    formType: 'select'
     form: '@example_form'
     position: '10'
     optionValues:

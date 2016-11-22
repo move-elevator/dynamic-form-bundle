@@ -1,0 +1,38 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% form_theme form '@SonataAdmin/Form/form_admin_fields.html.twig' %}
+
+{% block form %}
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <h4 class="box-title">{{ 'New DynamicForm Field' }}</h4>
+                </div>
+                <div class="box-body">
+                    {{ form_row(form.name) }}
+                    {% if form.vars.sortable|length > 0 %}
+                        <table class="table table-striped table-bordered">
+                            {% for sortable in form.vars.sortable %}
+                                <tr>
+                                    <td>
+                                        {{ form_label(sortable.position, sortable.vars.title) }}
+                                    </td>
+                                    <td>
+                                        {{ form_widget(sortable) }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="well well-small form-actions">
+        <button type="submit" class="btn btn-success" name="btn_update_and_edit"><i class="fa fa-save"></i> Speichern</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock form %}

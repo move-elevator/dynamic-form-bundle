@@ -18,7 +18,6 @@ class DynamicFormTest extends WebTestCase
         $this->createDatabase();
 
         $this->loadAliceFixtures([
-            $this->getAliceFixturePath('form_type.yml'),
             $this->getAliceFixturePath('Test/dynamic_form.yml')
         ]);
     }
