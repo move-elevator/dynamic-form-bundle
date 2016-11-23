@@ -16,7 +16,7 @@ class ArrayValue extends BaseValue
     /**
      * @var array
      *
-     * @ORM\Column(name="array_content", type="json_array")
+     * @ORM\Column(name="array_content", type="json_array", nullable=true)
      */
     private $arrayContent;
 

@@ -16,7 +16,7 @@ class TextValue extends BaseValue
     /**
      * @var string
      *
-     * @ORM\Column(name="text_value", type="text")
+     * @ORM\Column(name="text_value", type="text", nullable=true)
      */
     private $textContent;
 

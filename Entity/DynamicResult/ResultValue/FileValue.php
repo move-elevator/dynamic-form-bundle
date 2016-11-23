@@ -21,7 +21,7 @@ class FileValue extends BaseValue
     /**
      * @var string
      *
-     * @ORM\Column(name="file_content", type="string")
+     * @ORM\Column(name="file_content", type="string", nullable=true)
      */
     private $fileUri;
 

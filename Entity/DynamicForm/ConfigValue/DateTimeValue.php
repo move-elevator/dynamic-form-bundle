@@ -16,7 +16,7 @@ class DateTimeValue extends BaseValue
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_time_content", type="datetime")
+     * @ORM\Column(name="date_time_content", type="datetime", nullable=true)
      */
     private $dateTimeContent;
 

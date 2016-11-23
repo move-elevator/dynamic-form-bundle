@@ -16,7 +16,7 @@ class IntegerValue extends BaseValue
     /**
      * @var integer
      *
-     * @ORM\Column(name="integer_content", type="integer")
+     * @ORM\Column(name="integer_content", type="integer", nullable=true)
      */
     private $integerContent;
 

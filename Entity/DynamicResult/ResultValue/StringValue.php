@@ -16,7 +16,7 @@ class StringValue extends BaseValue
     /**
      * @var string
      *
-     * @ORM\Column(name="string_content", type="string")
+     * @ORM\Column(name="string_content", type="string", nullable=true)
      */
     private $stringContent;
 

@@ -16,7 +16,7 @@ class FloatValue extends BaseValue
     /**
      * @var float
      *
-     * @ORM\Column(name="float_content", type="float")
+     * @ORM\Column(name="float_content", type="float", nullable=true)
      */
     private $floatContent;
 

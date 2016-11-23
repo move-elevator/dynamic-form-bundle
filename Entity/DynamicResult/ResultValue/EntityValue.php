@@ -18,7 +18,7 @@ class EntityValue extends BaseValue
      * @var AbstractEntity
      *
      * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\AbstractEntity", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="entity_reference", referencedColumnName="id")
+     * @ORM\JoinColumn(name="entity_reference", referencedColumnName="id", nullable=true)
      */
     private $entityContent;
 

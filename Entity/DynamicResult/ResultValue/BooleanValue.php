@@ -16,7 +16,7 @@ class BooleanValue extends BaseValue
     /**
      * @var boolean
      *
-     * @ORM\Column(name="boolean_content", type="boolean")
+     * @ORM\Column(name="boolean_content", type="boolean", nullable=true)
      */
     private $booleanContent;
 
