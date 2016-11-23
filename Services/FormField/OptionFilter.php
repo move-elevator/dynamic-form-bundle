@@ -27,8 +27,8 @@ class OptionFilter
      */
     public function removeDisabledOptions(&$options)
     {
-        foreach ($options as $option => $value) {
-            if (true === in_array($option, $this->disabledOptions)) {
+        foreach ($this->disabledOptions as $option) {
+            if (true === array_key_exists($option, $options)) {
                 unset($options[$option]);
             }
         }

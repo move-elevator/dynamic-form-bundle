@@ -80,7 +80,7 @@ class DynamicFormType extends AbstractType
             $view->vars['anchor_list'][] = $headline;
         }
 
-        $this->prepareView($view, $dynamicForm);
+        $view->vars['elements'] = $dynamicForm->getOrderedElements();
     }
 
     /**
@@ -107,29 +107,5 @@ class DynamicFormType extends AbstractType
         $configuration = $this->registry->getConfiguration($field->getFormType());
 
         $builder->add($field->getName(), $configuration->getFormTypeClass(), $options);
-    }
-
-    /**
-     * Sort all Fields by position
-     *
-     * @param FormView    $view
-     * @param DynamicForm $form
-     */
-    private function prepareView(FormView $view, DynamicForm $form)
-    {
-        $formChildren = array_merge(
-            $form->getElements()->toArray(),
-            $form->getFields()->toArray()
-        );
-
-        uasort($formChildren, function (SortableInterface $first, SortableInterface $second) {
-            if ($first->getPosition() == $second->getPosition()) {
-                return 0;
-            }
-
-            return ($first->getPosition() < $second->getPosition()) ? -1 : 1;
-        });
-
-        $view->vars['elements'] = $formChildren;
     }
 }

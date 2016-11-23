@@ -27,11 +27,11 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render FormHeadlines
-        $this->assertContains('<h1 id ="headline_1">Headline</h1>', $content);
-        $this->assertContains('<h1 id ="gender_2">Gender</h1>', $content);
+        $this->assertContains('<h1 id="headline_1">Headline</h1>', $content);
+        $this->assertContains('<h1 id="gender_2">Gender</h1>', $content);
 
         // render FormText
-        $this->assertContains('<p id ="text_element_3">Beschreibung</p>', $content);
+        $this->assertContains('<p id="text_3">Beschreibung</p>', $content);
     }
 
     public function testRenderDynamicFormInputs()
@@ -39,11 +39,11 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render FormHeadlines
-        $this->assertContains('<h1 id ="headline_1">Headline</h1>', $content);
-        $this->assertContains('<h1 id ="gender_2">Gender</h1>', $content);
+        $this->assertContains('<h1 id="headline_1">Headline</h1>', $content);
+        $this->assertContains('<h1 id="gender_2">Gender</h1>', $content);
 
         // render FormText
-        $this->assertContains('<p id ="text_element_3">Beschreibung</p>', $content);
+        $this->assertContains('<p id="text_3">Beschreibung</p>', $content);
 
         // render description as textarea
         $this->assertContains('<textarea id="dynamic_form_description" name="dynamic_form[description]"></textarea>', $content);

@@ -46,4 +46,25 @@ abstract class DynamicForm
             return false;
         });
     }
+
+    /**
+     * @return SortableInterface[]
+     */
+    public function getOrderedElements()
+    {
+        $formChildren = array_merge(
+            $this->getElements()->toArray(),
+            $this->getFields()->toArray()
+        );
+
+        uasort($formChildren, function (SortableInterface $first, SortableInterface $second) {
+            if ($first->getPosition() == $second->getPosition()) {
+                return 0;
+            }
+
+            return ($first->getPosition() < $second->getPosition()) ? -1 : 1;
+        });
+
+        return $formChildren;
+    }
 }

@@ -1,7 +1,7 @@
 services:
   dynamic_form.admin.form_field.form_type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
-    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.form_field.option_field_configurator']
+    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator']
     tags:
       - { name: 'form.type' }
 
@@ -15,7 +15,7 @@ services:
 
   dynamic_form.admin.form_field.factory:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory'
-    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.admin.option_value.factory']
+    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.option_value.factory']
 
   dynamic_form.admin.form_field.template_guesser:
     class: 'DynamicFormBundle\Admin\Services\FormField\TemplateGuesser'

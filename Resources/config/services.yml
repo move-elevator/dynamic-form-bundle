@@ -17,7 +17,7 @@ services:
 
   dynamic_form.type:
     class: 'DynamicFormBundle\Form\Type\DynamicFormType'
-    arguments: ['@dynamic_form.form_type.configuration.registry', '@dynamic_form.data_mapper', '@dynamic_form.option_builder']
+    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.data_mapper', '@dynamic_form.option_builder']
     tags:
       - { name: 'form.type' }
 
@@ -35,9 +35,9 @@ services:
 
   dynamic_form.result_field_builder:
     class: 'DynamicFormBundle\Services\DynamicResultFieldBuilder'
-    arguments: ['@dynamic_form.form_type.configuration.registry']
+    arguments: ['@dynamic_form.form_type.registry']
 
-  dynamic_form.form_type.configuration.registry:
+  dynamic_form.form_type.registry:
     class: 'DynamicFormBundle\Services\FormType\Configuration\Registry'
     arguments: ['%dynamic_form.form_field.disable_form_types%']
 
