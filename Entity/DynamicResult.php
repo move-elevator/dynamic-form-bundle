@@ -26,20 +26,20 @@ class DynamicResult extends BaseModel
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm")
      * @ORM\JoinColumn(name="form_id", referencedColumnName="id", nullable=false)
      */
-    private $form;
+    protected $form;
 
     /**
      * @var Collection|FieldValue[]
      *
      * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicResult\FieldValue", mappedBy="result", cascade={"persist", "remove"}, fetch="EAGER")
      */
-    private $fieldValues;
+    protected $fieldValues;
 
     /**
      */

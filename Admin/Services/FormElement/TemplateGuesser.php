@@ -21,7 +21,7 @@ class TemplateGuesser extends BaseGuesser
     {
         $templatePath = $this->getTemplatePath('form_element', $formElement->getElementType());
 
-        $parameter = array_merge($parameter, ['form_element' => $formElement]);
+        $parameter = array_merge($parameter, ['formElement' => $formElement]);
 
         $response = new Response;
         $response->setContent($this->templateEngine->render($templatePath, $parameter));

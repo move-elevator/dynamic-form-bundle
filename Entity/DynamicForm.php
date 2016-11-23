@@ -27,28 +27,28 @@ class DynamicForm extends BaseModel
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var Collection|FormField[]
      *
      * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", mappedBy="form", cascade={"persist", "remove"})
      */
-    private $fields;
+    protected $fields;
 
     /**
      * @var Collection|FormField[]
      *
      * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="form", cascade={"persist", "remove"})
      */
-    private $elements;
+    protected $elements;
 
     /**
      */

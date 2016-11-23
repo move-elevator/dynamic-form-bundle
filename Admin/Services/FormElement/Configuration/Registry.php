@@ -35,4 +35,12 @@ class Registry
 
         return $this->configurations[$name];
     }
+
+    /**
+     * @return array
+     */
+    public function getAvailableTypes()
+    {
+        return array_keys($this->configurations);
+    }
 }
