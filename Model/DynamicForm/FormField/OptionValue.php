@@ -2,7 +2,7 @@
 
 namespace  DynamicFormBundle\Model\DynamicForm\FormField;
 
-use DynamicFormBundle\Entity\Value\BaseValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 
 /**
  * @package DynamicFormBundle\Model\DynamicForm\FormField

@@ -1,11 +1,13 @@
 <?php
 
-namespace DynamicFormBundle\Entity\Value;
+namespace DynamicFormBundle\Entity\DynamicForm\ConfigValue;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ *
+ * @ORM\Table(name="dynamic_form_option_array_value")
  *
  * @package DynamicFormBundle\Entity\Value
  */

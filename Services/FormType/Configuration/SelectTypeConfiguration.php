@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\Value\StringValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\StringValue;
 use DynamicFormBundle\Form\BaseType\SelectType;
 use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;

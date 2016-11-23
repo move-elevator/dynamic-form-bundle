@@ -35,12 +35,4 @@ class FormTextConfiguration implements ConfigurationInterface
     {
         return FormElements::TEXT;
     }
-
-    /**
-     * @return string
-     */
-    public function getValueClass()
-    {
-        return TextValue::class;
-    }
 }

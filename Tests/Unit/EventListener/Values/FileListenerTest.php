@@ -3,7 +3,7 @@
 namespace DynamicFormBundle\Tests\Unit\EventListener\Values;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use DynamicFormBundle\Entity\Value\FileValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\FileValue;
 use DynamicFormBundle\EventListener\Values\FileListener;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;

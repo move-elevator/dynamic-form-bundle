@@ -4,7 +4,7 @@ namespace DynamicFormBundle\Admin\Services\FormField\Option\Configuration;
 
 use DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceTextType;
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
-use DynamicFormBundle\Entity\Value\ArrayValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ArrayValue;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\SymfonyFieldOptions;
 

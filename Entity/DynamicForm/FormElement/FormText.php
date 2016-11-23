@@ -3,7 +3,6 @@
 namespace DynamicFormBundle\Entity\DynamicForm\FormElement;
 
 use DynamicFormBundle\Entity\DynamicForm\FormElement;
-use DynamicFormBundle\Entity\Value\TextValue;
 use DynamicFormBundle\Statics\FormElements;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,17 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FormText extends FormElement
 {
-    /**
-     * @param TextValue $text
-     *
-     * @return FormText
-     */
-    public function setText(TextValue $text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
 
     /**
      * @return string

@@ -21,9 +21,4 @@ interface ConfigurationInterface
      * @return string
      */
     public function getName();
-
-    /**
-     * @return string
-     */
-    public function getValueClass();
 }

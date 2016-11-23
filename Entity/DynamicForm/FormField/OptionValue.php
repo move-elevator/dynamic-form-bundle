@@ -3,7 +3,7 @@
 namespace DynamicFormBundle\Entity\DynamicForm\FormField;
 
 use DynamicFormBundle\Model\DynamicForm\FormField\OptionValue as BaseModel;
-use DynamicFormBundle\Entity\Value\BaseValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,8 +26,7 @@ class OptionValue extends BaseModel
     /**
      * @var BaseValue
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="value_id", referencedColumnName="id", nullable=false)
+     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue", mappedBy="option", cascade={"persist", "remove"})
      */
     private $value;
 
@@ -88,6 +87,7 @@ class OptionValue extends BaseModel
      */
     public function setValue(BaseValue $value)
     {
+        $value->setOption($this);
         $this->value = $value;
 
         return $this;

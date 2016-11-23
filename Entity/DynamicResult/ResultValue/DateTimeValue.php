@@ -1,11 +1,13 @@
 <?php
 
-namespace DynamicFormBundle\Entity\Value;
+namespace DynamicFormBundle\Entity\DynamicResult\ResultValue;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
+ *
+ * @ORM\Table(name="dynamic_form_result_datetime_value")
  *
  * @package DynamicFormBundle\Entity\Value
  */

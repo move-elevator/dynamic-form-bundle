@@ -3,8 +3,7 @@
 namespace DynamicFormBundle\Entity\DynamicForm;
 
 use DynamicFormBundle\Entity\DynamicForm;
-use DynamicFormBundle\Entity\Value\BaseValue;
-use DynamicFormBundle\Entity\Value\TextValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,10 +27,9 @@ abstract class FormElement implements SortableInterface
     protected $id;
 
     /**
-     * @var TextValue
+     * @var BaseValue
      *
-     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="value_id", referencedColumnName="id", nullable=false)
+     * @ORM\Column(type="text")
      */
     protected $text;
 

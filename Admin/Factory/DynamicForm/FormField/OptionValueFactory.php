@@ -3,8 +3,8 @@
 namespace DynamicFormBundle\Admin\Factory\DynamicForm\FormField;
 
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
-use DynamicFormBundle\Entity\Value\BaseValue;
 
 /**
  * @package DynamicFormBundle\Admin\Factory\DynamicForm\FormField

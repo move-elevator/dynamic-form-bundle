@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\Value\DateTimeValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\DateTimeValue;
 use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 use DynamicFormBundle\Statics\FormFieldOptions\DateTimeOptions;
 use DynamicFormBundle\Statics\FormTypes;

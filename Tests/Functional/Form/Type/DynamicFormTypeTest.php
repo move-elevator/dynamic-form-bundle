@@ -3,9 +3,9 @@
 namespace DynamicFormBundle\Tests\Functional\Form\Type;
 
 use DynamicFormBundle\Entity\DynamicForm;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\FileValue;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline;
 use DynamicFormBundle\Entity\DynamicResult;
-use DynamicFormBundle\Entity\Value\FileValue;
 use DynamicFormBundle\Form\Type\DynamicFormType;
 use DynamicFormBundle\Tests\Utility\WebTestCase;
 use Symfony\Component\Form\Form;

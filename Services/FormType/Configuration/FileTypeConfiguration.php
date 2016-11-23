@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\Value\FileValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\FileValue;
 use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 use DynamicFormBundle\Statics\FormTypes;

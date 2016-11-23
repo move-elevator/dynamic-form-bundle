@@ -3,7 +3,7 @@
 namespace DynamicFormBundle\Model;
 
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\Value\BaseValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\BaseValue;
 
 /**
  * @package DynamicFormBundle\Model

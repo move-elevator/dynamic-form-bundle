@@ -3,9 +3,9 @@
 namespace DynamicFormBundle\Tests\Unit\Model;
 
 use DynamicFormBundle\Entity\DynamicResult;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\StringValue;
 use DynamicFormBundle\Entity\DynamicResult\FieldValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\Value\StringValue;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Model

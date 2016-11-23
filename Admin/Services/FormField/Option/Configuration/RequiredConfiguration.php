@@ -3,7 +3,7 @@
 namespace DynamicFormBundle\Admin\Services\FormField\Option\Configuration;
 
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
-use DynamicFormBundle\Entity\Value\BooleanValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BooleanValue;
 use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 use DynamicFormBundle\Statics\SymfonyFieldOptions;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

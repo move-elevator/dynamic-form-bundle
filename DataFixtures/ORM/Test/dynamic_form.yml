@@ -66,17 +66,17 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
 
 DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline:
   text_headline:
-    text: '@form_headline'
+    text: 'Headline'
     form: '@example_form'
     position: '1'
   text_headline_gender:
-    text: '@form_headline_gender'
+    text: 'Gender'
     form: '@example_form'
     position: '7'
 
 DynamicFormBundle\Entity\DynamicForm\FormElement\FormText:
   text_description:
-    text: '@form_description'
+    text: 'Beschreibung'
     form: '@example_form'
     position: '2'
 
@@ -115,7 +115,7 @@ DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue:
     option: 'choices'
     value: '@gender_choices_value'
 
-DynamicFormBundle\Entity\Value\StringValue:
+DynamicFormBundle\Entity\DynamicForm\ConfigValue\StringValue:
   name_label_value:
     content: 'Nachname'
   visit_label_value:
@@ -124,16 +124,8 @@ DynamicFormBundle\Entity\Value\StringValue:
     content: 'Geschlecht'
   description_label_value:
     content: 'Beschreibung'
-  form_headline:
-    content: 'Headline'
-  form_headline_gender:
-    content: 'Gender'
 
-DynamicFormBundle\Entity\Value\TextValue:
-  form_description:
-    content: 'Beschreibung'
-
-DynamicFormBundle\Entity\Value\BooleanValue:
+DynamicFormBundle\Entity\DynamicForm\ConfigValue\BooleanValue:
   name_required_value:
     content: false
   gender_required_value:
@@ -141,7 +133,7 @@ DynamicFormBundle\Entity\Value\BooleanValue:
   visit_required_value:
     content: false
 
-DynamicFormBundle\Entity\Value\ArrayValue:
+DynamicFormBundle\Entity\DynamicForm\ConfigValue\ArrayValue:
   gender_choices_value:
     content:
       männlich: 'm'

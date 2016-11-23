@@ -1,6 +1,6 @@
 <?php
 
-namespace DynamicFormBundle\Entity\Value;
+namespace DynamicFormBundle\Entity\DynamicResult\ResultValue;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\EntityListeners({
  *     "DynamicFormBundle\EventListener\Values\FileListener"
  * })
+ *
+ * @ORM\Table(name="dynamic_form_result_file_value")
  *
  * @package DynamicFormBundle\Entity\Value
  */

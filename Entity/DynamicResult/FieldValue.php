@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicResult;
 use DynamicFormBundle\Model\FieldValue as BaseModel;
-use DynamicFormBundle\Entity\Value\BaseValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\BaseValue;
 
 /**
  * @ORM\Entity
@@ -36,8 +36,7 @@ class FieldValue extends BaseModel
     /**
      * @var BaseValue
      *
-     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\Value\BaseValue", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(name="value_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicResult\ResultValue\BaseValue", mappedBy="field", cascade={"persist", "remove"})
      */
     private $value;
 
@@ -92,6 +91,7 @@ class FieldValue extends BaseModel
      */
     public function setValue(BaseValue $value = null)
     {
+        $value->setField($this);
         $this->value = $value;
 
         return $this;

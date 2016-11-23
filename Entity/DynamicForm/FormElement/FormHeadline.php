@@ -16,18 +16,6 @@ use Doctrine\ORM\Mapping as ORM;
 class FormHeadline extends FormElement
 {
     /**
-     * @param StringValue $text
-     *
-     * @return FormHeadline
-     */
-    public function setText(StringValue $text)
-    {
-        $this->text = $text;
-
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getElementType()
@@ -40,6 +28,6 @@ class FormHeadline extends FormElement
      */
     public function getAnchor()
     {
-        return sprintf('%s_%s', strtolower(preg_replace('/\B([A-Z])/', '_$1', $this->getText()->getContent())), $this->getId());
+        return sprintf('%s_%s', strtolower(preg_replace('/\B([A-Z])/', '_$1', $this->getText())), $this->getId());
     }
 }

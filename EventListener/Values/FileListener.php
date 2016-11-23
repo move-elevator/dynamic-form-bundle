@@ -4,7 +4,7 @@ namespace DynamicFormBundle\EventListener\Values;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
-use DynamicFormBundle\Entity\Value\FileValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\FileValue;
 use Symfony\Component\HttpFoundation\File\File;
 
 /**

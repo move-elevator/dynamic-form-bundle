@@ -36,12 +36,4 @@ class FormHeadlineConfiguration implements ConfigurationInterface
     {
         return FormElements::HEADLINE;
     }
-
-    /**
-     * @return string
-     */
-    public function getValueClass()
-    {
-        return StringValue::class;
-    }
 }

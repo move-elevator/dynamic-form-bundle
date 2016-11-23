@@ -1,29 +1,31 @@
 <?php
 
-namespace DynamicFormBundle\Entity\Value;
+namespace DynamicFormBundle\Entity\DynamicForm\ConfigValue;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  *
+ * @ORM\Table(name="dynamic_form_option_string_value")
+ *
  * @package DynamicFormBundle\Entity\Value
  */
-class TextValue extends BaseValue
+class StringValue extends BaseValue
 {
     /**
      * @var string
      *
-     * @ORM\Column(name="text_value", type="text")
+     * @ORM\Column(name="string_content", type="string")
      */
-    private $textContent;
+    private $stringContent;
 
     /**
      * @return string
      */
     public function getContent()
     {
-        return $this->textContent;
+        return $this->stringContent;
     }
 
     /**
@@ -31,7 +33,7 @@ class TextValue extends BaseValue
      */
     public function setContent($content)
     {
-        $this->textContent = $content;
+        $this->stringContent = $content;
     }
 
     /**
@@ -39,6 +41,6 @@ class TextValue extends BaseValue
      */
     public function __toString()
     {
-        return $this->textContent;
+        return $this->stringContent;
     }
 }

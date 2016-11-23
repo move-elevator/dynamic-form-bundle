@@ -5,7 +5,6 @@ namespace DynamicFormBundle\Admin\Factory\DynamicForm;
 use DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Model\SortableInterface;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 
 /**

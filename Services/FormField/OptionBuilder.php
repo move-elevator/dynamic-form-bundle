@@ -2,9 +2,9 @@
 
 namespace DynamicFormBundle\Services\FormField;
 
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BooleanValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
-use DynamicFormBundle\Entity\Value\BooleanValue;
 
 /**
  * @package DynamicFormBundle\Services\FormField

@@ -3,7 +3,7 @@
 namespace DynamicFormBundle\Admin\Services\FormField\Option\Configuration;
 
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
-use DynamicFormBundle\Entity\Value\StringValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\StringValue;
 use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 use DynamicFormBundle\Statics\SymfonyFieldOptions;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

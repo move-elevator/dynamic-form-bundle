@@ -47,9 +47,7 @@ class FormElementType extends AbstractType
 
         $configuration = $this->registry->getConfiguration($formElement->getElementType());
 
-        $event->getForm()->add('text', $configuration->getFormTypeClass(), [
-            'property_path' => 'text.content'
-        ]);
+        $event->getForm()->add('text', $configuration->getFormTypeClass());
     }
 
     /**
