@@ -43,11 +43,6 @@ class FormElementController extends Controller
                 ->getDoctrine()
                 ->getManager()
                 ->flush($dynamicForm);
-
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formelement_edit', [
-                'formId' => $dynamicForm->getId(),
-                'elementId' => $formElement->getId(),
-            ]);
         }
 
         return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [

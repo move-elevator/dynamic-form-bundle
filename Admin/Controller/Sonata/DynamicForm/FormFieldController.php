@@ -43,11 +43,6 @@ class FormFieldController extends Controller
                 ->getDoctrine()
                 ->getManager()
                 ->flush($dynamicForm);
-
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formfield_edit', [
-                'formId' => $dynamicForm->getId(),
-                'fieldId' => $formField->getId(),
-            ]);
         }
 
         return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
