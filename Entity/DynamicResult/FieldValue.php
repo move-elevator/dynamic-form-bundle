@@ -29,7 +29,7 @@ class FieldValue extends BaseModel
      * @var FormField
      *
      * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", fetch="EAGER")
-     * @ORM\JoinColumn(name="form_field_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="form_field_id", referencedColumnName="id", nullable=false, onDelete="CASCADE")
      */
     private $formField;
 

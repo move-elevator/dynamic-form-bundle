@@ -29,7 +29,7 @@ abstract class BaseValue
      * @var OptionValue
      *
      * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue", inversedBy="value")
-     * @ORM\JoinColumn(name="option_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $option;
 

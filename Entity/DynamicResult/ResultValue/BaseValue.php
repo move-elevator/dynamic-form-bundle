@@ -29,7 +29,7 @@ abstract class BaseValue
      * @var FieldValue
      *
      * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicResult\FieldValue", inversedBy="value")
-     * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $field;
 
