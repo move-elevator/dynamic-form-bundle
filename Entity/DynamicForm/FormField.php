@@ -38,12 +38,12 @@ class FormField implements SortableInterface
     private $name;
 
     /**
-     * @var DynamicForm
+     * @var Collection|DynamicForm[]
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="fields")
-     * @ORM\JoinColumn(name="form_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="fields")
+     * @ORM\JoinTable(name="dynamic_form_to_field")
      */
-    private $form;
+    private $forms;
 
     /**
      * @var Collection|OptionValue[]
@@ -77,6 +77,7 @@ class FormField implements SortableInterface
     public function __construct($name = null, $formType = null)
     {
         $this->optionValues = new ArrayCollection();
+        $this->forms = new ArrayCollection();
         $this->name = $name;
         $this->formType = $formType;
     }
@@ -110,19 +111,27 @@ class FormField implements SortableInterface
      *
      * @return FormField
      */
-    public function setForm(DynamicForm $form)
+    public function addForm(DynamicForm $form)
     {
-        $this->form = $form;
+        $this->forms[$form->getId()] = $form;
 
         return $this;
     }
 
     /**
-     * @return DynamicForm
+     * @param DynamicForm $form
      */
-    public function getForm()
+    public function removeForm(DynamicForm $form)
     {
-        return $this->form;
+        $this->forms->removeElement($form);
+    }
+
+    /**
+     * @return DynamicForm[]
+     */
+    public function getForms()
+    {
+        return $this->forms;
     }
 
     /**

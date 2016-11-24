@@ -1,12 +1,24 @@
 DynamicFormBundle\Entity\DynamicForm:
   example_form:
     name: 'example'
+    fields:
+      - '@name'
+      - '@visit'
+      - '@description'
+      - '@start'
+      - '@break'
+      - '@gender_radio'
+      - '@gender_check'
+      - '@gender_select'
+    elements:
+      - '@text_headline'
+      - '@text_headline_gender'
+      - '@text_description'
 
 DynamicFormBundle\Entity\DynamicForm\FormField:
   name:
     name: 'name'
     formType: 'text'
-    form: '@example_form'
     position: '3'
     optionValues:
       - '@name_required'
@@ -14,7 +26,6 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
   visit:
     name: 'visit'
     formType: 'file'
-    form: '@example_form'
     position: '11'
     optionValues:
       - '@visit_required'
@@ -22,24 +33,20 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
   description:
     name: 'description'
     formType: 'textarea'
-    form: '@example_form'
     position: '4'
     optionValues:
       - '@description_label'
   start:
     name: 'start'
     formType: 'date'
-    form: '@example_form'
     position: '5'
   break:
     name: 'break'
     formType: 'datetime'
-    form: '@example_form'
     position: '6'
   gender_radio:
     name: 'gender_radio'
     formType: 'radio_group'
-    form: '@example_form'
     position: '8'
     optionValues:
       - '@gender_required'
@@ -48,7 +55,6 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
   gender_check:
     name: 'gender_check'
     formType: 'checkbox_group'
-    form: '@example_form'
     position: '9'
     optionValues:
       - '@gender_required'
@@ -57,7 +63,6 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
   gender_select:
     name: 'gender_select'
     formType: 'select'
-    form: '@example_form'
     position: '10'
     optionValues:
       - '@gender_required'
@@ -67,17 +72,14 @@ DynamicFormBundle\Entity\DynamicForm\FormField:
 DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline:
   text_headline:
     text: 'Headline'
-    form: '@example_form'
     position: '1'
   text_headline_gender:
     text: 'Gender'
-    form: '@example_form'
     position: '7'
 
 DynamicFormBundle\Entity\DynamicForm\FormElement\FormText:
   text_description:
     text: 'Beschreibung'
-    form: '@example_form'
     position: '2'
 
 

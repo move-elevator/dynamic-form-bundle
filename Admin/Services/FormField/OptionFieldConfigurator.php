@@ -40,12 +40,13 @@ class OptionFieldConfigurator
      */
     public function configFields(FormInterface $form, FormField $formField)
     {
-        foreach ($formField->getOptionValues() as $optionValue) {
+        /** @var FormField\OptionValue[] $optionValues */
+        $optionValues = $this->optionFilter->filterDisabledOptions($formField->getOptionValues());
+
+        foreach ($optionValues as $optionValue) {
             $configuration = $this->registry->getConfiguration($optionValue->getName());
             $form->add($optionValue->getName(), $configuration->getFormTypeClass(), $this->getFormOptions($configuration));
         }
-
-        $this->optionFilter->removeDisabledOptions($form);
     }
 
     /**
@@ -75,6 +76,11 @@ class OptionFieldConfigurator
         }
     }
 
+    /**
+     * @param ConfigurationInterface $configuration
+     *
+     * @return array
+     */
     private function getFormOptions(ConfigurationInterface $configuration)
     {
         $options = [

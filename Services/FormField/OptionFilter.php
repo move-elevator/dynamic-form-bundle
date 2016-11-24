@@ -35,4 +35,22 @@ class OptionFilter
 
         return $options;
     }
+
+    /**
+     * @param array|\ArrayAccess $options
+     *
+     * @return array
+     */
+    public function filterDisabledOptions($options)
+    {
+        $filtered = [];
+
+        foreach ($options as $option => $value) {
+            if (false === in_array($option, $this->disabledOptions)) {
+                $filtered[$option] = $value;
+            }
+        }
+
+        return $filtered;
+    }
 }

@@ -33,9 +33,11 @@ class OptionBuilder
      */
     public function build(FormField $formField)
     {
+        /** @var OptionValue[] $optionValues */
+        $optionValues = $this->optionFilter->filterDisabledOptions($formField->getOptionValues());
         $options = [];
 
-        foreach ($formField->getOptionValues() as $optionValue) {
+        foreach ($optionValues as $optionValue) {
             if (true === $this->isAttributeOption($optionValue)) {
                 $this->addAttributeValue($optionValue, $options);
                 continue;
@@ -43,8 +45,6 @@ class OptionBuilder
 
             $options[$optionValue->getOption()] = $optionValue->getRealValue();
         }
-
-        $this->optionFilter->removeDisabledOptions($options);
 
         return $options;
     }
@@ -59,7 +59,11 @@ class OptionBuilder
         return 0 === strpos($optionValue->getOption(), static::ATTR_PREFIX);
     }
 
-    private function addAttributeValue(OptionValue $optionValue, &$options)
+    /**
+     * @param OptionValue $optionValue
+     * @param array       $options
+     */
+    private function addAttributeValue(OptionValue $optionValue, array &$options)
     {
         $option = str_replace(static::ATTR_PREFIX, '', $optionValue->getOption());
         $value = $optionValue->getValue();

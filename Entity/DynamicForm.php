@@ -39,14 +39,14 @@ class DynamicForm extends BaseModel
     /**
      * @var Collection|FormField[]
      *
-     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", mappedBy="form", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", mappedBy="forms", cascade={"persist", "remove"})
      */
     protected $fields;
 
     /**
      * @var Collection|FormField[]
      *
-     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="form", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="forms", cascade={"persist", "remove"})
      */
     protected $elements;
 
@@ -89,7 +89,7 @@ class DynamicForm extends BaseModel
      */
     public function addField(FormField $field)
     {
-        $field->setForm($this);
+        $field->addForm($this);
         $this->fields[$field->getName()] = $field;
 
         return $this;
@@ -100,6 +100,7 @@ class DynamicForm extends BaseModel
      */
     public function removeField(FormField $field)
     {
+        $field->removeForm($this);
         $this->fields->removeElement($field);
     }
 
@@ -130,7 +131,7 @@ class DynamicForm extends BaseModel
      */
     public function addElement(FormElement $element)
     {
-        $element->setForm($this);
+        $element->addForm($this);
         $this->elements[] = $element;
 
         return $this;

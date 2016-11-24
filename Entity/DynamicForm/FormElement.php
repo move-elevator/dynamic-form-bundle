@@ -2,6 +2,8 @@
 
 namespace DynamicFormBundle\Entity\DynamicForm;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use DynamicFormBundle\Model\SortableInterface;
@@ -34,12 +36,12 @@ abstract class FormElement implements SortableInterface
     protected $text;
 
     /**
-     * @var DynamicForm
+     * @var Collection|DynamicForm[]
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="elements")
-     * @ORM\JoinColumn(name="form_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="elements")
+     * @ORM\JoinTable(name="dynamic_form_to_element")
      */
-    protected $form;
+    protected $forms;
 
     /**
      * @var integer
@@ -47,6 +49,13 @@ abstract class FormElement implements SortableInterface
      * @ORM\Column(type="integer")
      */
     protected $position;
+
+    /**
+     */
+    public function __construct()
+    {
+        $this->forms = new ArrayCollection();
+    }
 
     /**
      * @return integer
@@ -69,19 +78,27 @@ abstract class FormElement implements SortableInterface
      *
      * @return FormElement
      */
-    public function setForm(DynamicForm $form)
+    public function addForm(DynamicForm $form)
     {
-        $this->form = $form;
+        $this->forms[$form->getId()] = $form;
 
         return $this;
     }
 
     /**
-     * @return DynamicForm
+     * @param DynamicForm $form
+     */
+    public function removeForm(DynamicForm $form)
+    {
+        $this->forms->removeElement($form);
+    }
+
+    /**
+     * @return DynamicForm[]
      */
     public function getForm()
     {
-        return $this->form;
+        return $this->forms;
     }
 
     /**
