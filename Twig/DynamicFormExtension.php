@@ -16,7 +16,8 @@ class DynamicFormExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('dynamic_form', [$this, 'dynamicForm'], ['needs_environment' => true, 'is_safe' => ['html']]),
-            new \Twig_SimpleFunction('form_element', [$this, 'formElement'], ['needs_environment' => true, 'is_safe' => ['html']])
+            new \Twig_SimpleFunction('form_element', [$this, 'formElement'], ['needs_environment' => true, 'is_safe' => ['html']]),
+            new \Twig_SimpleFunction('form_anchors', [$this, 'formAnchors'], ['needs_environment' => true, 'is_safe' => ['html']])
         ];
     }
 
@@ -28,7 +29,7 @@ class DynamicFormExtension extends \Twig_Extension
      */
     public function dynamicForm(\Twig_Environment $environment, FormView $form)
     {
-        return $environment->render('@DynamicForm/block/dynamic_form.twig', ['form' => $form]);
+        return $environment->render('@DynamicForm/block/dynamic_form.html.twig', ['form' => $form]);
     }
 
     /**
@@ -40,6 +41,17 @@ class DynamicFormExtension extends \Twig_Extension
     public function formElement(\Twig_Environment $environment, FormElement $formElement)
     {
         return $environment->render($this->elementToTemplate($formElement), ['element' => $formElement]);
+    }
+
+    /**
+     * @param \Twig_Environment $environment
+     * @param FormView          $form
+     *
+     * @return string
+     */
+    public function formAnchors(\Twig_Environment $environment, FormView $form)
+    {
+        return $environment->render('@DynamicForm/block/form_anchors.html.twig', ['form' => $form]);
     }
 
     /**

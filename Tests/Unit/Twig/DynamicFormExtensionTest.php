@@ -23,12 +23,12 @@ class DynamicFormExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testGetFunctionsReturnTwoFunctions()
     {
-        $this->assertCount(2, $this->extension->getFunctions());
+        $this->assertCount(3, $this->extension->getFunctions());
     }
 
     public function testDynamicFormFunctionExecuteTwigRendererWithExpectedTemplate()
     {
-        $this->extension->dynamicForm($this->getTwigEnvironment('@DynamicForm/block/dynamic_form.twig'), new FormView);
+        $this->extension->dynamicForm($this->getTwigEnvironment('@DynamicForm/block/dynamic_form.html.twig'), new FormView);
     }
 
     public function testFormElementFunctionExecuteTwigRendererWithExpectedTemplate()

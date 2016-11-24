@@ -1,0 +1,7 @@
+{%- block form_anchors -%}
+    <ul>
+        {% for headline in form.vars.anchor_list -%}
+            <li><a href="#{{ headline.anchor }}">{{ headline.text }}</a></li>
+        {%- endfor %}
+    </ul>
+{% endblock %}

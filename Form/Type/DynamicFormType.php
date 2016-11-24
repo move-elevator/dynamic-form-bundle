@@ -7,11 +7,9 @@ use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicResult;
 use DynamicFormBundle\Services\FormField\OptionBuilder;
 use DynamicFormBundle\Statics\FormElements;
-use DynamicFormBundle\Model\SortableInterface;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 use DynamicFormBundle\Services\FormType\DynamicFormDataMapper;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -61,7 +59,6 @@ class DynamicFormType extends AbstractType
             $this->buildField($builder, $field);
         }
 
-        $builder->add('submit', SubmitType::class);
         $builder->setDataMapper($this->dataMapper);
     }
 

@@ -38,13 +38,15 @@ abstract class DynamicForm
      */
     public function findElements($elementType)
     {
-        return $this->getElements()->filter(function (FormElement $element) use ($elementType) {
+        $result = $this->getElements()->filter(function (FormElement $element) use ($elementType) {
             if ($elementType === $element->getElementType()) {
                 return true;
             }
 
             return false;
-        });
+        })->toArray();
+
+        return $this->orderElements($result);
     }
 
     /**
@@ -57,7 +59,17 @@ abstract class DynamicForm
             $this->getFields()->toArray()
         );
 
-        uasort($formChildren, function (SortableInterface $first, SortableInterface $second) {
+        return $this->orderElements($formChildren);
+    }
+
+    /**
+     * @param array $elements
+     *
+     * @return array
+     */
+    private function orderElements(array &$elements)
+    {
+        uasort($elements, function (SortableInterface $first, SortableInterface $second) {
             if ($first->getPosition() == $second->getPosition()) {
                 return 0;
             }
@@ -65,6 +77,6 @@ abstract class DynamicForm
             return ($first->getPosition() < $second->getPosition()) ? -1 : 1;
         });
 
-        return $formChildren;
+        return $elements;
     }
 }
