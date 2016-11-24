@@ -51,8 +51,8 @@ class FormFieldController extends Controller
         }
 
         return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
-            'dynamicForm' => $dynamicForm,
             'form' => $form->createView(),
+            'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);
     }
@@ -90,6 +90,7 @@ class FormFieldController extends Controller
 
         return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
             'form' => $form->createView(),
+            'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);
     }
