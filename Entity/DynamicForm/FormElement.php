@@ -29,7 +29,7 @@ abstract class FormElement implements SortableInterface
     protected $id;
 
     /**
-     * @var BaseValue
+     * @var string
      *
      * @ORM\Column(type="text")
      */
@@ -66,11 +66,19 @@ abstract class FormElement implements SortableInterface
     }
 
     /**
-     * @return BaseValue
+     * @return string
      */
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * @param string $text
+     */
+    public function setText($text)
+    {
+        $this->text = $text;
     }
 
     /**
