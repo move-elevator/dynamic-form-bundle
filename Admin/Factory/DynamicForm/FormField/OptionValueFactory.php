@@ -3,7 +3,6 @@
 namespace DynamicFormBundle\Admin\Factory\DynamicForm\FormField;
 
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry;
-use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 
 /**
@@ -17,11 +16,18 @@ class OptionValueFactory
     private $registry;
 
     /**
-     * @param Registry $registry
+     * @var ConfigValueFactory
      */
-    public function __construct(Registry $registry)
+    private $valueFactory;
+
+    /**
+     * @param Registry           $registry
+     * @param ConfigValueFactory $valueFactory
+     */
+    public function __construct(Registry $registry, ConfigValueFactory $valueFactory)
     {
         $this->registry = $registry;
+        $this->valueFactory = $valueFactory;
     }
 
     /**
@@ -32,11 +38,8 @@ class OptionValueFactory
     public function create($option)
     {
         $configuration = $this->registry->getConfiguration($option);
-        $valueClass = $configuration->getValueClass();
 
-        /** @var BaseValue $value */
-        $value = new $valueClass;
-        $value->setContent($configuration->getDefaultValue());
+        $value = $this->valueFactory->create($configuration);
 
         return new OptionValue($configuration->getName(), $configuration->getOption(), $value);
     }

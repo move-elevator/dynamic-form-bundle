@@ -5,6 +5,8 @@ namespace DynamicFormBundle\Services\FormField;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BooleanValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
+use DynamicFormBundle\Services\FormType\ChoiceConfigurationInterface;
+use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 
 /**
  * @package DynamicFormBundle\Services\FormField
@@ -27,15 +29,16 @@ class OptionBuilder
     }
 
     /**
-     * @param FormField $formField
+     * @param FormField              $formField
+     * @param ConfigurationInterface $configuration
      *
      * @return array
      */
-    public function build(FormField $formField)
+    public function  build(FormField $formField, ConfigurationInterface $configuration)
     {
         /** @var OptionValue[] $optionValues */
         $optionValues = $this->optionFilter->filterDisabledOptions($formField->getOptionValues());
-        $options = [];
+        $options = $this->getConfigOptions($configuration);
 
         foreach ($optionValues as $optionValue) {
             if (true === $this->isAttributeOption($optionValue)) {
@@ -44,6 +47,25 @@ class OptionBuilder
             }
 
             $options[$optionValue->getOption()] = $optionValue->getRealValue();
+        }
+
+        return $options;
+    }
+
+    /**
+     * @param ConfigurationInterface $configuration
+     *
+     * @return array
+     */
+    private function getConfigOptions(ConfigurationInterface $configuration)
+    {
+        $options = [];
+
+        if ($configuration instanceof ChoiceConfigurationInterface) {
+            $options = [
+                'choice_label' => $configuration->getChoiceLabelFunction(),
+                'choice_value' => $configuration->getChoiceValueFunction()
+            ];
         }
 
         return $options;

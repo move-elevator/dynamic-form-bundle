@@ -1,4 +1,10 @@
 services:
+  dynamic_form.admin.choice_text.form_type:
+    class: 'DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceTextType'
+    arguments: ['@doctrine.orm.entity_manager']
+    tags:
+      - { name: 'form.type' }
+
   dynamic_form.admin.form_field.form_type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
     arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator']
@@ -11,7 +17,7 @@ services:
 
   dynamic_form.admin.option_value.factory:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory'
-    arguments: ['@dynamic_form.admin.form_field.option.registry']
+    arguments: ['@dynamic_form.admin.form_field.option.registry', '@dynamic_form.config_value.factory']
 
   dynamic_form.admin.form_field.factory:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory'
@@ -55,7 +61,6 @@ services:
       - { name: 'form_field.option_configuration' }
 
 
-
   dynamic_form.admin.form_element.type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType'
     arguments: ['@dynamic_form.admin.form_element.registry']
@@ -82,3 +87,12 @@ services:
     class: 'DynamicFormBundle\Admin\Services\FormElement\FormTextConfiguration'
     tags:
       - { name: 'form_element.configuration' }
+
+
+  dynamic_form.config_value.factory:
+    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValueFactory'
+
+  dynamic_form.choice_value.factory:
+    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValue\ChoiceValueFactory'
+    tags:
+      - { name: 'config_value.factory' }

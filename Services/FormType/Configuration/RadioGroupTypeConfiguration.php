@@ -2,16 +2,15 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\DynamicResult\ResultValue\StringValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoiceValue;
 use DynamicFormBundle\Form\BaseType\RadioGroupType;
-use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\FormTypes;
 
 /**
  * @package DynamicFormBundle\Services\FormType\Configuration
  */
-class RadioGroupTypeConfiguration implements ConfigurationInterface
+class RadioGroupTypeConfiguration extends AbstractChoiceConfiguration
 {
     /**
      * @return string
@@ -34,7 +33,7 @@ class RadioGroupTypeConfiguration implements ConfigurationInterface
      */
     public function getValueClass()
     {
-        return StringValue::class;
+        return ChoiceValue::class;
     }
 
     /**

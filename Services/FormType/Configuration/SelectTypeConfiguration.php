@@ -2,17 +2,15 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\DynamicResult\ResultValue\StringValue;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoiceValue;
 use DynamicFormBundle\Form\BaseType\SelectType;
-use DynamicFormBundle\Services\FormType\ConfigurationInterface;
-use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\FormTypes;
 
 
 /**
  * @package DynamicFormBundle\Services\FormType\Configuration
  */
-class SelectTypeConfiguration implements ConfigurationInterface
+class SelectTypeConfiguration extends AbstractChoiceConfiguration
 {
     /**
      * @return string
@@ -35,14 +33,6 @@ class SelectTypeConfiguration implements ConfigurationInterface
      */
     public function getValueClass()
     {
-        return StringValue::class;
-    }
-
-    /**
-     * @return array
-     */
-    public function getAvailableOptions()
-    {
-        return ChoiceOptions::all();
+        return ChoiceValue::class;
     }
 }

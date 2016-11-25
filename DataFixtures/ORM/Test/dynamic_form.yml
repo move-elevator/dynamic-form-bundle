@@ -135,8 +135,16 @@ DynamicFormBundle\Entity\DynamicForm\ConfigValue\BooleanValue:
   visit_required_value:
     content: false
 
-DynamicFormBundle\Entity\DynamicForm\ConfigValue\ArrayValue:
+DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue:
   gender_choices_value:
-    content:
-      männlich: 'm'
-      weiblich: 'f'
+    choices:
+      - '@man'
+      - '@woman'
+
+DynamicFormBundle\Entity\DynamicForm\Choice:
+  man:
+    label: 'männlich'
+    value: 'männlich'
+  woman:
+    label: 'weiblich'
+    value: 'weiblich'

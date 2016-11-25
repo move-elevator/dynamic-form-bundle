@@ -10,6 +10,10 @@ use DynamicFormBundle\Model\DynamicResult as BaseModel;
 
 /**
  * @ORM\Entity
+ * @ORM\EntityListeners({
+ *     "DynamicFormBundle\EventListener\DynamicResultListener"
+ * })
+ *
  * @ORM\Table(name="dynamic_form_result")
  *
  * @ORM\InheritanceType("JOINED")

@@ -83,9 +83,9 @@ class DynamicFormTypeTest extends WebTestCase
                 'month' => 11,
                 'year' => 2016
             ],
-            'gender_select' => 'm',
-            'gender_radio' => 'f',
-            'gender_check' => ['f', 'm'],
+            'gender_select' => 'männlich',
+            'gender_radio' => 'weiblich',
+            'gender_check' => ['weiblich', 'männlich'],
         ]);
 
         /** @var DynamicResult $result */
@@ -104,13 +104,16 @@ class DynamicFormTypeTest extends WebTestCase
         $this->assertEquals('16.11.2016', $result->getFieldValueContent('start')->format('d.m.Y'));
 
         $this->assertTrue($result->hasFieldValue('gender_select'));
-        $this->assertEquals('m', $result->getFieldValueContent('gender_select'));
+        $this->assertEquals('männlich', (string) $result->getFieldValueContent('gender_select'));
 
         $this->assertTrue($result->hasFieldValue('gender_radio'));
-        $this->assertEquals('f', $result->getFieldValueContent('gender_radio'));
+        $this->assertEquals('weiblich', (string) $result->getFieldValueContent('gender_radio'));
 
         $this->assertTrue($result->hasFieldValue('gender_check'));
-        $this->assertEquals(['m', 'f'], $result->getFieldValueContent('gender_check'));
+        $genderCheck = $result->getFieldValueContent('gender_check');
+
+        $this->assertArrayHasKey('männlich', $genderCheck);
+        $this->assertArrayHasKey('weiblich', $genderCheck);
 
         $this->assertTrue($result->hasFieldValue('visit'));
         $this->assertInstanceOf(FileValue::class, $result->getFieldValue('visit')->getValue());

@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table
  * @ORM\Entity
+ * @ORM\EntityListeners({
+ *     "DynamicFormBundle\EventListener\DynamicFormListener"
+ * })
  *
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")

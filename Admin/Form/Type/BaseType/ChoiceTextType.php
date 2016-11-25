@@ -2,16 +2,32 @@
 
 namespace DynamicFormBundle\Admin\Form\Type\BaseType;
 
+use Doctrine\ORM\EntityManager;
+use DynamicFormBundle\Entity\DynamicForm\Choice;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @package DynamicFormBundle\Admin\Form\Type\BaseType
  */
 class ChoiceTextType extends AbstractType implements DataTransformerInterface
 {
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function __construct(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -22,31 +38,42 @@ class ChoiceTextType extends AbstractType implements DataTransformerInterface
     }
 
     /**
-     * @param mixed $value
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Choice::class,
+            'label' => false
+        ]);
+    }
+
+    /**
+     * @param Choice $value
      *
      * @return string
      */
     public function transform($value)
     {
-        return implode(', ', $value);
+        return $value;
     }
 
     /**
-     * @param mixed $value
+     * @param string $value
      *
-     * @return array
+     * @return Choice
      */
     public function reverseTransform($value)
     {
-        $choices = explode(',', $value);
-        $choices = array_map('trim', $choices);
+        $choice = $this->entityManager->getRepository(Choice::class)->findOneBy([
+            'value' => $value,
+        ]);
 
-        foreach ($choices as $key => $choice) {
-            unset($choices[$key]);
-            $choices[$choice] = $choice;
+        if ($choice instanceof Choice) {
+            return $choice;
         }
 
-        return $choices;
+        return new Choice($value, $value);
     }
 
     /**

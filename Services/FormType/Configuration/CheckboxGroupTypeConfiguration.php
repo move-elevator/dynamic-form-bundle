@@ -2,16 +2,16 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\DynamicResult\ResultValue\ArrayValue;
+use DynamicFormBundle\Entity\DynamicForm\Choice;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoicesValue;
 use DynamicFormBundle\Form\BaseType\CheckboxGroupType;
-use DynamicFormBundle\Services\FormType\ConfigurationInterface;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\FormTypes;
 
 /**
  * @package DynamicFormBundle\Services\FormType\Configuration
  */
-class CheckboxGroupTypeConfiguration implements ConfigurationInterface
+class CheckboxGroupTypeConfiguration extends AbstractChoiceConfiguration
 {
     /**
      * @return string
@@ -34,7 +34,7 @@ class CheckboxGroupTypeConfiguration implements ConfigurationInterface
      */
     public function getValueClass()
     {
-        return ArrayValue::class;
+        return ChoicesValue::class;
     }
 
     /**

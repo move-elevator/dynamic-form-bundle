@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Entity
  * @ORM\EntityListeners({
- *     "DynamicFormBundle\Admin\EventListener\DynamicForm\FormFieldListener"
+ *     "DynamicFormBundle\EventListener\DynamicForm\FormFieldListener"
  * })
  *
  * @package DynamicFormBundle\Entity

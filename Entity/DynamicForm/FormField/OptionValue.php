@@ -53,7 +53,10 @@ class OptionValue extends BaseModel
     {
         $this->name = $name;
         $this->option = $option;
-        $this->value = $value;
+
+        if ($value instanceof BaseValue) {
+            $this->setValue($value);
+        }
     }
 
     /**

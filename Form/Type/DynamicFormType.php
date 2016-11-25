@@ -71,6 +71,7 @@ class DynamicFormType extends AbstractType
     {
         /** @var DynamicForm $dynamicForm */
         $dynamicForm = $options['dynamic_form'];
+        $view->vars['anchor_list'] = [];
 
         // Create Anchor List
         foreach ($dynamicForm->findElements(FormElements::HEADLINE) as $headline) {
@@ -100,8 +101,8 @@ class DynamicFormType extends AbstractType
      */
     private function buildField(FormBuilderInterface $builder, FormField $field)
     {
-        $options = array_merge(['required' => false], $this->optionBuilder->build($field));
         $configuration = $this->registry->getConfiguration($field->getFormType());
+        $options = array_merge(['required' => false], $this->optionBuilder->build($field, $configuration));
 
         $builder->add($field->getName(), $configuration->getFormTypeClass(), $options);
     }

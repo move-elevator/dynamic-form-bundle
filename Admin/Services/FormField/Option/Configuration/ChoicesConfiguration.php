@@ -3,15 +3,17 @@
 namespace DynamicFormBundle\Admin\Services\FormField\Option\Configuration;
 
 use DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceTextType;
+use DynamicFormBundle\Admin\Services\FormField\Option\CollectionConfigurationInterface;
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ArrayValue;
+use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 use DynamicFormBundle\Statics\SymfonyFieldOptions;
 
 /**
  * @package DynamicFormBundle\Admin\Services\FormField\Option\Configuration
  */
-class ChoicesConfiguration implements ConfigurationInterface
+class ChoicesConfiguration implements CollectionConfigurationInterface
 {
     /**
      * @return string
@@ -42,7 +44,7 @@ class ChoicesConfiguration implements ConfigurationInterface
      */
     public function getDefaultValue()
     {
-        return [];
+        return null;
     }
 
     /**
@@ -50,6 +52,6 @@ class ChoicesConfiguration implements ConfigurationInterface
      */
     public function getValueClass()
     {
-        return ArrayValue::class;
+        return ChoicesValue::class;
     }
 }
