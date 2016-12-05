@@ -2,6 +2,7 @@
 
 namespace DynamicFormBundle;
 
+use DynamicFormBundle\DependencyInjection\Compiler\DynamicFormConfigValueFactoryPass;
 use DynamicFormBundle\DependencyInjection\Compiler\DynamicFormElementPass;
 use DynamicFormBundle\DependencyInjection\Compiler\DynamicFormFieldOptionPass;
 use DynamicFormBundle\DependencyInjection\Compiler\DynamicFormTypePass;
@@ -23,5 +24,6 @@ class DynamicFormBundle extends Bundle
         $container->addCompilerPass(new DynamicFormTypePass());
         $container->addCompilerPass(new DynamicFormFieldOptionPass());
         $container->addCompilerPass(new DynamicFormElementPass());
+        $container->addCompilerPass(new DynamicFormConfigValueFactoryPass());
     }
 }
