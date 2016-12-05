@@ -44,7 +44,7 @@ class DynamicForm extends BaseModel
      *
      * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicResult", mappedBy="form")
      */
-    private $results;
+    protected $results;
 
     /**
      * @var Collection|FormField[]
