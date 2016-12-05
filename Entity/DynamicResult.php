@@ -33,7 +33,7 @@ class DynamicResult extends BaseModel
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm")
+     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="results")
      * @ORM\JoinColumn(name="form_id", referencedColumnName="id", nullable=false)
      */
     protected $form;
@@ -115,6 +115,7 @@ class DynamicResult extends BaseModel
      */
     public function setForm(DynamicForm $form)
     {
+        $form->addResult($this);
         $this->form = $form;
     }
 }

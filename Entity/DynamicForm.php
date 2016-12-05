@@ -40,6 +40,13 @@ class DynamicForm extends BaseModel
     protected $name;
 
     /**
+     * @var Collection|DynamicResult[]
+     *
+     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicResult", mappedBy="form")
+     */
+    private $results;
+
+    /**
      * @var Collection|FormField[]
      *
      * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", mappedBy="forms", cascade={"persist", "remove"})
@@ -158,5 +165,33 @@ class DynamicForm extends BaseModel
     public function getElements()
     {
         return $this->elements;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getResults()
+    {
+        return $this->results;
+    }
+
+    /**
+     * @param DynamicResult $result
+     *
+     * @return DynamicForm
+     */
+    public function addResult(DynamicResult $result)
+    {
+        $this->results[] = $result;
+
+        return $this;
+    }
+
+    /**
+     * @param DynamicResult $result
+     */
+    public function removeResult(DynamicResult $result)
+    {
+        $this->results->removeElement($result);
     }
 }
