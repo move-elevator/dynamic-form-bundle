@@ -21,6 +21,12 @@ services:
     tags:
       - { name: 'form.type' }
 
+  dynamic_form.field_value.type:
+    class: 'DynamicFormBundle\Form\Type\FieldValueType'
+    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.option_builder']
+    tags:
+      - { name: 'form.type' }
+
   dynamic_form.data_mapper:
     class: 'DynamicFormBundle\Services\FormType\DynamicFormDataMapper'
     arguments: ['@dynamic_form.result_field_builder']
