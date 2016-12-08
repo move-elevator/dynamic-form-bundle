@@ -9,7 +9,7 @@ use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 use DynamicFormBundle\Services\FormField\OptionFilter;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -112,7 +112,8 @@ class OptionFieldConfigurator
             $options = array_merge($options, [
                 'entry_type' => $configuration->getFormTypeClass(),
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'options' => ['label' => false]
             ]);
         }
 

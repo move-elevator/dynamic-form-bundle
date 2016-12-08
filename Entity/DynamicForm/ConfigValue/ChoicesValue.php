@@ -19,7 +19,7 @@ class ChoicesValue extends BaseValue
     /**
      * @var Collection|Choice[]
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", mappedBy="choiceConfigs", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", mappedBy="choiceConfigs", cascade={"persist"})
      */
     private $choices;
 
@@ -31,7 +31,7 @@ class ChoicesValue extends BaseValue
     }
 
     /**
-     * @return array
+     * @return Collection|Choice[]
      */
     public function getContent()
     {
@@ -71,11 +71,11 @@ class ChoicesValue extends BaseValue
     }
 
     /**
-     * @param Choice $field
+     * @param Choice $choice
      */
-    public function removeChoice(Choice $field)
+    public function removeChoice(Choice $choice)
     {
-        $field->removeChoiceConfig($this);
-        $this->choices->removeElement($field);
+        $choice->removeChoiceConfig($this);
+        $this->choices->removeElement($choice);
     }
 }

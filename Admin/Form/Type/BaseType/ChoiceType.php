@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @package DynamicFormBundle\Admin\Form\Type\BaseType
  */
-class ChoiceTextType extends AbstractType implements DataTransformerInterface
+class ChoiceType extends AbstractType implements DataTransformerInterface
 {
     /**
      * @var EntityManager
@@ -34,7 +34,11 @@ class ChoiceTextType extends AbstractType implements DataTransformerInterface
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addModelTransformer($this);
+        $builder
+            ->add('value', TextType::class, [
+                'label' => 'value'
+            ])
+            ->addModelTransformer($this);
     }
 
     /**
@@ -51,7 +55,7 @@ class ChoiceTextType extends AbstractType implements DataTransformerInterface
     /**
      * @param Choice $value
      *
-     * @return string
+     * @return Choice
      */
     public function transform($value)
     {
@@ -59,28 +63,22 @@ class ChoiceTextType extends AbstractType implements DataTransformerInterface
     }
 
     /**
-     * @param string $value
+     * @param Choice $value
      *
      * @return Choice
      */
     public function reverseTransform($value)
     {
         $choice = $this->entityManager->getRepository(Choice::class)->findOneBy([
-            'value' => $value,
+            'value' => $value->getValue(),
         ]);
 
         if ($choice instanceof Choice) {
             return $choice;
         }
 
-        return new Choice($value, $value);
-    }
+        $value->setLabel($value->getValue());
 
-    /**
-     * @return string
-     */
-    public function getParent()
-    {
-        return TextType::class;
+        return $value;
     }
 }

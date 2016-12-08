@@ -40,9 +40,9 @@ class DynamicFormTypeTest extends WebTestCase
         $this->assertArrayHasKey('description', $form);
         $this->assertArrayHasKey('visit', $form);
         $this->assertArrayHasKey('start', $form);
-        $this->assertArrayHasKey('gender_radio', $form);
-        $this->assertArrayHasKey('gender_check', $form);
-        $this->assertArrayHasKey('gender_select', $form);
+        $this->assertArrayHasKey('gender-radio', $form);
+        $this->assertArrayHasKey('gender-check', $form);
+        $this->assertArrayHasKey('gender-select', $form);
     }
 
     public function testCreateViewCreateAnchorLinks()
@@ -83,9 +83,9 @@ class DynamicFormTypeTest extends WebTestCase
                 'month' => 11,
                 'year' => 2016
             ],
-            'gender_select' => 'männlich',
-            'gender_radio' => 'weiblich',
-            'gender_check' => ['weiblich', 'männlich'],
+            'gender-select' => 'männlich',
+            'gender-radio' => 'weiblich',
+            'gender-check' => ['weiblich', 'männlich'],
         ]);
 
         /** @var DynamicResult $result */
@@ -103,14 +103,14 @@ class DynamicFormTypeTest extends WebTestCase
         $this->assertInstanceOf(\DateTime::class, $result->getFieldValueContent('start'));
         $this->assertEquals('16.11.2016', $result->getFieldValueContent('start')->format('d.m.Y'));
 
-        $this->assertTrue($result->hasFieldValue('gender_select'));
-        $this->assertEquals('männlich', (string) $result->getFieldValueContent('gender_select'));
+        $this->assertTrue($result->hasFieldValue('gender-select'));
+        $this->assertEquals('männlich', (string) $result->getFieldValueContent('gender-select'));
 
-        $this->assertTrue($result->hasFieldValue('gender_radio'));
-        $this->assertEquals('weiblich', (string) $result->getFieldValueContent('gender_radio'));
+        $this->assertTrue($result->hasFieldValue('gender-radio'));
+        $this->assertEquals('weiblich', (string) $result->getFieldValueContent('gender-radio'));
 
-        $this->assertTrue($result->hasFieldValue('gender_check'));
-        $genderCheck = $result->getFieldValueContent('gender_check');
+        $this->assertTrue($result->hasFieldValue('gender-check'));
+        $genderCheck = $result->getFieldValueContent('gender-check');
 
         $this->assertArrayHasKey('männlich', $genderCheck);
         $this->assertArrayHasKey('weiblich', $genderCheck);

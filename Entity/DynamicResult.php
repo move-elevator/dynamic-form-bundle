@@ -69,7 +69,7 @@ class DynamicResult extends BaseModel
     {
         $value->setResult($this);
 
-        $this->fieldValues[$value->getFormField()->getName()] = $value;
+        $this->fieldValues[$value->getFormField()->getKey()] = $value;
 
         return $this;
     }
@@ -93,13 +93,13 @@ class DynamicResult extends BaseModel
     }
 
     /**
-     * @param string $fieldName
+     * @param string $fieldKey
      *
      * @return FieldValue|null
      */
-    public function getFieldValue($fieldName)
+    public function getFieldValue($fieldKey)
     {
-        return $this->fieldValues[$fieldName];
+        return $this->fieldValues[$fieldKey];
     }
 
     /**

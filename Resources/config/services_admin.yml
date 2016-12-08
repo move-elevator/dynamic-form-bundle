@@ -1,6 +1,9 @@
 services:
+  dynamic_form.admin.choice.cleanup:
+    class: 'DynamicFormBundle\Admin\Services\FormField\ChoicesCleanup'
+
   dynamic_form.admin.choice_text.form_type:
-    class: 'DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceTextType'
+    class: 'DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceType'
     arguments: ['@doctrine.orm.entity_manager']
     tags:
       - { name: 'form.type' }

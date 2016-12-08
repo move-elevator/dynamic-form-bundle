@@ -38,7 +38,7 @@ class DynamicResultFieldBuilder
         }
 
         foreach ($form->getFields() as $field) {
-            if (true === $results->hasFieldValue($field->getName())) {
+            if (true === $results->hasFieldValue($field->getKey())) {
                 continue;
             }
 

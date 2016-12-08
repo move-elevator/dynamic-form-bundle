@@ -1,6 +1,8 @@
 framework:
   secret: 'dynamic_form'
   test: true
+
+  session: true
   serializer:
     enabled: true
   router:

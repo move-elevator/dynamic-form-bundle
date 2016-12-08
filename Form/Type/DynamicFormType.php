@@ -104,6 +104,6 @@ class DynamicFormType extends AbstractType
         $configuration = $this->registry->getConfiguration($field->getFormType());
         $options = array_merge(['required' => false, 'label' => $field->getName()], $this->optionBuilder->build($field, $configuration));
 
-        $builder->add($field->getName(), $configuration->getFormTypeClass(), $options);
+        $builder->add($field->getKey(), $configuration->getFormTypeClass(), $options);
     }
 }

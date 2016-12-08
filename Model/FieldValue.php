@@ -29,6 +29,14 @@ abstract class FieldValue
     }
 
     /**
+     * @return string
+     */
+    public function getKey()
+    {
+        return $this->getFormField()->getKey();
+    }
+
+    /**
      * @return mixed
      */
     public function getRealValue()

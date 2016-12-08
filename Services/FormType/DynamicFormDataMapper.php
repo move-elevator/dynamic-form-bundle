@@ -45,7 +45,7 @@ class DynamicFormDataMapper implements DataMapperInterface
         $this->fieldBuilder->initFields($data, $this->dynamicForm);
 
         foreach ($data->getFieldValues() as $fieldValue) {
-            $name = $fieldValue->getName();
+            $name = $fieldValue->getKey();
 
             if (true === array_key_exists($name, $forms)) {
                 $forms[$name]->setData($fieldValue->getRealValue());
@@ -71,10 +71,9 @@ class DynamicFormDataMapper implements DataMapperInterface
         $this->fieldBuilder->initFields($data, $this->dynamicForm);
 
         foreach ($this->dynamicForm->getFields() as $field) {
-            $fieldName = $field->getName();
-            $value = $forms[$fieldName]->getData();
+            $value = $forms[$field->getKey()]->getData();
 
-            $data->setFieldValueContent($fieldName, $value);
+            $data->setFieldValueContent($field->getKey(), $value);
         }
 
         $data->setForm($this->dynamicForm);

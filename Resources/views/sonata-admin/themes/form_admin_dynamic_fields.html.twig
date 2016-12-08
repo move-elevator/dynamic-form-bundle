@@ -1,0 +1,36 @@
+{% extends '@SonataAdmin/Form/form_admin_fields.html.twig' %}
+
+{% block sonata_type_native_collection_widget_row %}
+    {% spaceless %}
+        <div class="sonata-collection-row form-group">
+            {{ form_label(child.value) }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_widget(child.value) }}
+                </div>
+                {% if allow_delete %}
+                    <a href="#" class="btn btn-primary sonata-collection-delete col-md-1"><i class="fa fa-minus-circle"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock sonata_type_native_collection_widget_row %}
+
+{% block sonata_type_native_collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set child = prototype %}
+            {% set attr = attr|merge({'data-prototype': block('sonata_type_native_collection_widget_row'), 'data-prototype-name': prototype.vars.name, 'class': attr.class|default('') }) %}
+        {% endif %}
+        <div {{ block('widget_container_attributes') }}>
+            {{ form_errors(form) }}
+            {% for child in form %}
+                {{ block('sonata_type_native_collection_widget_row') }}
+            {% endfor %}
+            {{ form_rest(form) }}
+            {% if allow_add %}
+                <div><a href="#" class="btn btn-primary sonata-collection-add"><i class="fa fa-plus-circle"></i></a></div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
+{% endblock sonata_type_native_collection_widget %}

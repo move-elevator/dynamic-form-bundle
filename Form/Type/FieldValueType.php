@@ -73,6 +73,6 @@ class FieldValueType extends AbstractType
             'property_path' => 'value.content'
         ], $this->optionBuilder->build($formField, $configuration));
 
-        $event->getForm()->add($formField->getName(), $configuration->getFormTypeClass(), $options);
+        $event->getForm()->add($formField->getKey(), $configuration->getFormTypeClass(), $options);
     }
 }

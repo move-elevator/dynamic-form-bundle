@@ -16,11 +16,11 @@ abstract class DynamicResult
     abstract public function getFieldValues();
 
     /**
-     * @param string $fieldName
+     * @param string $fieldKey
      *
      * @return EntityFieldValue
      */
-    abstract public function getFieldValue($fieldName);
+    abstract public function getFieldValue($fieldKey);
 
     /**
      * @param string $fieldName
@@ -74,7 +74,7 @@ abstract class DynamicResult
      */
     public function __call($name, $arguments)
     {
-        $property = ltrim(strtolower(preg_replace('/[A-Z]/', '_$0', substr($name, 3))), '_');
+        $property = ltrim(strtolower(preg_replace('/[A-Z]/', '-$0', substr($name, 3))), '-');
 
         if (false !== strpos($name, 'set')) {
             return $this->setFieldValueContent($property, current($arguments));
