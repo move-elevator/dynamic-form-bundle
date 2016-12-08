@@ -37,8 +37,8 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
         $result = new DynamicResult();
 
         $form = new DynamicForm();
-        $form->addField(new FormField('name', 'text'));
-        $form->addField(new FormField('description', 'textarea'));
+        $form->addField(new FormField('name', 'text', 'name'));
+        $form->addField(new FormField('description', 'textarea', 'description'));
 
         $this->builder->initFields($result, $form);
 
@@ -49,7 +49,7 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testDoNotInitExistingFields()
     {
-        $nameField = new FormField('name', 'text');
+        $nameField = new FormField('name', 'text', 'name');
 
         $form = new DynamicForm();
         $form->addField($nameField);
@@ -66,7 +66,7 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
     public function testInitRemoveFieldsNotExistInForm()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('name'));
+        $fieldValue->setFormField(new FormField('name', null, 'name'));
 
         $result = new DynamicResult();
         $result->addFieldValue($fieldValue);

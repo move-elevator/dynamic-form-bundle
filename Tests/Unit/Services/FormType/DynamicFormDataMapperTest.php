@@ -49,8 +49,8 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
         $result = new DynamicResult();
 
         $dynamicForm = new DynamicForm();
-        $dynamicForm->addField(new FormField('name', 'text'));
-        $dynamicForm->addField(new FormField('description', 'textarea'));
+        $dynamicForm->addField(new FormField('name', 'text', 'name'));
+        $dynamicForm->addField(new FormField('description', 'textarea', 'description'));
 
         $form = new IteratorWrapper([
             'name' => $this->getFormFieldMock(0, 1),
@@ -67,15 +67,15 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
     public function testMapDataToFormSetFormDefaultValues()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('name'));
+        $fieldValue->setFormField(new FormField('name', null, 'name'));
         $fieldValue->setValue(new StringValue());
 
         $result = new DynamicResult();
         $result->addFieldValue($fieldValue);
 
         $dynamicForm = new DynamicForm();
-        $dynamicForm->addField(new FormField('name', 'text'));
-        $dynamicForm->addField(new FormField('description', 'textarea'));
+        $dynamicForm->addField(new FormField('name', 'text', 'name'));
+        $dynamicForm->addField(new FormField('description', 'textarea', 'description'));
 
         $form = new IteratorWrapper([
             'name' => $this->getFormFieldMock(1),

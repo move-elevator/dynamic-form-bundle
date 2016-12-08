@@ -25,7 +25,7 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
     public function testHasFieldWithFieldReturnTrue()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('name'));
+        $fieldValue->setFormField(new FormField('name', null, 'name'));
         $this->result->addFieldValue($fieldValue);
 
         $this->assertTrue($this->result->hasFieldValue('name'));
@@ -34,7 +34,7 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
     public function testGetFieldWithFieldReturnField()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('name'));
+        $fieldValue->setFormField(new FormField('name', null, 'name'));
         $this->result->addFieldValue($fieldValue);
 
         $this->assertEquals($fieldValue, $this->result->getFieldValue('name'));
@@ -43,7 +43,7 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
     public function testFieldValueHelperFunction()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('name'));
+        $fieldValue->setFormField(new FormField('name', null, 'name'));
         $fieldValue->setValue(new StringValue);
 
         $this->result->addFieldValue($fieldValue);
@@ -55,7 +55,7 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
     public function testMagicGetterAndSetterFunctionWithExistingField()
     {
         $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('snake_case'));
+        $fieldValue->setFormField(new FormField('snake_case', null, 'snake-case'));
         $fieldValue->setValue(new StringValue);
 
         $this->result->addFieldValue($fieldValue);
@@ -66,7 +66,7 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Property "snake_case" does not exist
+     * @expectedExceptionMessage Property "snake-case" does not exist
      */
     public function testMagicGetFunctionThrowErrorIfFieldValueDoesNotExist()
     {
@@ -75,11 +75,11 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Property "snake_case" does not exist
+     * @expectedExceptionMessage Property "snake-case" does not exist
      */
     public function testMagicSetFunctionThrowErrorIfFieldValueDoesNotExist()
     {
-        $this->result->setSnakeCase('snake_case');
+        $this->result->setSnakeCase('snake-case');
     }
 
     /**

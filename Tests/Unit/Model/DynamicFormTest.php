@@ -25,7 +25,7 @@ class DynamicFormTest extends \PHPUnit_Framework_TestCase
 
     public function testHasFieldWithFieldReturnTrue()
     {
-        $this->form->addField(new FormField('name'));
+        $this->form->addField(new FormField('name', null, 'name'));
 
         $this->assertTrue($this->form->hasField('name'));
     }
