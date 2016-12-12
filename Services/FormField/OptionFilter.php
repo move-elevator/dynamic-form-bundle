@@ -1,6 +1,7 @@
 <?php
 
 namespace DynamicFormBundle\Services\FormField;
+use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 
 /**
  * @package DynamicFormBundle\Services\FormField
@@ -37,7 +38,7 @@ class OptionFilter
     }
 
     /**
-     * @param array|\ArrayAccess $options
+     * @param array|\ArrayAccess|OptionValue[] $options
      *
      * @return array
      */
@@ -45,9 +46,9 @@ class OptionFilter
     {
         $filtered = [];
 
-        foreach ($options as $option => $value) {
-            if (false === in_array($option, $this->disabledOptions)) {
-                $filtered[$option] = $value;
+        foreach ($options as $option) {
+            if (false === in_array($option->getName(), $this->disabledOptions)) {
+                $filtered[$option->getName()] = $option;
             }
         }
 

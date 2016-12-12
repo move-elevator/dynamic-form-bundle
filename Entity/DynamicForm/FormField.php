@@ -40,7 +40,7 @@ class FormField implements SortableInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="field_key")
      */
     private $key;
 
@@ -184,7 +184,9 @@ class FormField implements SortableInterface
      */
     public function addOptionValue(OptionValue $optionValue)
     {
-        $this->optionValues[$optionValue->getName()] = $optionValue;
+        if (false === $this->optionValues->contains($optionValue)) {
+            $this->optionValues[] = $optionValue;
+        }
 
         return $this;
     }
@@ -212,7 +214,13 @@ class FormField implements SortableInterface
      */
     public function hasOptionValues($option)
     {
-        return $this->optionValues->containsKey($option);
+        foreach ($this->getOptionValues() as $optionValue) {
+            if ($optionValue->getName() === $option) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -222,7 +230,11 @@ class FormField implements SortableInterface
      */
     public function getOptionValue($option)
     {
-        return $this->optionValues->get($option);
+        foreach ($this->getOptionValues() as $optionValue) {
+            if ($optionValue->getName() === $option) {
+                return $optionValue;
+            }
+        }
     }
 
     /**

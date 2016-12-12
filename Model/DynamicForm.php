@@ -22,13 +22,33 @@ abstract class DynamicForm
     abstract public function getElements();
 
     /**
-     * @param string $fieldName
+     * @param string $name
+     *
+     * @return FormField|null
+     */
+    public function getField($name)
+    {
+        foreach ($this->getFields() as $field) {
+            if ($field->getKey() === $name) {
+                return $field;
+            }
+        }
+    }
+
+    /**
+     * @param string $fieldKey
      *
      * @return bool
      */
-    public function hasField($fieldName)
+    public function hasField($fieldKey)
     {
-        return $this->getFields()->containsKey($fieldName);
+        foreach ($this->getFields() as $field) {
+            if ($field->getKey() === $fieldKey) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

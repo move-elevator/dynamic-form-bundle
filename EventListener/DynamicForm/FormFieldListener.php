@@ -26,20 +26,6 @@ class FormFieldListener
     }
 
     /**
-     * @ORM\PostLoad
-     *
-     * @param FormField          $formField
-     * @param LifecycleEventArgs $event
-     */
-    public function setOptionIndexToName(FormField $formField, LifecycleEventArgs $event)
-    {
-        foreach ($formField->getOptionValues() as $optionValue) {
-            $formField->removeOptionValue($optionValue);
-            $formField->addOptionValue($optionValue);
-        }
-    }
-
-    /**
      * @ORM\PrePersist
      * @ORM\PreUpdate
      *

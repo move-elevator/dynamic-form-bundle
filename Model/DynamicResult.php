@@ -18,18 +18,31 @@ abstract class DynamicResult
     /**
      * @param string $fieldKey
      *
-     * @return EntityFieldValue
+     * @return FieldValue|null
      */
-    abstract public function getFieldValue($fieldKey);
+    public function getFieldValue($fieldKey)
+    {
+        foreach ($this->getFieldValues() as $fieldValue) {
+            if ($fieldValue->getKey() === $fieldKey) {
+                return $fieldValue;
+            }
+        }
+    }
 
     /**
-     * @param string $fieldName
+     * @param string $fieldKey
      *
      * @return bool
      */
-    public function hasFieldValue($fieldName)
+    public function hasFieldValue($fieldKey)
     {
-        return $this->getFieldValues()->containsKey($fieldName);
+        foreach ($this->getFieldValues() as $fieldValue) {
+            if ($fieldValue->getKey() === $fieldKey) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

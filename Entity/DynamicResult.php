@@ -10,9 +10,6 @@ use DynamicFormBundle\Model\DynamicResult as BaseModel;
 
 /**
  * @ORM\Entity
- * @ORM\EntityListeners({
- *     "DynamicFormBundle\EventListener\DynamicResultListener"
- * })
  *
  * @ORM\Table(name="dynamic_form_result")
  *
@@ -67,9 +64,10 @@ class DynamicResult extends BaseModel
      */
     public function addFieldValue(FieldValue $value)
     {
-        $value->setResult($this);
-
-        $this->fieldValues[$value->getFormField()->getKey()] = $value;
+        if (false === $this->fieldValues->contains($value)) {
+            $value->setResult($this);
+            $this->fieldValues[] = $value;
+        }
 
         return $this;
     }
@@ -90,16 +88,6 @@ class DynamicResult extends BaseModel
     public function getFieldValues()
     {
         return $this->fieldValues;
-    }
-
-    /**
-     * @param string $fieldKey
-     *
-     * @return FieldValue|null
-     */
-    public function getFieldValue($fieldKey)
-    {
-        return $this->fieldValues[$fieldKey];
     }
 
     /**

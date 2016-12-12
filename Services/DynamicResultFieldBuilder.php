@@ -32,7 +32,7 @@ class DynamicResultFieldBuilder
     public function initFields(DynamicResult $results, DynamicForm $form)
     {
         foreach ($results->getFieldValues() as $fieldValue) {
-            if (false === $form->hasField($fieldValue->getName())) {
+            if (false === $form->hasField($fieldValue->getKey())) {
                 $results->removeFieldValue($fieldValue);
             }
         }

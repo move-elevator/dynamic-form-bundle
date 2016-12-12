@@ -12,9 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table
  * @ORM\Entity
- * @ORM\EntityListeners({
- *     "DynamicFormBundle\EventListener\DynamicFormListener"
- * })
  *
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -66,6 +63,7 @@ class DynamicForm extends BaseModel
     {
         $this->fields = new ArrayCollection();
         $this->elements = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -99,8 +97,10 @@ class DynamicForm extends BaseModel
      */
     public function addField(FormField $field)
     {
-        $field->addForm($this);
-        $this->fields[$field->getKey()] = $field;
+        if (false === $this->fields->contains($field)) {
+            $field->addForm($this);
+            $this->fields[] = $field;
+        }
 
         return $this;
     }
@@ -123,16 +123,6 @@ class DynamicForm extends BaseModel
     }
 
     /**
-     * @param string $name
-     *
-     * @return FormField|null
-     */
-    public function getField($name)
-    {
-        return $this->fields[$name];
-    }
-
-    /**
      * Add element
      *
      * @param FormElement $element
@@ -141,8 +131,10 @@ class DynamicForm extends BaseModel
      */
     public function addElement(FormElement $element)
     {
-        $element->addForm($this);
-        $this->elements[] = $element;
+        if (false === $this->elements->contains($element)) {
+            $element->addForm($this);
+            $this->elements[] = $element;
+        }
 
         return $this;
     }
@@ -182,7 +174,9 @@ class DynamicForm extends BaseModel
      */
     public function addResult(DynamicResult $result)
     {
-        $this->results[] = $result;
+        if (false === $this->results->contains($result)) {
+            $this->results[] = $result;
+        }
 
         return $this;
     }
