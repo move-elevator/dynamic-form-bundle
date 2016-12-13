@@ -7,6 +7,7 @@ use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 use DynamicFormBundle\Services\FormType\ChoiceConfigurationInterface;
 use DynamicFormBundle\Services\FormType\ConfigurationInterface;
+use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 
 /**
  * @package DynamicFormBundle\Services\FormField
@@ -66,6 +67,10 @@ class OptionBuilder
                 'choice_label' => $configuration->getChoiceLabelFunction(),
                 'choice_value' => $configuration->getChoiceValueFunction()
             ];
+        }
+
+        if (false === in_array(BaseOptions::LABEL, $configuration->getAvailableOptions())) {
+            $options[BaseOptions::LABEL] = false;
         }
 
         return $options;
