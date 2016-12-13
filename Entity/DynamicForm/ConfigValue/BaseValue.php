@@ -23,7 +23,7 @@ abstract class BaseValue
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var OptionValue
@@ -31,7 +31,7 @@ abstract class BaseValue
      * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue", inversedBy="value")
      * @ORM\JoinColumn(name="option_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $option;
+    protected $option;
 
     /**
      * @return int
