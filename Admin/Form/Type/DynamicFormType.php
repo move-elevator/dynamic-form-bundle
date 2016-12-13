@@ -26,7 +26,9 @@ class DynamicFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, [
+                'required' => false
+            ])
             ->add('fields', CollectionType::class, [
                 'entry_type' => PositionType::class
             ])
