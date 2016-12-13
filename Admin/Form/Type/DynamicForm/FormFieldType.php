@@ -2,6 +2,7 @@
 
 namespace DynamicFormBundle\Admin\Form\Type\DynamicForm;
 
+use Cocur\Slugify\Slugify;
 use DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
@@ -30,13 +31,20 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     private $configurator;
 
     /**
+     * @var Slugify
+     */
+    public $slugify;
+
+    /**
      * @param Registry                $registry
      * @param OptionFieldConfigurator $configurator
+     * @param Slugify                 $slugify
      */
-    public function __construct(Registry $registry, OptionFieldConfigurator $configurator)
+    public function __construct(Registry $registry, OptionFieldConfigurator $configurator, Slugify $slugify)
     {
         $this->registry = $registry;
         $this->configurator = $configurator;
+        $this->slugify = $slugify;
     }
 
     /**
@@ -94,7 +102,9 @@ class FormFieldType extends AbstractType implements DataMapperInterface
         $forms = iterator_to_array($forms);
 
         if (true === array_key_exists('name', $forms)) {
-            $data->setName($forms['name']->getData());
+            $name = $forms['name']->getData();
+            $data->setName($name);
+            $data->setKey($this->slugify->slugify($name));
         }
 
         $this->configurator->mapToOptionValues($data, $forms);

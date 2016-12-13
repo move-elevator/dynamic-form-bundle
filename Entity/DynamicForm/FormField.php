@@ -13,10 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="dynamic_form_field")
  *
  * @ORM\Entity
- * @ORM\EntityListeners({
- *     "DynamicFormBundle\EventListener\DynamicForm\FormFieldListener"
- * })
- *
+ * 
  * @package DynamicFormBundle\Entity
  */
 class FormField implements SortableInterface

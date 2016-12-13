@@ -39,6 +39,8 @@ class FormFieldController extends Controller
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
+            $dynamicForm->addField($formField);
+
             $this
                 ->getDoctrine()
                 ->getManager()

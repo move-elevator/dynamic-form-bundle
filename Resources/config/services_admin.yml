@@ -10,7 +10,7 @@ services:
 
   dynamic_form.admin.form_field.form_type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
-    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator']
+    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator', '@sonata.core.slugify.cocur']
     tags:
       - { name: 'form.type' }
 

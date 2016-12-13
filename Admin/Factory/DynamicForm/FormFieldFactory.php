@@ -45,7 +45,6 @@ class FormFieldFactory extends SortableFactory
 
         $position = $this->calculatePosition($form);
         $formField->setPosition(++$position);
-        $form->addField($formField);
 
         $this->initOptions($formField);
 

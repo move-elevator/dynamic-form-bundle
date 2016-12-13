@@ -97,7 +97,7 @@ class DynamicForm extends BaseModel
      */
     public function addField(FormField $field)
     {
-        if (false === $this->fields->contains($field)) {
+        if (false === $this->fields->contains($field) && false === $this->hasField($field->getKey())) {
             $field->addForm($this);
             $this->fields[] = $field;
         }
