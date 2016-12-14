@@ -2,3 +2,5 @@ headline: 'Überschrift'
 text: 'Text'
 
 successfully.saved: 'Erfolgreich gespeichert'
+successfully.deleted: 'Erfolgreich gelöscht'
+successfully.dcloned: 'Erfolgreich kopiert'

@@ -18,7 +18,8 @@
     "doctrine/doctrine-bundle": "~1.4",
     "doctrine/doctrine-fixtures-bundle": "^2.3",
     "hautelook/alice-bundle": "^1.4",
-    "sonata-project/admin-bundle": "2.3.7"
+    "sonata-project/admin-bundle": "2.3.7",
+    "myclabs/deep-copy": "^1.5"
   },
   "require-dev": {
     "move-elevator/symfony-coding-standard": "dev-master",
