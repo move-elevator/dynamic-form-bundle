@@ -8,6 +8,7 @@ use DynamicFormBundle\Entity\DynamicForm\FormField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -87,7 +88,15 @@ class FormFieldController extends Controller
                 ->getManager()
                 ->flush();
 
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+            $fieldName = $this
+                ->get('translator')
+                ->trans($formField->getName(), [], 'dynamic_form');
+
+            $successMessage = $this
+                ->get('translator')
+                ->trans('successfully.saved', [], 'dynamic_form');
+
+            $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
         }
 
         return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
@@ -95,5 +104,78 @@ class FormFieldController extends Controller
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);
+    }
+
+    /**
+     * @param Request     $request
+     * @param FormField   $formField
+     *
+     * @Route("/{fieldId}/delete")
+     *
+     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
+     *
+     * @return RedirectResponse
+     */
+    public function deleteAction(Request $request, FormField $formField)
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager();
+        $entityManager->remove($formField);
+        $entityManager->flush();
+
+        $fieldName = $this
+            ->get('translator')
+            ->trans($formField->getName(), [], 'dynamic_form');
+
+        $successMessage = $this
+            ->get('translator')
+            ->trans('successfully.deleted', [], 'dynamic_form');
+
+        $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
+
+        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
+
+        return $this->redirect($this->generateUrl($referer['_route'], [
+            'id' => $referer['id']
+        ]));
+    }
+
+    /**
+     * @param Request     $request
+     * @param FormField   $formField
+     *
+     * @Route("/{fieldId}/clone")
+     *
+     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
+     *
+     * @return RedirectResponse
+     */
+    public function cloneAction(Request $request, FormField $formField)
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $clonedFormElement = clone $formField;
+
+        $entityManager->persist($clonedFormElement);
+        $entityManager->flush();
+
+        $fieldName = $this
+            ->get('translator')
+            ->trans($formField->getName(), [], 'dynamic_form');
+
+        $successMessage = $this
+            ->get('translator')
+            ->trans('successfully.cloned', [], 'dynamic_form');
+
+        $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
+
+        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
+
+        return $this->redirect($this->generateUrl($referer['_route'], [
+            'id' => $referer['id']
+        ]));
     }
 }

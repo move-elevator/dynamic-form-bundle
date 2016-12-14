@@ -2,15 +2,13 @@
 
 namespace DynamicFormBundle\Admin\Controller\Sonata\DynamicForm;
 
-use DeepCopy\DeepCopy;
-use DeepCopy\Filter\SetNullFilter;
-use DeepCopy\Matcher\PropertyNameMatcher;
 use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormElement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -102,13 +100,16 @@ class FormElementController extends Controller
     }
 
     /**
+     * @param Request     $request
      * @param FormElement $formElement
      *
      * @Route("/{elementId}/delete")
      *
      * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     *
+     * @return RedirectResponse
      */
-    public function deleteAction(FormElement $formElement)
+    public function deleteAction(Request $request, FormElement $formElement)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -125,25 +126,31 @@ class FormElementController extends Controller
             ->trans('successfully.deleted', [], 'dynamic_form');
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
+
+        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
+
+        return $this->redirect($this->generateUrl($referer['_route'], [
+            'id' => $referer['id']
+        ]));
     }
 
     /**
+     * @param Request     $request
      * @param FormElement $formElement
      *
      * @Route("/{elementId}/clone")
      *
      * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     *
+     * @return RedirectResponse
      */
-    public function cloneAction(FormElement $formElement)
+    public function cloneAction(Request $request, FormElement $formElement)
     {
         $entityManager = $this
             ->getDoctrine()
             ->getManager();
 
-        $deepCopy = new DeepCopy();
-        $deepCopy->addFilter(new SetNullFilter(), new PropertyNameMatcher('id'));
-
-        $clonedFormElement = $deepCopy->copy($formElement);
+        $clonedFormElement = clone $formElement;
 
         $entityManager->persist($clonedFormElement);
         $entityManager->flush();
@@ -157,5 +164,11 @@ class FormElementController extends Controller
             ->trans('successfully.cloned', [], 'dynamic_form');
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
+
+        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
+
+        return $this->redirect($this->generateUrl($referer['_route'], [
+            'id' => $referer['id']
+        ]));
     }
 }
