@@ -1,7 +1,7 @@
 headline: 'Überschrift'
 text: 'Text'
 
-successfully
+successfully:
   saved: 'Erfolgreich gespeichert'
   deleted: 'Erfolgreich gelöscht'
   cloned: 'Erfolgreich kopiert'
