@@ -2,6 +2,9 @@
 
 namespace DynamicFormBundle\Admin\Controller\Sonata\DynamicForm;
 
+use DeepCopy\DeepCopy;
+use DeepCopy\Filter\SetNullFilter;
+use DeepCopy\Matcher\PropertyNameMatcher;
 use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormElement;
@@ -96,5 +99,63 @@ class FormElementController extends Controller
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
         ]);
+    }
+
+    /**
+     * @param FormElement $formElement
+     *
+     * @Route("/{elementId}/delete")
+     *
+     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     */
+    public function deleteAction(FormElement $formElement)
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager();
+        $entityManager->remove($formElement);
+        $entityManager->flush();
+
+        $elementType = $this
+            ->get('translator')
+            ->trans($formElement->getElementType(), [], 'dynamic_form');
+
+        $successMessage = $this
+            ->get('translator')
+            ->trans('successfully.deleted', [], 'dynamic_form');
+
+        $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
+    }
+
+    /**
+     * @param FormElement $formElement
+     *
+     * @Route("/{elementId}/clone")
+     *
+     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     */
+    public function cloneAction(FormElement $formElement)
+    {
+        $entityManager = $this
+            ->getDoctrine()
+            ->getManager();
+
+        $deepCopy = new DeepCopy();
+        $deepCopy->addFilter(new SetNullFilter(), new PropertyNameMatcher('id'));
+
+        $clonedFormElement = $deepCopy->copy($formElement);
+
+        $entityManager->persist($clonedFormElement);
+        $entityManager->flush();
+
+        $elementType = $this
+            ->get('translator')
+            ->trans($formElement->getElementType(), [], 'dynamic_form');
+
+        $successMessage = $this
+            ->get('translator')
+            ->trans('successfully.cloned', [], 'dynamic_form');
+
+        $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
     }
 }
