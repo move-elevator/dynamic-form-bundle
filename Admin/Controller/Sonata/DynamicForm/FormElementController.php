@@ -43,6 +43,11 @@ class FormElementController extends Controller
                 ->getDoctrine()
                 ->getManager()
                 ->flush($dynamicForm);
+
+            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formelement_edit', [
+                'formId' => $dynamicForm->getId(),
+                'elementId' => $formElement->getId()
+            ]);
         }
 
         return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
@@ -75,7 +80,15 @@ class FormElementController extends Controller
                 ->getManager()
                 ->flush();
 
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+            $elementType = $this
+                ->get('translator')
+                ->trans($formElement->getElementType(), [], 'dynamic_form');
+
+            $successMessage = $this
+                ->get('translator')
+                ->trans('successfully.saved', [], 'dynamic_form');
+
+            $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
         }
 
         return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
