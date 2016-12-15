@@ -36,7 +36,7 @@ class ChoiceValue extends BaseValue
     /**
      * @param Choice $content
      */
-    public function setContent(Choice $content)
+    public function setContent(Choice $content = null)
     {
         $this->choice = $content;
     }
