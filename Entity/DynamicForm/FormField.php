@@ -265,4 +265,9 @@ class FormField implements SortableInterface
     {
         $this->key = $key;
     }
+
+    public function __clone()
+    {
+        $this->setKey(uniqid());
+    }
 }
