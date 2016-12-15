@@ -42,6 +42,7 @@ class FormFieldFactory extends SortableFactory
     {
         $formField = new FormField();
         $formField->setFormType($formType);
+        $formField->setKey(uniqid());
 
         $position = $this->calculatePosition($form);
         $formField->setPosition(++$position);

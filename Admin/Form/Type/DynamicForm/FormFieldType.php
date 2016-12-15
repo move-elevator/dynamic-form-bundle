@@ -104,7 +104,6 @@ class FormFieldType extends AbstractType implements DataMapperInterface
         if (true === array_key_exists('name', $forms)) {
             $name = $forms['name']->getData();
             $data->setName($name);
-            $data->setKey($this->slugify->slugify($name));
         }
 
         $this->configurator->mapToOptionValues($data, $forms);

@@ -40,12 +40,14 @@ class FormFieldController extends Controller
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
-            $dynamicForm->addField($formField);
 
-            $this
+            $entityManager = $this
                 ->getDoctrine()
-                ->getManager()
-                ->flush($dynamicForm);
+                ->getManager();
+
+            $dynamicForm->addField($formField);
+            $entityManager->persist($formField);
+            $entityManager->flush();
 
             $successMessage = $this
                 ->get('translator')
