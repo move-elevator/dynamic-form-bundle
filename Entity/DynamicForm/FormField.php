@@ -37,7 +37,7 @@ class FormField implements SortableInterface
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="field_key")
+     * @ORM\Column(type="string", name="field_key", unique=true)
      */
     private $key;
 
