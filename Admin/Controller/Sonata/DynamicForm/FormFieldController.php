@@ -164,7 +164,7 @@ class FormFieldController extends Controller
 
         $fieldName = $this
             ->get('translator')
-            ->trans($formField->getName(), [], 'dynamic_form');
+            ->trans($formField->getFormType(), [], 'dynamic_form');
 
         $successMessage = $this
             ->get('translator')
