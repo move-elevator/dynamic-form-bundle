@@ -45,6 +45,12 @@ class FormElementController extends Controller
                 ->getManager()
                 ->flush($dynamicForm);
 
+            $successMessage = $this
+                ->get('translator')
+                ->trans('successfully.saved', [], 'dynamic_form');
+
+            $this->addFlash('success', sprintf('%s: %s', $formElementType, $successMessage));
+
             return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formelement_edit', [
                 'formId' => $dynamicForm->getId(),
                 'elementId' => $formElement->getId()
@@ -127,11 +133,7 @@ class FormElementController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
 
-        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
-
-        return $this->redirect($this->generateUrl($referer['_route'], [
-            'id' => $referer['id']
-        ]));
+        return $this->redirectToRoute($request->headers->get('referer'));
     }
 
     /**
@@ -165,10 +167,6 @@ class FormElementController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
 
-        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
-
-        return $this->redirect($this->generateUrl($referer['_route'], [
-            'id' => $referer['id']
-        ]));
+        return $this->redirectToRoute($request->headers->get('referer'));
     }
 }

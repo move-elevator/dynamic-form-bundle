@@ -46,6 +46,17 @@ class FormFieldController extends Controller
                 ->getDoctrine()
                 ->getManager()
                 ->flush($dynamicForm);
+
+            $successMessage = $this
+                ->get('translator')
+                ->trans('successfully.saved', [], 'dynamic_form');
+
+            $this->addFlash('success', sprintf('%s: %s', $formType, $successMessage));
+
+            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formfield_edit', [
+                'formId' => $dynamicForm->getId(),
+                'fieldId' => $formField->getId()
+            ]);
         }
 
         return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
@@ -107,8 +118,8 @@ class FormFieldController extends Controller
     }
 
     /**
-     * @param Request     $request
-     * @param FormField   $formField
+     * @param Request   $request
+     * @param FormField $formField
      *
      * @Route("/{fieldId}/delete")
      *
@@ -134,16 +145,12 @@ class FormFieldController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
 
-        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
-
-        return $this->redirect($this->generateUrl($referer['_route'], [
-            'id' => $referer['id']
-        ]));
+        return $this->redirect($request->headers->get('referer'));
     }
 
     /**
-     * @param Request     $request
-     * @param FormField   $formField
+     * @param Request   $request
+     * @param FormField $formField
      *
      * @Route("/{fieldId}/clone")
      *
@@ -172,10 +179,6 @@ class FormFieldController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
 
-        $referer = $this->get('dynamic_form.referer_extractor')->getRefererParams($request);
-
-        return $this->redirect($this->generateUrl($referer['_route'], [
-            'id' => $referer['id']
-        ]));
+        return $this->redirect($request->headers->get('referer'));
     }
 }

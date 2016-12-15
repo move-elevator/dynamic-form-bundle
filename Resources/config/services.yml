@@ -86,7 +86,3 @@ services:
     class: 'DynamicFormBundle\Services\FormType\Configuration\FileTypeConfiguration'
     tags:
       - { name: 'form.type_configuration' }
-
-  dynamic_form.referer_extractor:
-    class: 'DynamicFormBundle\Services\RefererExtractor'
-    arguments: ['@router.default']
