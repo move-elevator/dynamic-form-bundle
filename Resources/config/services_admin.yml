@@ -82,12 +82,12 @@ services:
     class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry'
 
   dynamic_form.admin.form_element.headline:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\FormHeadlineConfiguration'
+    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\FormHeadlineConfiguration'
     tags:
       - { name: 'form_element.configuration' }
 
   dynamic_form.admin.form_element.text:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\FormTextConfiguration'
+    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\FormTextConfiguration'
     tags:
       - { name: 'form_element.configuration' }
 
