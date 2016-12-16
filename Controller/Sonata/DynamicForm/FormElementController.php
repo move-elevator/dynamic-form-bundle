@@ -108,16 +108,17 @@ class FormElementController extends Controller
     }
 
     /**
-     * @param Request     $request
+     * @param DynamicForm $dynamicForm
      * @param FormElement $formElement
      *
      * @Route("/{elementId}/delete")
      *
      * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
-    public function deleteAction(Request $request, FormElement $formElement)
+    public function deleteAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -135,20 +136,21 @@ class FormElementController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
 
-        return $this->redirectToRoute($request->headers->get('referer'));
+        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
 
     /**
-     * @param Request     $request
+     * @param DynamicForm $dynamicForm
      * @param FormElement $formElement
      *
      * @Route("/{elementId}/clone")
      *
      * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
-    public function cloneAction(Request $request, FormElement $formElement)
+    public function cloneAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -169,6 +171,6 @@ class FormElementController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
 
-        return $this->redirectToRoute($request->headers->get('referer'));
+        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
 }

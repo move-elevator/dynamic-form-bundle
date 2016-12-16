@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @package DynamicFormBundle\Controller\Sonata\DynamicForm
+ * @package DynamicFormBundle\Admin\Controller\Sonata\DynamicForm
  *
  * @Route("form/{formId}/form-field")
  */
@@ -122,16 +122,17 @@ class FormFieldController extends Controller
     }
 
     /**
-     * @param Request   $request
-     * @param FormField $formField
+     * @param DynamicForm $dynamicForm
+     * @param FormField   $formField
      *
      * @Route("/{fieldId}/delete")
      *
      * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
-    public function deleteAction(Request $request, FormField $formField)
+    public function deleteAction(DynamicForm $dynamicForm, FormField $formField)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -149,20 +150,21 @@ class FormFieldController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
 
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
 
     /**
-     * @param Request   $request
-     * @param FormField $formField
+     * @param DynamicForm $dynamicForm
+     * @param FormField   $formField
      *
      * @Route("/{fieldId}/clone")
      *
      * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
-    public function cloneAction(Request $request, FormField $formField)
+    public function cloneAction(DynamicForm $dynamicForm, FormField $formField)
     {
         $entityManager = $this
             ->getDoctrine()
@@ -183,6 +185,6 @@ class FormFieldController extends Controller
 
         $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
 
-        return $this->redirect($request->headers->get('referer'));
+        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
 }
