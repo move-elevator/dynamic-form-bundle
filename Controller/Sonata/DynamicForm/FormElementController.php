@@ -96,6 +96,8 @@ class FormElementController extends Controller
                 ->trans('successfully.saved', [], 'dynamic_form');
 
             $this->addFlash('success', sprintf('%s: %s', $elementType, $successMessage));
+
+            return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
         return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
