@@ -2,7 +2,6 @@
 
 namespace DynamicFormBundle\Services\FormType\Configuration;
 
-use DynamicFormBundle\Entity\DynamicForm\Choice;
 use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoicesValue;
 use DynamicFormBundle\Form\BaseType\CheckboxGroupType;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;

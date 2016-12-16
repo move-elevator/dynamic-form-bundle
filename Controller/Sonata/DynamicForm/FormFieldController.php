@@ -1,6 +1,6 @@
 <?php
 
-namespace DynamicFormBundle\Admin\Controller\Sonata\DynamicForm;
+namespace DynamicFormBundle\Controller\Sonata\DynamicForm;
 
 use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType;
 use DynamicFormBundle\Entity\DynamicForm;
@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @package DynamicFormBundle\Admin\Controller\Sonata\DynamicForm
+ * @package DynamicFormBundle\Controller\Sonata\DynamicForm
  *
  * @Route("form/{formId}/form-field")
  */
@@ -55,7 +55,7 @@ class FormFieldController extends Controller
 
             $this->addFlash('success', sprintf('%s: %s', $formType, $successMessage));
 
-            return $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_formfield_edit', [
+            return $this->redirectToRoute('dynamicform_sonata_dynamicform_formfield_edit', [
                 'formId' => $dynamicForm->getId(),
                 'fieldId' => $formField->getId()
             ]);

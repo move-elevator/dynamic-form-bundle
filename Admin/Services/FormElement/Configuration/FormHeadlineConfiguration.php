@@ -1,15 +1,14 @@
 <?php
 
-namespace DynamicFormBundle\Admin\Services\FormElement;
+namespace DynamicFormBundle\Admin\Services\FormElement\Configuration;
 
-
+use DynamicFormBundle\Admin\Services\FormElement\ConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline;
-use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Statics\FormElements;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * @package DynamicFormBundle\Admin\Services\FormElement
+ * @package DynamicFormBundle\Admin\Services\FormElement\Configuration
  */
 class FormHeadlineConfiguration implements ConfigurationInterface
 {

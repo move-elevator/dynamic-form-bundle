@@ -3,7 +3,6 @@
 namespace DynamicFormBundle\Entity\DynamicForm\FormElement;
 
 use DynamicFormBundle\Entity\DynamicForm\FormElement;
-use DynamicFormBundle\Entity\Value\StringValue;
 use DynamicFormBundle\Statics\FormElements;
 use Doctrine\ORM\Mapping as ORM;
 

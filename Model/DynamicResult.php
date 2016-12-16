@@ -27,6 +27,8 @@ abstract class DynamicResult
                 return $fieldValue;
             }
         }
+
+        return null;
     }
 
     /**

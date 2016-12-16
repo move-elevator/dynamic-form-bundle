@@ -33,6 +33,8 @@ abstract class DynamicForm
                 return $field;
             }
         }
+
+        return null;
     }
 
     /**

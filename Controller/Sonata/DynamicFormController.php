@@ -1,6 +1,6 @@
 <?php
 
-namespace DynamicFormBundle\Admin\Controller\Sonata;
+namespace DynamicFormBundle\Controller\Sonata;
 
 use DynamicFormBundle\Admin\Form\Type\DynamicFormType;
 use DynamicFormBundle\Entity\DynamicForm;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @package DynamicFormBundle\Admin\Sonata\Controller
+ * @package DynamicFormBundle\Sonata\Controller
  *
  * @Route("form")
  */
@@ -39,7 +39,7 @@ class DynamicFormController extends Controller
             $entityManager->persist($dynamicForm);
             $entityManager->flush();
 
-            $this->redirectToRoute('dynamicform_admin_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+            $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
         return $this->render('@DynamicForm/sonata-admin/form/dynamic_form.html.twig', [

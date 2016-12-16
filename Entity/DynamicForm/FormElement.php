@@ -5,7 +5,6 @@ namespace DynamicFormBundle\Entity\DynamicForm;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm;
-use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\ORM\Mapping as ORM;
 

@@ -232,6 +232,8 @@ class FormField implements SortableInterface
                 return $optionValue;
             }
         }
+
+        return null;
     }
 
     /**

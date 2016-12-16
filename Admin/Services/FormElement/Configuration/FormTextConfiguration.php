@@ -1,14 +1,14 @@
 <?php
 
-namespace DynamicFormBundle\Admin\Services\FormElement;
+namespace DynamicFormBundle\Admin\Services\FormElement\Configuration;
 
+use DynamicFormBundle\Admin\Services\FormElement\ConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormText;
-use DynamicFormBundle\Entity\Value\TextValue;
 use DynamicFormBundle\Statics\FormElements;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
- * @package DynamicFormBundle\Admin\Services\FormElement
+ * @package DynamicFormBundle\Admin\Services\FormElement\Configuration
  */
 class FormTextConfiguration implements ConfigurationInterface
 {

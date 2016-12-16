@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Admin\Services\FormField;
 
-use CCE\LoginConnectorBundle\Service\Configuration\Collection;
+use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm\Choice;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
@@ -36,17 +36,6 @@ class ChoicesCleanup
     }
 
     /**
-     * @param ChoicesValue $choicesValue
-     * @param Choice       $choice
-     */
-    private function removeChoice(ChoicesValue $choicesValue, Choice $choice)
-    {
-        if (false === $choicesValue->getContent()->contains($choice)) {
-            $choice->removeChoiceConfig($choicesValue);
-        }
-    }
-
-    /**
      * @param FormField $formField
      *
      * @return ChoicesCleanup
@@ -63,5 +52,16 @@ class ChoicesCleanup
         $this->formField = $formField;
 
         return $this;
+    }
+
+    /**
+     * @param ChoicesValue $choicesValue
+     * @param Choice       $choice
+     */
+    private function removeChoice(ChoicesValue $choicesValue, Choice $choice)
+    {
+        if (false === $choicesValue->getContent()->contains($choice)) {
+            $choice->removeChoiceConfig($choicesValue);
+        }
     }
 }
