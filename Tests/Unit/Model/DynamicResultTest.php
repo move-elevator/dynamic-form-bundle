@@ -51,43 +51,4 @@ class DynamicResultTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('test', $this->result->getFieldValueContent('name'));
     }
-
-    public function testMagicGetterAndSetterFunctionWithExistingField()
-    {
-        $fieldValue = new FieldValue();
-        $fieldValue->setFormField(new FormField('snake_case', null, 'snake-case'));
-        $fieldValue->setValue(new StringValue);
-
-        $this->result->addFieldValue($fieldValue);
-        $this->result->setSnakeCase('test');
-
-        $this->assertEquals('test', $this->result->getSnakeCase());
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Property "snake-case" does not exist
-     */
-    public function testMagicGetFunctionThrowErrorIfFieldValueDoesNotExist()
-    {
-        $this->result->getSnakeCase();
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Property "snake-case" does not exist
-     */
-    public function testMagicSetFunctionThrowErrorIfFieldValueDoesNotExist()
-    {
-        $this->result->setSnakeCase('snake-case');
-    }
-
-    /**
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Method "test" does not exist
-     */
-    public function testMagicFunctionThrowErrorIfMethodIsNoGetterOrSetter()
-    {
-        $this->result->test();
-    }
 }

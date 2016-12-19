@@ -48,19 +48,19 @@ abstract class DynamicResult
     }
 
     /**
-     * @param string $fieldName
+     * @param string $fieldKey
      * @param mixed  $value
      *
      * @return DynamicResult
      */
-    public function setFieldValueContent($fieldName, $value)
+    public function setFieldValueContent($fieldKey, $value)
     {
-        if (false === $this->hasFieldValue($fieldName)) {
-            throw new \BadMethodCallException(sprintf('Property "%s" does not exist', $fieldName));
+        if (false === $this->hasFieldValue($fieldKey)) {
+            throw new \BadMethodCallException(sprintf('Property "%s" does not exist', $fieldKey));
         }
 
         $this
-            ->getFieldValue($fieldName)
+            ->getFieldValue($fieldKey)
             ->getValue()
             ->setContent($value);
 
@@ -68,37 +68,16 @@ abstract class DynamicResult
     }
 
     /**
-     * @param string $fieldName
+     * @param string $fieldKey
      *
      * @return mixed
      */
-    public function getFieldValueContent($fieldName)
+    public function getFieldValueContent($fieldKey)
     {
-        if (false === $this->hasFieldValue($fieldName)) {
-            throw new \BadMethodCallException(sprintf('Property "%s" does not exist', $fieldName));
+        if (false === $this->hasFieldValue($fieldKey)) {
+            throw new \BadMethodCallException(sprintf('Property "%s" does not exist', $fieldKey));
         }
 
-        return $this->getFieldValue($fieldName)->getValue()->getContent();
-    }
-
-    /**
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @return mixed
-     */
-    public function __call($name, $arguments)
-    {
-        $property = ltrim(strtolower(preg_replace('/[A-Z]/', '-$0', substr($name, 3))), '-');
-
-        if (false !== strpos($name, 'set')) {
-            return $this->setFieldValueContent($property, current($arguments));
-        }
-
-        if (false !== strpos($name, 'get')) {
-            return $this->getFieldValueContent($property);
-        }
-
-        throw new \BadMethodCallException(sprintf('Method "%s" does not exist', $name));
+        return $this->getFieldValue($fieldKey)->getValue()->getContent();
     }
 }
