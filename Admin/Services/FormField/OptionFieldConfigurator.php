@@ -113,7 +113,8 @@ class OptionFieldConfigurator
                 'entry_type' => $configuration->getFormTypeClass(),
                 'allow_add' => true,
                 'allow_delete' => true,
-                'options' => ['label' => false]
+                'options' => ['label' => false],
+                'required' => true
             ]);
         }
 
