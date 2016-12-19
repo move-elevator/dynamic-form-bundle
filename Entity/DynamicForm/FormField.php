@@ -8,6 +8,7 @@ use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="dynamic_form_field")
@@ -51,6 +52,8 @@ class FormField implements SortableInterface
 
     /**
      * @var Collection|OptionValue[]
+     *
+     * @Assert\Valid
      *
      * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="dynamic_form_field_to_option_value",

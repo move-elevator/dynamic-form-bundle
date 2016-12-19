@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue as ChoiceConfig;
 use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoicesValue as ChoicesValue;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -34,6 +35,8 @@ class Choice
 
     /**
      * @var string
+     *
+     * @Assert\NotNull
      *
      * @ORM\Column(type="text")
      */

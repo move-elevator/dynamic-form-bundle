@@ -5,6 +5,7 @@ namespace DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Model\DynamicForm\FormField\OptionValue as BaseModel;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -25,6 +26,8 @@ class OptionValue extends BaseModel
 
     /**
      * @var BaseValue
+     *
+     * @Assert\Valid
      *
      * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue", mappedBy="option", cascade={"persist", "remove"})
      */
