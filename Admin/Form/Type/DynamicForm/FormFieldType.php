@@ -54,7 +54,7 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, ['required' => false])
             ->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addOptionFields'])
             ->setDataMapper($this);
     }
