@@ -19,7 +19,7 @@ class ChoicesValue extends BaseValue
     /**
      * @var Collection|Choice[]
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", mappedBy="choiceValues", cascade={"persist", "remove"}, fetch="EAGER")
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", mappedBy="choiceValues", cascade={"persist"}, fetch="EAGER")
      */
     private $choices;
 

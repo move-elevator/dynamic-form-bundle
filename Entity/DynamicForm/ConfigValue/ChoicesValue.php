@@ -81,4 +81,16 @@ class ChoicesValue extends BaseValue
         $choice->removeChoiceConfig($this);
         $this->choices->removeElement($choice);
     }
+
+    public function __clone()
+    {
+        $choices = $this->choices->toArray();
+
+        $this->choices = new ArrayCollection();
+        $this->choices->clear();
+
+        foreach ($choices as $choice) {
+            $this->addChoice($choice);
+        }
+    }
 }

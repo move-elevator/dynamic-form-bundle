@@ -37,4 +37,9 @@ class EntityValue extends BaseValue
     {
         $this->entityContent = $content;
     }
+
+    public function __clone()
+    {
+        $this->entityContent = clone $this->entityContent;
+    }
 }

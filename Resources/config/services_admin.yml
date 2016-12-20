@@ -99,3 +99,6 @@ services:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValue\ChoiceValueFactory'
     tags:
       - { name: 'config_value.factory' }
+
+  dynamic_form.admin.form_field.cloner:
+    class: 'DynamicFormBundle\Admin\Services\FormField\Cloner'

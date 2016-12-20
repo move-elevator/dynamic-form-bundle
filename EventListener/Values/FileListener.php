@@ -38,6 +38,8 @@ class FileListener
      */
     public function convertContent(FileValue $fileValue, LifecycleEventArgs $event)
     {
+        $fileValue->setUpdated(false);
+
         if (null === $fileValue->getFileUri()) {
             return;
         }

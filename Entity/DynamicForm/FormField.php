@@ -136,7 +136,7 @@ class FormField implements SortableInterface
     }
 
     /**
-     * @return DynamicForm[]
+     * @return Collection|DynamicForm[]
      */
     public function getForms()
     {
@@ -273,6 +273,11 @@ class FormField implements SortableInterface
 
     public function __clone()
     {
+        $this->id = null;
         $this->setKey(uniqid());
+        $this->optionValues = new ArrayCollection();
+        $this->optionValues->clear();
+        $this->forms = new ArrayCollection();
+        $this->forms->clear();
     }
 }

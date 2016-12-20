@@ -150,7 +150,7 @@ class FormFieldController extends Controller
             ->getDoctrine()
             ->getManager();
 
-        $clonedFormElement = clone $formField;
+        $clonedFormElement = $this->get('dynamic_form.admin.form_field.cloner')->createClone($formField);
 
         $entityManager->persist($clonedFormElement);
         $entityManager->flush();

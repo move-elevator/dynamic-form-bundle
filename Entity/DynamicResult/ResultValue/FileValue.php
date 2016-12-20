@@ -26,6 +26,13 @@ class FileValue extends BaseValue
     private $fileUri;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="file_updated", type="boolean")
+     */
+    private $updated;
+
+    /**
      * @var File
      *
      */
@@ -51,6 +58,7 @@ class FileValue extends BaseValue
     public function setContent(UploadedFile $file = null)
     {
         $this->uploadedFile = $file;
+        $this->updated = true;
     }
 
     /**
@@ -67,6 +75,22 @@ class FileValue extends BaseValue
     public function setFileUri($fileUri)
     {
         $this->fileUri = $fileUri;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param boolean $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 
     /**

@@ -61,4 +61,9 @@ abstract class BaseValue
      * @return mixed
      */
     abstract public function getContent();
+
+    public function __clone()
+    {
+        $this->id = null;
+    }
 }

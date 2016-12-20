@@ -17,7 +17,7 @@ class ChoiceValue extends BaseValue
     /**
      * @var Choice
      *
-     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", cascade={"persist", "remove"}, fetch="EAGER")")
+     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", cascade={"persist"}, fetch="EAGER")")
      * @ORM\JoinColumn(name="choice_id", referencedColumnName="id")
 
      */
