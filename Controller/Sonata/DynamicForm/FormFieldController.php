@@ -49,11 +49,7 @@ class FormFieldController extends Controller
             $entityManager->persist($formField);
             $entityManager->flush();
 
-            $successMessage = $this
-                ->get('translator')
-                ->trans('successfully.saved', [], 'dynamic_form');
-
-            $this->addFlash('success', sprintf('%s: %s', $formType, $successMessage));
+            $this->addSuccessFlash($formField);
 
             return $this->redirectToRoute('dynamicform_sonata_dynamicform_formfield_edit', [
                 'formId' => $dynamicForm->getId(),
@@ -101,15 +97,7 @@ class FormFieldController extends Controller
                 ->getManager()
                 ->flush();
 
-            $fieldName = $this
-                ->get('translator')
-                ->trans($formField->getName(), [], 'dynamic_form');
-
-            $successMessage = $this
-                ->get('translator')
-                ->trans('successfully.saved', [], 'dynamic_form');
-
-            $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
+            $this->addSuccessFlash($formField);
 
             return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
@@ -140,15 +128,7 @@ class FormFieldController extends Controller
         $entityManager->remove($formField);
         $entityManager->flush();
 
-        $fieldName = $this
-            ->get('translator')
-            ->trans($formField->getName(), [], 'dynamic_form');
-
-        $successMessage = $this
-            ->get('translator')
-            ->trans('successfully.deleted', [], 'dynamic_form');
-
-        $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
+        $this->addSuccessFlash($formField);
 
         return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
@@ -175,16 +155,24 @@ class FormFieldController extends Controller
         $entityManager->persist($clonedFormElement);
         $entityManager->flush();
 
-        $fieldName = $this
+        $this->addSuccessFlash($formField);
+
+        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+    }
+
+    /**
+     * @param FormField $formField
+     */
+    private function addSuccessFlash(FormField $formField)
+    {
+        $formType = $this
             ->get('translator')
-            ->trans($formField->getFormType(), [], 'dynamic_form');
+            ->trans(sprintf('form_type.s%', $formField->getFormType()), [], 'dynamic_form');
 
         $successMessage = $this
             ->get('translator')
-            ->trans('successfully.cloned', [], 'dynamic_form');
+            ->trans('successfully.saved', [], 'dynamic_form');
 
-        $this->addFlash('success', sprintf('%s: %s', $fieldName, $successMessage));
-
-        return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
+        $this->addFlash('success', sprintf('%s: %s', $formType, $successMessage));
     }
 }
