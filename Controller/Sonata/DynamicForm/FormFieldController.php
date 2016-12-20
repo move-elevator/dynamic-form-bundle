@@ -167,7 +167,7 @@ class FormFieldController extends Controller
     {
         $formType = $this
             ->get('translator')
-            ->trans(sprintf('form_type.s%', $formField->getFormType()), [], 'dynamic_form');
+            ->trans(sprintf('form_type.%s', $formField->getFormType()), [], 'dynamic_form');
 
         $successMessage = $this
             ->get('translator')
