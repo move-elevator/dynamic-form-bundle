@@ -19,7 +19,7 @@ class WebTestCase extends BaseTestCase
     /**
      * @var Client
      */
-    private $client;
+    protected $client;
 
     protected function setUp()
     {

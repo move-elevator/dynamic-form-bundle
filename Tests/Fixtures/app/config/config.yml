@@ -1,8 +1,10 @@
+
+
 framework:
   secret: 'dynamic_form'
   test: true
-
-  session: true
+  session:
+    storage_id: session.storage.mock_file
   serializer:
     enabled: true
   router:
@@ -10,6 +12,8 @@ framework:
   templating:
     engines: ['twig']
   form: ~
+imports:
+    - { resource: security.yml }
 
 twig:
   paths:
