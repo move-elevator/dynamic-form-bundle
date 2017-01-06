@@ -84,6 +84,7 @@ class FileListener
         $file = $uploadedFile->move($absolutePath, $filename);
 
         $fileValue->setFileUri(sprintf('%s/%s', ltrim($this->webPath, '/'), $file->getFilename()));
+        $fileValue->setUpdated(false);
     }
 
     /**
