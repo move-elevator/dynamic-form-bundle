@@ -61,7 +61,7 @@ class FileListener
      */
     public function uploadFile(FileValue $fileValue, LifecycleEventArgs $event)
     {
-        if (null !== $fileValue->getContent()) {
+        if (null !== $fileValue->getContent() && true === $fileValue->isUpdated()) {
             $this->deleteFile($fileValue->getContent());
         }
 
