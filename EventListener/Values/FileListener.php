@@ -73,6 +73,7 @@ class FileListener
      */
     protected function saveFile(FileValue $fileValue)
     {
+        $fileValue->setUpdated(false);
         $uploadedFile = $fileValue->getUploadedFile();
 
         if (null === $uploadedFile) {
@@ -84,7 +85,6 @@ class FileListener
         $file = $uploadedFile->move($absolutePath, $filename);
 
         $fileValue->setFileUri(sprintf('%s/%s', ltrim($this->webPath, '/'), $file->getFilename()));
-        $fileValue->setUpdated(false);
     }
 
     /**
