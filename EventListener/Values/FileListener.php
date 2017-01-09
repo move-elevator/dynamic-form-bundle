@@ -62,10 +62,21 @@ class FileListener
     public function uploadFile(FileValue $fileValue, LifecycleEventArgs $event)
     {
         if (null !== $fileValue->getContent() && true === $fileValue->isUpdated()) {
-            $this->deleteFile($fileValue->getContent());
+            $this->deleteFile($fileValue);
         }
 
         $this->saveFile($fileValue);
+    }
+
+    /**
+     * @ORM\PostRemove
+     *
+     * @param FileValue          $fileValue
+     * @param LifecycleEventArgs $event
+     */
+    public function removeRealFile(FileValue $fileValue, LifecycleEventArgs $event)
+    {
+        $this->deleteFile($fileValue);
     }
 
     /**
@@ -88,10 +99,11 @@ class FileListener
     }
 
     /**
-     * @param File $file
+     * @param FileValue $fileValue
      */
-    protected function deleteFile(File $file)
+    protected function deleteFile(FileValue $fileValue)
     {
-        unlink($file->getRealPath());
+        unlink($fileValue->getContent()->getRealPath());
+        $fileValue->setFileUri(null);
     }
 }
