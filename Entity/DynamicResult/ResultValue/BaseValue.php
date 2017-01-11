@@ -58,6 +58,14 @@ abstract class BaseValue
     }
 
     /**
+     * @return void
+     */
+    public function removeContent()
+    {
+        $this->setContent(null);
+    }
+
+    /**
      * @return mixed
      */
     abstract public function getContent();

@@ -115,7 +115,7 @@ class FileValue extends BaseValue
     /**
      * @return void
      */
-    public function removeFile()
+    public function removeContent()
     {
         $this->uploadedFile = null;
         $this->updated = true;
