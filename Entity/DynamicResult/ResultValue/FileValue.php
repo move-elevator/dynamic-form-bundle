@@ -58,7 +58,10 @@ class FileValue extends BaseValue
     public function setContent(UploadedFile $file = null)
     {
         $this->uploadedFile = $file;
-        $this->updated = true;
+
+        if ($file instanceof UploadedFile) {
+            $this->updated = true;
+        }
     }
 
     /**
@@ -107,5 +110,14 @@ class FileValue extends BaseValue
     public function getUploadedFile()
     {
         return $this->uploadedFile;
+    }
+
+    /**
+     * @return void
+     */
+    public function removeFile()
+    {
+        $this->uploadedFile = null;
+        $this->updated = true;
     }
 }
