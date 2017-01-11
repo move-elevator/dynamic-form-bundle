@@ -108,13 +108,7 @@ class FormElementController extends Controller
      */
     public function deleteAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager();
-        $entityManager->remove($formElement);
-        $entityManager->flush();
-
-        $this->addSuccessFlash($formElement);
+        $this->get('dynamic_form.admin.action.form_element.delete')->action($formElement);
 
         return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
@@ -132,14 +126,7 @@ class FormElementController extends Controller
      */
     public function cloneAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager();
-
-        $clonedFormElement = clone $formElement;
-
-        $entityManager->persist($clonedFormElement);
-        $entityManager->flush();
+        $this->get('dynamic_form.admin.action.form_element.clone')->action($formElement);
 
         $this->addSuccessFlash($formElement);
 

@@ -122,11 +122,7 @@ class FormFieldController extends Controller
      */
     public function deleteAction(DynamicForm $dynamicForm, FormField $formField)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager();
-        $entityManager->remove($formField);
-        $entityManager->flush();
+        $this->get('dynamic_form.admin.action.form_field.delete')->action($formField);
 
         $this->addSuccessFlash($formField);
 
@@ -146,14 +142,7 @@ class FormFieldController extends Controller
      */
     public function cloneAction(DynamicForm $dynamicForm, FormField $formField)
     {
-        $entityManager = $this
-            ->getDoctrine()
-            ->getManager();
-
-        $clonedFormElement = $this->get('dynamic_form.admin.form_field.cloner')->createClone($formField);
-
-        $entityManager->persist($clonedFormElement);
-        $entityManager->flush();
+        $this->get('dynamic_form.admin.action.form_field.clone')->action($formField);
 
         $this->addSuccessFlash($formField);
 
