@@ -3,10 +3,7 @@
 namespace DynamicFormBundle\Entity\DynamicForm;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue as ChoiceConfig;
-use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoicesValue as ChoicesValue;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -41,22 +38,6 @@ class Choice
      * @ORM\Column(type="text")
      */
     private $value;
-
-    /**
-     * @var Collection|ChoiceConfig[]
-     *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue", inversedBy="choices")
-     * @ORM\JoinTable(name="dynamic_form_choice_config_to_choices")
-     */
-    private $choiceConfigs;
-
-    /**
-     * @var Collection|ChoicesValue[]
-     *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoicesValue", inversedBy="choices")
-     * @ORM\JoinTable(name="dynamic_form_choice_value_to_choices")
-     */
-    private $choiceValues;
 
     /**
      * @param string $label
@@ -109,66 +90,6 @@ class Choice
     public function setValue($value)
     {
         $this->value = $value;
-    }
-
-    /**
-     * @return ChoiceConfig[]
-     */
-    public function getChoiceConfigs()
-    {
-        return $this->choiceConfigs;
-    }
-
-    /**
-     * @param ChoiceConfig $choiceConfig
-     *
-     * @return Choice
-     */
-    public function addChoiceConfig(ChoiceConfig $choiceConfig)
-    {
-        if (false === $this->choiceConfigs->contains($choiceConfig)) {
-            $this->choiceConfigs[] = $choiceConfig;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChoiceConfig $choiceConfig
-     */
-    public function removeChoiceConfig(ChoiceConfig $choiceConfig)
-    {
-        $this->choiceConfigs->removeElement($choiceConfig);
-    }
-
-    /**
-     * @return ChoicesValue[]
-     */
-    public function getChoiceValues()
-    {
-        return $this->choiceValues;
-    }
-
-    /**
-     * @param ChoicesValue $choiceConfig
-     *
-     * @return Choice
-     */
-    public function addChoiceValue(ChoicesValue $choiceConfig)
-    {
-        if (false === $this->choiceValues->contains($choiceConfig)) {
-            $this->choiceValues[] = $choiceConfig;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChoicesValue $choiceConfig
-     */
-    public function removeChoiceValue(ChoicesValue $choiceConfig)
-    {
-        $this->choiceValues->removeElement($choiceConfig);
     }
 
     /**

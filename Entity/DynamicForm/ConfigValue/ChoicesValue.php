@@ -22,7 +22,8 @@ class ChoicesValue extends BaseValue
      *
      * @Assert\Valid
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", mappedBy="choiceConfigs", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\Choice", cascade={"persist"})
+     * @ORM\JoinTable(name="dynamic_form_choice_result_to_choices")
      */
     private $choices;
 
@@ -64,8 +65,6 @@ class ChoicesValue extends BaseValue
      */
     public function addChoice(Choice $choice)
     {
-        $choice->addChoiceConfig($this);
-
         if (false === $this->choices->contains($choice)) {
             $this->choices[] = $choice;
         }
@@ -78,7 +77,6 @@ class ChoicesValue extends BaseValue
      */
     public function removeChoice(Choice $choice)
     {
-        $choice->removeChoiceConfig($this);
         $this->choices->removeElement($choice);
     }
 
