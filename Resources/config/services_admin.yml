@@ -2,12 +2,6 @@ services:
   dynamic_form.admin.choice.cleanup:
     class: 'DynamicFormBundle\Admin\Services\FormField\ChoicesCleanup'
 
-  dynamic_form.admin.choice_text.form_type:
-    class: 'DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceType'
-    arguments: ['@doctrine.orm.entity_manager']
-    tags:
-      - { name: 'form.type' }
-
   dynamic_form.admin.form_field.form_type:
     class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
     arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator', '@sonata.core.slugify.cocur']
