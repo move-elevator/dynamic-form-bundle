@@ -16,16 +16,14 @@ class Cloner
      */
     public function createClone(FormField $formField)
     {
-        $options = $formField->getOptionValues()->toArray();
-        $forms = $formField->getForms()->toArray();
+        $options = $formField
+            ->getOptionValues()
+            ->toArray();
+
         $copy = clone $formField;
 
         foreach ($options as $option) {
             $copy->addOptionValue(clone $option);
-        }
-
-        foreach ($forms as $form) {
-            $copy->addForm($form);
         }
 
         return $copy;
