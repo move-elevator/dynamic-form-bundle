@@ -2,7 +2,6 @@
 
 namespace DynamicFormBundle\Entity\DynamicForm;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,13 +25,6 @@ class Choice
     /**
      * @var string
      *
-     * @ORM\Column(type="text")
-     */
-    private $label;
-
-    /**
-     * @var string
-     *
      * @Assert\NotNull
      *
      * @ORM\Column(type="text")
@@ -40,16 +32,11 @@ class Choice
     private $value;
 
     /**
-     * @param string $label
      * @param string $value
      */
-    public function __construct($label = null, $value = null)
+    public function __construct($value = null)
     {
-        $this->label = $label;
         $this->value = $value;
-
-        $this->choiceConfigs = new ArrayCollection();
-        $this->choiceValues = new ArrayCollection();
     }
 
     /**
@@ -59,23 +46,6 @@ class Choice
     {
         return $this->id;
     }
-
-    /**
-     * @return string
-     */
-    public function getLabel()
-    {
-        return $this->label;
-    }
-
-    /**
-     * @param string $label
-     */
-    public function setLabel($label)
-    {
-        $this->label = $label;
-    }
-
     /**
      * @return string
      */
@@ -97,6 +67,6 @@ class Choice
      */
     public function __toString()
     {
-        return (string) $this->getLabel();
+        return (string) $this->getValue();
     }
 }

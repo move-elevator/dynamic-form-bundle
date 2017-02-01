@@ -17,7 +17,7 @@ abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterfa
     public function getChoiceLabelFunction()
     {
         return function(Choice $choice) {
-            return $choice->getLabel();
+            return $choice->getValue();
         };
     }
 

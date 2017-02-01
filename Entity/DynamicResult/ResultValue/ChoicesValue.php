@@ -63,7 +63,7 @@ class ChoicesValue extends BaseValue
     public function addChoice(Choice $choice)
     {
         if (false === $this->choices->contains($choice)) {
-            $this->choices[$choice->getLabel()] = $choice;
+            $this->choices[$choice->getValue()] = $choice;
         }
 
         return $this;

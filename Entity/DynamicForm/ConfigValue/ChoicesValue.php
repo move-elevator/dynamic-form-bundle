@@ -88,7 +88,7 @@ class ChoicesValue extends BaseValue
         $this->choices->clear();
 
         foreach ($choices as $choice) {
-            $this->addChoice($choice);
+            $this->addChoice(clone $choice);
         }
     }
 }

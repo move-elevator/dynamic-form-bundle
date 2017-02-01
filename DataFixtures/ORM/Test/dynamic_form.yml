@@ -134,10 +134,8 @@ DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue:
 
 DynamicFormBundle\Entity\DynamicForm\Choice:
   man:
-    label: 'männlich'
     value: 'männlich'
   woman:
-    label: 'weiblich'
     value: 'weiblich'
 
 DynamicFormBundle\Entity\DynamicForm:
