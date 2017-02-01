@@ -91,7 +91,8 @@ class DynamicFormType extends AbstractType
             ->addAllowedTypes('dynamic_form', DynamicForm::class);
 
         $resolver->setDefaults([
-            'data_class' => DynamicResult::class
+            'data_class' => DynamicResult::class,
+            'translation_domain' => 'dynamic_form'
         ]);
     }
 
