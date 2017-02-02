@@ -27,6 +27,6 @@ class FormHeadline extends FormElement
      */
     public function getAnchor()
     {
-        return sprintf('%s_%s', strtolower(preg_replace('/\B([A-Z])/', '_$1', $this->getText())), $this->getId());
+        return sprintf('form_headline_%s', $this->getId());
     }
 }
