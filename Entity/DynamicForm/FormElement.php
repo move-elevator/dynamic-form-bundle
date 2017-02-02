@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -31,6 +32,8 @@ abstract class FormElement implements SortableInterface
      * @var string
      *
      * @ORM\Column(type="text")
+     *
+     * @Assert\NotBlank()
      */
     protected $text;
 
