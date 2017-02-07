@@ -140,7 +140,7 @@ class FormElementController extends Controller
     {
         $formType = $this
             ->get('translator')
-            ->trans(sprintf('element_type.%s', $formElement->getElementType()), [], 'dynamic_form');
+            ->trans(sprintf('form_element.%s', $formElement->getElementType()), [], 'dynamic_form');
 
         $successMessage = $this
             ->get('translator')
