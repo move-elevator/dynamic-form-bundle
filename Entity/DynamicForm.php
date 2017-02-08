@@ -144,6 +144,7 @@ class DynamicForm extends BaseModel
      */
     public function removeElement(FormElement $element)
     {
+        $element->setForm(null);
         $this->elements->removeElement($element);
     }
 
