@@ -129,7 +129,6 @@ class OptionValue extends BaseModel
 
     public function __clone()
     {
-        $this->id = null;
         $this->value = clone $this->value;
         $this->value->setOption($this);
     }

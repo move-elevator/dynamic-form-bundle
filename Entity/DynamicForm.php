@@ -53,7 +53,7 @@ class DynamicForm extends BaseModel
     /**
      * @var Collection|FormField[]
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="forms", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="forms", cascade={"persist", "remove"})
      */
     protected $elements;
 
@@ -123,8 +123,6 @@ class DynamicForm extends BaseModel
     }
 
     /**
-     * Add element
-     *
      * @param FormElement $element
      *
      * @return DynamicForm
@@ -132,7 +130,7 @@ class DynamicForm extends BaseModel
     public function addElement(FormElement $element)
     {
         if (false === $this->elements->contains($element)) {
-            $element->addForm($this);
+            $element->setForm($this);
             $this->elements[] = $element;
         }
 
@@ -187,5 +185,22 @@ class DynamicForm extends BaseModel
     public function removeResult(DynamicResult $result)
     {
         $this->results->removeElement($result);
+    }
+
+    public function __clone()
+    {
+        $fields = $this->fields->toArray();
+        $elements = $this->elements->toArray();
+
+        $this->fields = new ArrayCollection();
+        $this->elements = new ArrayCollection();
+
+        foreach ($fields as $field) {
+            $this->addField(clone $field);
+        }
+
+        foreach ($elements as $element) {
+            $this->addElement(clone $element);
+        }
     }
 }

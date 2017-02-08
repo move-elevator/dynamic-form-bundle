@@ -40,10 +40,10 @@ abstract class FormElement implements SortableInterface
     /**
      * @var Collection|DynamicForm[]
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="elements")
-     * @ORM\JoinTable(name="dynamic_form_to_element")
+     * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="elements")
+     * @ORM\JoinColumn(name="form_id", referencedColumnName="id")
      */
-    protected $forms;
+    protected $form;
 
     /**
      * @var integer
@@ -51,13 +51,6 @@ abstract class FormElement implements SortableInterface
      * @ORM\Column(type="integer")
      */
     protected $position;
-
-    /**
-     */
-    public function __construct()
-    {
-        $this->forms = new ArrayCollection();
-    }
 
     /**
      * @return integer
@@ -88,19 +81,11 @@ abstract class FormElement implements SortableInterface
      *
      * @return FormElement
      */
-    public function addForm(DynamicForm $form)
+    public function setForm(DynamicForm $form)
     {
-        $this->forms[$form->getId()] = $form;
+        $this->form = $form;
 
         return $this;
-    }
-
-    /**
-     * @param DynamicForm $form
-     */
-    public function removeForm(DynamicForm $form)
-    {
-        $this->forms->removeElement($form);
     }
 
     /**
@@ -108,7 +93,7 @@ abstract class FormElement implements SortableInterface
      */
     public function getForm()
     {
-        return $this->forms;
+        return $this->form;
     }
 
     /**

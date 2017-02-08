@@ -264,13 +264,11 @@ class FormField implements SortableInterface
 
     public function __clone()
     {
-        $this->id = null;
         $this->setKey(uniqid());
 
         $optionValues = $this->getOptionValues()->toArray();
 
         $this->optionValues = new ArrayCollection();
-        $this->optionValues->clear();
 
         foreach ($optionValues as $optionValue) {
             $this->addOptionValue(clone $optionValue);
