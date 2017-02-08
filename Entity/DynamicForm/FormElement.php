@@ -2,8 +2,6 @@
 
 namespace DynamicFormBundle\Entity\DynamicForm;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Model\SortableInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -38,7 +36,7 @@ abstract class FormElement implements SortableInterface
     protected $text;
 
     /**
-     * @var Collection|DynamicForm[]
+     * @var DynamicForm
      *
      * @ORM\ManyToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm", inversedBy="elements")
      * @ORM\JoinColumn(name="form_id", referencedColumnName="id")
