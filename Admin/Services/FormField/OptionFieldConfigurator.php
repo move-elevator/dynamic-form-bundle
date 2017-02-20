@@ -28,7 +28,7 @@ class OptionFieldConfigurator
     /**
      * @var BuilderInterface[]
      */
-    private $optionFieldBuilder;
+    private $optionFieldBuilder = [];
 
     /**
      * @param Registry     $registry
@@ -107,12 +107,14 @@ class OptionFieldConfigurator
      */
     private function getOptionFieldBuilder(ConfigurationInterface $configuration)
     {
-        $class = get_class($configuration);
+        $interfaces = class_implements($configuration);
 
-        if (true === array_key_exists($class, $this->optionFieldBuilder)) {
-            return $this->optionFieldBuilder[$class]->setConfiguration($configuration);
+        foreach ($interfaces as $interface) {
+            if (true === array_key_exists($interface, $this->optionFieldBuilder)) {
+                return $this->optionFieldBuilder[$interface]->setConfiguration($configuration);
+            }
         }
 
-        throw new \LogicException(sprintf('No Builder for %s exists'));
+        throw new \LogicException(sprintf('No Builder for %s exists', get_class($configuration)));
     }
 }

@@ -27,8 +27,8 @@ class FormAnchorsTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render FormHeadlines as Anchors
-        $this->assertContains('<li><a href="#headline_2">Headline</a></li>', $content);
-        $this->assertContains('<li><a href="#gender_3">Gender</a></li>', $content);
+        $this->assertContains('<li><a href="#form_headline_2">Headline</a></li>', $content);
+        $this->assertContains('<li><a href="#form_headline_3">Gender</a></li>', $content);
     }
     /**
      * @return string
