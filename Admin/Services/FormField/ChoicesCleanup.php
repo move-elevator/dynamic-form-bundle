@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm\Choice;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
+use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoiceValue;
 
 /**
  * @package DynamicFormBundle\Admin\Services
@@ -26,11 +27,12 @@ class ChoicesCleanup
      */
     public function checkRemoves()
     {
-        if ($this->formField->hasOptionValues('choices')) {
-            foreach ($this->defaultChoices as $choice) {
-                $choiceValue = $this->formField->getOptionValue('choices')->getValue();
+        if (true === $this->formField->hasOptionValues('choices')) {
+            /** @var ChoicesValue $choicesValue */
+            $choicesValue = $this->formField->getOptionValue('choices')->getValue();
 
-                $this->removeChoice($choiceValue, $choice);
+            foreach ($this->defaultChoices as $choice) {
+                $this->removeChoice($choicesValue, $choice);
             }
         }
     }
