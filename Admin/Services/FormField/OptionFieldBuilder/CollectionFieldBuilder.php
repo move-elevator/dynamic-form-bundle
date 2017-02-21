@@ -4,7 +4,7 @@ namespace DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder;
 
 use DynamicFormBundle\Admin\Services\FormField\Option\CollectionConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Sonata\AdminBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -26,6 +26,14 @@ class CollectionFieldBuilder extends SingleFieldBuilder
     }
 
     /**
+     * @return string
+     */
+    public function supports()
+    {
+        return CollectionConfigurationInterface::class;
+    }
+
+    /**
      * @return array
      */
     protected function getFormOptions()
@@ -37,10 +45,5 @@ class CollectionFieldBuilder extends SingleFieldBuilder
             'options' => ['label' => false],
             'required' => true
         ]);
-    }
-
-    public function supports()
-    {
-        return CollectionConfigurationInterface::class;
     }
 }

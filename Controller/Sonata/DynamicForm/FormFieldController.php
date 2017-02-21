@@ -82,16 +82,11 @@ class FormFieldController extends Controller
             ->get('dynamic_form.admin.form_field.factory')
             ->initOptions($formField);
 
-        $cleanup = $this
-            ->get('dynamic_form.admin.choice.cleanup')
-            ->setFormField($formField);
-
-        $form = $this->createForm(FormFieldType::class, $formField);
-        $form->handleRequest($request);
+        $form = $this
+            ->createForm(FormFieldType::class, $formField)
+            ->handleRequest($request);
 
         if (true === $form->isValid()) {
-            $cleanup->checkRemoves();
-
             $this
                 ->getDoctrine()
                 ->getManager()

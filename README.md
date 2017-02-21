@@ -1,4 +1,4 @@
 DynamicFormBundle
 =================
 
-A Symfony bundle to database managed dynamic forms
+A Symfony bundle to create database driven Symfony-Forms.
