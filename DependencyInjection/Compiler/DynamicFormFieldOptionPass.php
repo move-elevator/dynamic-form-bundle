@@ -2,25 +2,19 @@
 
 namespace DynamicFormBundle\DependencyInjection\Compiler;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * @package AppBundle\DependencyInjection\Compiler
  */
-class DynamicFormFieldOptionPass implements CompilerPassInterface
+class DynamicFormFieldOptionPass extends AbstractCompilerPass
 {
     /**
      * @param ContainerBuilder $container
      */
     public function process(ContainerBuilder $container)
     {
-        $configurationRegistry = $container->findDefinition('dynamic_form.admin.form_field.option.registry');
-        $configurations = $container->findTaggedServiceIds('form_field.option_configuration');
-
-        foreach (array_keys($configurations) as $id) {
-            $configurationRegistry->addMethodCall('addConfiguration', [new Reference($id)]);
-        }
+        $this->addTaggedServiceToRegistry($container, 'dynamic_form.admin.form_field.option.registry', 'addConfiguration', 'form_field.option_configuration');
+        $this->addTaggedServiceToRegistry($container, 'dynamic_form.admin.form_field.option_field_configurator', 'addOptionFieldBuilder', 'form_field.option_field_builder');
     }
 }

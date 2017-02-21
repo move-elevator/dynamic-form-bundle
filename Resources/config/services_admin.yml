@@ -10,20 +10,22 @@ services:
 
   dynamic_form.admin.form_field.single.option_field_builder:
     class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\SingleFieldBuilder'
+    tags:
+      - { name: 'form_field.option_field_builder' }
 
   dynamic_form.admin.form_field.collection.option_field_builder:
     class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\CollectionFieldBuilder'
+    tags:
+      - { name: 'form_field.option_field_builder' }
 
   dynamic_form.admin.form_field.choices.option_field_builder:
     class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\ChoiceFieldBuilder'
+    tags:
+      - { name: 'form_field.option_field_builder' }
 
   dynamic_form.admin.form_field.option_field_configurator:
     class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator'
     arguments: ['@dynamic_form.admin.form_field.option.registry', '@dynamic_form.option_filter']
-    calls:
-      - ['addOptionFieldBuilder', ['@dynamic_form.admin.form_field.single.option_field_builder']]
-      - ['addOptionFieldBuilder', ['@dynamic_form.admin.form_field.collection.option_field_builder']]
-      - ['addOptionFieldBuilder', ['@dynamic_form.admin.form_field.choices.option_field_builder']]
 
   dynamic_form.admin.option_value.factory:
     class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory'

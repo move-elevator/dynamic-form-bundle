@@ -12,8 +12,8 @@ use DynamicFormBundle\Entity\DynamicForm\FormField;
 class ChoicesCleanup
 {
     /**
-     * @param FormField  $formField
-     * @param array      $choices
+     * @param FormField $formField
+     * @param array     $choices
      */
     public function checkRemoves(FormField $formField, array $choices)
     {
