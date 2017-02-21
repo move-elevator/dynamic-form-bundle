@@ -16,6 +16,6 @@ before_install:
   - composer selfupdate
 script:
   - composer install --no-interaction
-  - ./bin/phpcs.phar --standard=PSR2 ./src -v
-  - ./bin/phpcpd.phar ./src
+  - ./bin/phpcs.phar --ignore=./vendor/,./Tests/Fixtures/ --standard=PSR2 ./ -v
+  - ./bin/phpcpd.phar --exclude=vendor --exclude=Tests/Fixtures  ./
   - ./bin/phpunit.phar --coverage-clover build/logs/clover.xml
