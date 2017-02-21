@@ -16,7 +16,7 @@ abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterfa
      */
     public function getChoiceLabelFunction()
     {
-        return function(Choice $choice) {
+        return function (Choice $choice) {
             return $choice->getValue();
         };
     }
@@ -26,7 +26,7 @@ abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterfa
      */
     public function getChoiceValueFunction()
     {
-        return function($choice) {
+        return function ($choice) {
             return $choice;
         };
     }
@@ -38,5 +38,4 @@ abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterfa
     {
         return ChoiceOptions::all();
     }
-
 }

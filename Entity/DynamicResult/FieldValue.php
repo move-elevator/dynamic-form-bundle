@@ -36,7 +36,10 @@ class FieldValue extends BaseModel
     /**
      * @var BaseValue
      *
-     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicResult\ResultValue\BaseValue", mappedBy="field", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicResult\ResultValue\BaseValue",
+     *     mappedBy="field", cascade={"persist", "remove"}
+     * )
      */
     private $value;
 

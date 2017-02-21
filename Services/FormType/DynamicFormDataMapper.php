@@ -32,8 +32,8 @@ class DynamicFormDataMapper implements DataMapperInterface
     }
 
     /**
-     * @param DynamicResult   $data
-     * @param FormInterface[] $forms
+     * @param DynamicResult                $data
+     * @param \Traversable|FormInterface[] $forms
      */
     public function mapDataToForms($data, $forms)
     {
@@ -54,8 +54,8 @@ class DynamicFormDataMapper implements DataMapperInterface
     }
 
     /**
-     * @param FormInterface[] $forms
-     * @param DynamicResult   $data
+     * @param \Traversable|FormInterface[] $forms
+     * @param DynamicResult                $data
      */
     public function mapFormsToData($forms, &$data)
     {

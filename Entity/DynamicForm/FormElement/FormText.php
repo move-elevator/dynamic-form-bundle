@@ -28,6 +28,10 @@ class FormText extends FormElement
      */
     public function getAnchor()
     {
-        return sprintf('%s_%s', strtolower(preg_replace('/\B([A-Z])/', '_$1', $this->getElementType())), $this->getId());
+        return sprintf(
+            '%s_%s',
+            strtolower(preg_replace('/\B([A-Z])/', '_$1', $this->getElementType())),
+            $this->getId()
+        );
     }
 }

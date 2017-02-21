@@ -14,6 +14,11 @@ class DynamicFormTypePass extends AbstractCompilerPass
      */
     public function process(ContainerBuilder $container)
     {
-        $this->addTaggedServiceToRegistry($container, 'dynamic_form.form_type.registry', 'addConfiguration', 'form.type_configuration');
+        $this->addTaggedServiceToRegistry(
+            $container,
+            'dynamic_form.form_type.registry',
+            'addConfiguration',
+            'form.type_configuration'
+        );
     }
 }

@@ -26,7 +26,7 @@ class FormElementExtension extends \Twig_Extension
      */
     public function isFormElement($formText)
     {
-        return $formText instanceOf FormElement;
+        return $formText instanceof FormElement;
     }
 
     /**

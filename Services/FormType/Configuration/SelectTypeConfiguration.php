@@ -6,7 +6,6 @@ use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoiceValue;
 use DynamicFormBundle\Form\BaseType\SelectType;
 use DynamicFormBundle\Statics\FormTypes;
 
-
 /**
  * @package DynamicFormBundle\Services\FormType\Configuration
  */

@@ -14,6 +14,11 @@ class DynamicFormElementPass extends AbstractCompilerPass
      */
     public function process(ContainerBuilder $container)
     {
-        $this->addTaggedServiceToRegistry($container, 'dynamic_form.admin.form_element.registry', 'addConfiguration', 'form_element.configuration');
+        $this->addTaggedServiceToRegistry(
+            $container,
+            'dynamic_form.admin.form_element.registry',
+            'addConfiguration',
+            'form_element.configuration'
+        );
     }
 }

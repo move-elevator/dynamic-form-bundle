@@ -44,7 +44,7 @@ class FormFieldTemplateGuesser
 
     /**
      * @param FormField $formField
-     * 
+     *
      * @return string
      *
      * @throws \LogicException

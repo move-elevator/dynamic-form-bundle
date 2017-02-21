@@ -35,7 +35,7 @@ class OptionBuilder
      *
      * @return array
      */
-    public function  build(FormField $formField, ConfigurationInterface $configuration)
+    public function build(FormField $formField, ConfigurationInterface $configuration)
     {
         /** @var OptionValue[] $optionValues */
         $optionValues = $this->optionFilter->filterDisabledOptions($formField->getOptionValues());

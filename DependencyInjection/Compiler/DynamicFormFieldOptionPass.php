@@ -14,7 +14,18 @@ class DynamicFormFieldOptionPass extends AbstractCompilerPass
      */
     public function process(ContainerBuilder $container)
     {
-        $this->addTaggedServiceToRegistry($container, 'dynamic_form.admin.form_field.option.registry', 'addConfiguration', 'form_field.option_configuration');
-        $this->addTaggedServiceToRegistry($container, 'dynamic_form.admin.form_field.option_field_configurator', 'addOptionFieldBuilder', 'form_field.option_field_builder');
+        $this->addTaggedServiceToRegistry(
+            $container,
+            'dynamic_form.admin.form_field.option.registry',
+            'addConfiguration',
+            'form_field.option_configuration'
+        );
+
+        $this->addTaggedServiceToRegistry(
+            $container,
+            'dynamic_form.admin.form_field.option_field_configurator',
+            'addOptionFieldBuilder',
+            'form_field.option_field_builder'
+        );
     }
 }

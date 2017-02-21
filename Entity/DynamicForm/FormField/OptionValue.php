@@ -29,7 +29,10 @@ class OptionValue extends BaseModel
      *
      * @Assert\Valid
      *
-     * @ORM\OneToOne(targetEntity="DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue", mappedBy="option", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicForm\ConfigValue\BaseValue",
+     *     mappedBy="option", cascade={"persist", "remove"}
+     * )
      */
     private $value;
 

@@ -38,7 +38,10 @@ class DynamicResult extends BaseModel
     /**
      * @var Collection|FieldValue[]
      *
-     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicResult\FieldValue", mappedBy="result", cascade={"persist", "remove"}, fetch="EAGER")
+     * @ORM\OneToMany(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicResult\FieldValue",
+     *     mappedBy="result", cascade={"persist", "remove"}, fetch="EAGER"
+     * )
      */
     protected $fieldValues;
 

@@ -63,8 +63,8 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     }
 
     /**
-     * @param FormField       $data
-     * @param FormInterface[] $forms
+     * @param FormField                    $data
+     * @param \Traversable|FormInterface[] $forms
      */
     public function mapDataToForms($data, $forms)
     {
@@ -82,8 +82,8 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     }
 
     /**
-     * @param FormInterface[] $forms
-     * @param FormField       $data
+     * @param \Traversable|FormInterface[] $forms
+     * @param FormField                    $data
      */
     public function mapFormsToData($forms, &$data)
     {

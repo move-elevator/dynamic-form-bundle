@@ -15,9 +15,21 @@ class DynamicFormExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('dynamic_form', [$this, 'dynamicForm'], ['needs_environment' => true, 'is_safe' => ['html']]),
-            new \Twig_SimpleFunction('form_element', [$this, 'formElement'], ['needs_environment' => true, 'is_safe' => ['html']]),
-            new \Twig_SimpleFunction('form_anchors', [$this, 'formAnchors'], ['needs_environment' => true, 'is_safe' => ['html']])
+            new \Twig_SimpleFunction(
+                'dynamic_form',
+                [$this, 'dynamicForm'],
+                ['needs_environment' => true, 'is_safe' => ['html']]
+            ),
+            new \Twig_SimpleFunction(
+                'form_element',
+                [$this, 'formElement'],
+                ['needs_environment' => true, 'is_safe' => ['html']]
+            ),
+            new \Twig_SimpleFunction(
+                'form_anchors',
+                [$this, 'formAnchors'],
+                ['needs_environment' => true, 'is_safe' => ['html']]
+            )
         ];
     }
 
@@ -63,7 +75,7 @@ class DynamicFormExtension extends \Twig_Extension
     {
         $reflect = new \ReflectionClass(get_class($element));
 
-        $snakeCase = strtolower(preg_replace_callback('/([a-z])([A-Z])/', function($match) {
+        $snakeCase = strtolower(preg_replace_callback('/([a-z])([A-Z])/', function ($match) {
             return sprintf('%s_%s', $match[1], $match[2]);
         }, $reflect->getShortName()));
 

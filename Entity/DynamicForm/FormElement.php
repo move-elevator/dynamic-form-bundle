@@ -87,7 +87,7 @@ abstract class FormElement implements SortableInterface
     }
 
     /**
-     * @return DynamicForm[]
+     * @return DynamicForm
      */
     public function getForm()
     {

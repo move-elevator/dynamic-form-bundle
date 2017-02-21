@@ -1,5 +1,7 @@
 <?php
+
 namespace DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder;
+
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 use Symfony\Component\Form\FormInterface;

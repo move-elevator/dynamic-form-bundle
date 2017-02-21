@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\Collection;
 use DynamicFormBundle\Entity\DynamicForm\Choice;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
-use DynamicFormBundle\Entity\DynamicResult\ResultValue\ChoiceValue;
 
 /**
  * @package DynamicFormBundle\Admin\Services

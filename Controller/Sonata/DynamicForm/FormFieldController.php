@@ -40,7 +40,6 @@ class FormFieldController extends Controller
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
-
             $entityManager = $this
                 ->getDoctrine()
                 ->getManager();

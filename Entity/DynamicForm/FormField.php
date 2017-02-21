@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="dynamic_form_field")
  *
  * @ORM\Entity
- * 
+ *
  * @package DynamicFormBundle\Entity
  */
 class FormField implements SortableInterface
@@ -55,11 +55,14 @@ class FormField implements SortableInterface
      *
      * @Assert\Valid
      *
-     * @ORM\ManyToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue",
+     *     cascade={"persist", "remove"}
+     * )
      * @ORM\JoinTable(name="dynamic_form_field_to_option_value",
      *      joinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id")}
-     *      )
+     * )
      */
     private $optionValues;
 

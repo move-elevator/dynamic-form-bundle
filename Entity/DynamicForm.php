@@ -46,14 +46,20 @@ class DynamicForm extends BaseModel
     /**
      * @var Collection|FormField[]
      *
-     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField", mappedBy="form", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicForm\FormField",
+     *     mappedBy="form", cascade={"persist", "remove"}
+     * )
      */
     protected $fields;
 
     /**
      * @var Collection|FormField[]
      *
-     * @ORM\OneToMany(targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement", mappedBy="form", cascade={"persist", "remove"})
+     * @ORM\OneToMany(
+     *     targetEntity="DynamicFormBundle\Entity\DynamicForm\FormElement",
+     *     mappedBy="form", cascade={"persist", "remove"}
+     * )
      */
     protected $elements;
 
