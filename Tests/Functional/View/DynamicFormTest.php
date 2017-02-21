@@ -27,8 +27,8 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render FormHeadlines
-        $this->assertContains('<h1 id="headline_2">Headline</h1>', $content);
-        $this->assertContains('<h1 id="gender_3">Gender</h1>', $content);
+        $this->assertContains('<h1 id="form_headline_2">Headline</h1>', $content);
+        $this->assertContains('<h1 id="form_headline_3">Gender</h1>', $content);
 
         // render FormText
         $this->assertContains('<p id="text_1">Beschreibung</p>', $content);
@@ -39,8 +39,8 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render FormHeadlines
-        $this->assertContains('<h1 id="headline_2">Headline</h1>', $content);
-        $this->assertContains('<h1 id="gender_3">Gender</h1>', $content);
+        $this->assertContains('<h1 id="form_headline_2">Headline</h1>', $content);
+        $this->assertContains('<h1 id="form_headline_3">Gender</h1>', $content);
 
         // render FormText
         $this->assertContains('<p id="text_1">Beschreibung</p>', $content);

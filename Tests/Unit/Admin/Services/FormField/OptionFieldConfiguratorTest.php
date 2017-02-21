@@ -6,6 +6,9 @@ use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DisabledConf
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\PlaceholderConfiguration;
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry;
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\RequiredConfiguration;
+use DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\ChoiceFieldBuilder;
+use DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\CollectionFieldBuilder;
+use DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\SingleFieldBuilder;
 use DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
@@ -36,6 +39,9 @@ class OptionFieldConfiguratorTest extends \PHPUnit_Framework_TestCase
         $filter = new OptionFilter(['disabled']);
 
         $this->configurator = new OptionFieldConfigurator($registry, $filter);
+        $this->configurator->addOptionFieldBuilder(new SingleFieldBuilder());
+        $this->configurator->addOptionFieldBuilder(new CollectionFieldBuilder());
+        $this->configurator->addOptionFieldBuilder(new ChoiceFieldBuilder());
     }
 
     public function testConfigFieldsFilterAndAddOptionFormFields()

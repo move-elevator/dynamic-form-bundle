@@ -2,7 +2,6 @@
 
 namespace DynamicFormBundle\Admin\Form\Type\DynamicForm;
 
-use Cocur\Slugify\Slugify;
 use DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
@@ -31,20 +30,13 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     private $configurator;
 
     /**
-     * @var Slugify
-     */
-    public $slugify;
-
-    /**
      * @param Registry                $registry
      * @param OptionFieldConfigurator $configurator
-     * @param Slugify                 $slugify
      */
-    public function __construct(Registry $registry, OptionFieldConfigurator $configurator, Slugify $slugify)
+    public function __construct(Registry $registry, OptionFieldConfigurator $configurator)
     {
         $this->registry = $registry;
         $this->configurator = $configurator;
-        $this->slugify = $slugify;
     }
 
     /**

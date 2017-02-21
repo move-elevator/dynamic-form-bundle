@@ -2,14 +2,12 @@
 
 namespace DynamicFormBundle\Admin\Services\FormField;
 
-use DynamicFormBundle\Admin\Services\FormField\Option\ChoiceConfigurationInterface;
-use DynamicFormBundle\Admin\Services\FormField\Option\CollectionConfigurationInterface;
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry;
 use DynamicFormBundle\Admin\Services\FormField\Option\ConfigurationInterface;
+use DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\BuilderInterface;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 use DynamicFormBundle\Services\FormField\OptionFilter;
-use Sonata\AdminBundle\Form\Type\CollectionType;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -26,6 +24,11 @@ class OptionFieldConfigurator
      * @var OptionFilter
      */
     private $optionFilter;
+
+    /**
+     * @var BuilderInterface[]
+     */
+    private $optionFieldBuilder = [];
 
     /**
      * @param Registry     $registry
@@ -47,8 +50,13 @@ class OptionFieldConfigurator
         $optionValues = $this->optionFilter->filterDisabledOptions($formField->getOptionValues());
 
         foreach ($optionValues as $optionValue) {
-            $configuration = $this->registry->getConfiguration($optionValue->getName());
-            $this->addOptionField($form, $optionValue, $configuration);
+            $configuration = $this
+                ->registry
+                ->getConfiguration($optionValue->getName());
+
+            $this
+                ->getOptionFieldBuilder($configuration)
+                ->buildOptionField($form, $optionValue);
         }
     }
     /**
@@ -84,44 +92,29 @@ class OptionFieldConfigurator
         }
     }
 
-    private function addOptionField(FormInterface $form, OptionValue $optionValue, ConfigurationInterface $configuration)
+    /**
+     * @param BuilderInterface $builder
+     */
+    public function addOptionFieldBuilder(BuilderInterface $builder)
     {
-        $formType = $configuration->getFormTypeClass();
-
-        if ($configuration instanceof CollectionConfigurationInterface) {
-            $formType = CollectionType::class;
-        }
-
-        $form->add($optionValue->getName(), $formType, $this->getFormOptions($configuration));
+        $this->optionFieldBuilder[$builder->supports()] = $builder;
     }
-
 
     /**
      * @param ConfigurationInterface $configuration
      *
-     * @return array
+     * @return BuilderInterface
      */
-    private function getFormOptions(ConfigurationInterface $configuration)
+    private function getOptionFieldBuilder(ConfigurationInterface $configuration)
     {
-        $options = [
-            'mapped' => false,
-            'required' => false
-        ];
+        $interfaces = class_implements($configuration);
 
-        if ($configuration instanceof CollectionConfigurationInterface) {
-            $options = array_merge($options, [
-                'entry_type' => $configuration->getFormTypeClass(),
-                'allow_add' => true,
-                'allow_delete' => true,
-                'options' => ['label' => false],
-                'required' => true
-            ]);
+        foreach ($interfaces as $interface) {
+            if (true === array_key_exists($interface, $this->optionFieldBuilder)) {
+                return $this->optionFieldBuilder[$interface]->setConfiguration($configuration);
+            }
         }
 
-        if ($configuration instanceof ChoiceConfigurationInterface) {
-            $options['choices'] = $configuration->getChoices();
-        }
-
-        return $options;
+        throw new \LogicException(sprintf('No Builder for %s exists', get_class($configuration)));
     }
 }

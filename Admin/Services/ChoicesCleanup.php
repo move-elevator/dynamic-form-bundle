@@ -33,7 +33,7 @@ class ChoicesCleanup
     private function removeChoice(ChoicesValue $choicesValue, Choice $choice)
     {
         if (false === $choicesValue->getContent()->contains($choice)) {
-            $choice->removeChoiceConfig($choicesValue);
+            $choicesValue->removeChoice($choice);
         }
     }
 }
