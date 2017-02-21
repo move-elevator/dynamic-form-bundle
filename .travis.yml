@@ -15,7 +15,7 @@ matrix:
 before_install:
   - composer selfupdate
 script:
-  - php -d memory_limit=256M $(which composer) install --no-interaction
+  - composer install --no-interaction
   - ./bin/phpcs.phar --standard=PSR2 ./src -v
   - ./bin/phpcpd.phar ./src
   - ./bin/phpunit.phar --coverage-clover build/logs/clover.xml
