@@ -93,12 +93,9 @@ services:
     tags:
       - { name: 'config_value.factory' }
 
-  dynamic_form.admin.form_field.cloner:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Cloner'
-
   dynamic_form.admin.action.form_field.clone:
     class: 'DynamicFormBundle\Admin\Services\Actions\FormField\CloneAction'
-    arguments: ['@doctrine.orm.entity_manager', '@dynamic_form.admin.form_field.cloner']
+    arguments: ['@doctrine.orm.entity_manager']
 
   dynamic_form.admin.action.form_field.delete:
     class: 'DynamicFormBundle\Admin\Services\Actions\FormField\DeleteAction'

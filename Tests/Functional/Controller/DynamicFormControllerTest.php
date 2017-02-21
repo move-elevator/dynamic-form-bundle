@@ -24,6 +24,7 @@ class DynamicFormControllerTest extends WebTestCase
 
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
+
     public function testAccessEditAction()
     {
         $this->loadAliceFixtures([

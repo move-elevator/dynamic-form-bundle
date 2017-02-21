@@ -26,7 +26,7 @@ class FormElementController extends Controller
      *
      * @Route("/{formElementType}/create")
      *
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
@@ -67,8 +67,8 @@ class FormElementController extends Controller
      *
      * @Route("/{elementId}/edit")
      *
-     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formElement", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
@@ -101,8 +101,8 @@ class FormElementController extends Controller
      *
      * @Route("/{elementId}/delete")
      *
-     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formElement", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
@@ -119,8 +119,8 @@ class FormElementController extends Controller
      *
      * @Route("/{elementId}/clone")
      *
-     * @ParamConverter("formElement", class="DynamicFormBundle:DynamicForm\FormElement", options={"mapping": {"elementId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formElement", options={"mapping": {"elementId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */

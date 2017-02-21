@@ -4,7 +4,6 @@ namespace DynamicFormBundle\Admin\Services\Actions\FormField;
 
 use Doctrine\ORM\EntityManager;
 use DynamicFormBundle\Admin\Services\Actions\ActionInterface;
-use DynamicFormBundle\Admin\Services\FormField\Cloner;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 
 /**
@@ -18,18 +17,11 @@ class CloneAction implements ActionInterface
     private $entityManager;
 
     /**
-     * @var Cloner
-     */
-    private $cloner;
-
-    /**
      * @param EntityManager $entityManager
-     * @param Cloner        $cloner
      */
-    public function __construct(EntityManager $entityManager, Cloner $cloner)
+    public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->cloner = $cloner;
     }
 
     /**
@@ -43,9 +35,7 @@ class CloneAction implements ActionInterface
             throw new \LogicException(sprintf('Only %s allowed', FormField::class));
         }
 
-        $clonedField = $this->cloner->createClone($object);
-
-        $this->entityManager->persist($clonedField);
+        $this->entityManager->persist(clone $object);
         $this->entityManager->flush();
 
         return true;

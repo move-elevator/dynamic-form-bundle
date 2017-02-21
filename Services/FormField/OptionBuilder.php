@@ -14,7 +14,7 @@ use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
  */
 class OptionBuilder
 {
-    const ATTR_PREFIX = 'attr.';
+    const ATTR_PREFIX = 'attr';
 
     /**
      * @var OptionFilter
@@ -92,11 +92,11 @@ class OptionBuilder
      */
     private function addAttributeValue(OptionValue $optionValue, array &$options)
     {
-        $option = str_replace(static::ATTR_PREFIX, '', $optionValue->getOption());
+        $option = ltrim(str_replace(static::ATTR_PREFIX, '', $optionValue->getOption()), '.');
         $value = $optionValue->getValue();
 
         if (false === $value instanceof BooleanValue || $value->getContent() === true) {
-            $options['attr'][$option] = $optionValue->getRealValue();
+            $options[self::ATTR_PREFIX][$option] = $optionValue->getRealValue();
         }
     }
 }

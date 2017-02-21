@@ -26,7 +26,7 @@ class FormFieldController extends Controller
      *
      * @Route("/{formType}/create")
      *
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
@@ -71,8 +71,8 @@ class FormFieldController extends Controller
      *
      * @Route("/{fieldId}/edit")
      *
-     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return Response
      */
@@ -115,8 +115,8 @@ class FormFieldController extends Controller
      *
      * @Route("/{fieldId}/delete")
      *
-     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
@@ -135,8 +135,8 @@ class FormFieldController extends Controller
      *
      * @Route("/{fieldId}/clone")
      *
-     * @ParamConverter("formField", class="DynamicFormBundle:DynamicForm\FormField", options={"mapping": {"fieldId": "id"}})
-     * @ParamConverter("dynamicForm", class="DynamicFormBundle:DynamicForm", options={"mapping": {"formId": "id"}})
+     * @ParamConverter("formField", options={"mapping": {"fieldId": "id"}})
+     * @ParamConverter("dynamicForm", options={"mapping": {"formId": "id"}})
      *
      * @return RedirectResponse
      */
