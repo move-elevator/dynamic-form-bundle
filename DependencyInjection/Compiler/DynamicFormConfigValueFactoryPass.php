@@ -14,6 +14,6 @@ class DynamicFormConfigValueFactoryPass extends AbstractCompilerPass
      */
     public function process(ContainerBuilder $container)
     {
-        $this->addTaggedServiceToRegistry($container, 'dynamic_form.config_value.factory', 'addFactory', 'onfig_value.factory');
+        $this->addTaggedServiceToRegistry($container, 'dynamic_form.config_value.factory', 'addFactory', 'config_value.factory');
     }
 }

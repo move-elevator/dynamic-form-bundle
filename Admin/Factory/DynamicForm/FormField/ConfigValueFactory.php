@@ -13,8 +13,11 @@ class ConfigValueFactory
     /**
      * @var ConfigValueFactoryInterface[]
      */
-    private $factories;
+    private $factories = [];
 
+    /**
+     * @param ConfigValueFactoryInterface $factory
+     */
     public function addFactory(ConfigValueFactoryInterface $factory)
     {
         $this->factories[$factory->supports()] = $factory;
