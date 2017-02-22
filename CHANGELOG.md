@@ -6,6 +6,7 @@
 
  * Changed License from GPL to MIT
  * Improve Readme.md
+ * Change CodeStyle to PSR-2 Standard
  
 ### Added
 

@@ -1,5 +1,9 @@
 # DynamicFormBundle
 
+[![Latest Stable Version](https://poser.pugx.org/fjogeleit/dynamic-form-bundle/v/stable)](https://packagist.org/packages/fjogeleit/dynamic-form-bundle)
+[![Build Status](https://travis-ci.org/fjogeleit/dynamic-form-bundle.svg?branch=master)](https://travis-ci.org/fjogeleit/dynamic-form-bundle)
+[![License](https://poser.pugx.org/fjogeleit/dynamic-form-bundle/license)](https://packagist.org/packages/fjogeleit/dynamic-form-bundle)
+
 A Symfony bundle to create database driven dynamic Forms and save them.
 
 * create Forms with an Backend like SonataAdmin Bundle
