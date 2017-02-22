@@ -46,11 +46,20 @@ class DynamicFormTest extends WebTestCase
         $this->assertContains('<p id="text_1">Beschreibung</p>', $content);
 
         // render description as textarea
-        $this->assertContains('<textarea id="dynamic_form_description" name="dynamic_form[description]"></textarea>', $content);
+        $this->assertContains(
+            '<textarea id="dynamic_form_description" name="dynamic_form[description]"></textarea>',
+            $content
+        );
         // render Visit as fileupload
-        $this->assertContains('<input type="file" id="dynamic_form_visit" name="dynamic_form[visit]" />', $content);
+        $this->assertContains(
+            '<input type="file" id="dynamic_form_visit" name="dynamic_form[visit]" />',
+            $content
+        );
         // render name as text-input
-        $this->assertContains('<input type="text" id="dynamic_form_name" name="dynamic_form[name]" />', $content);
+        $this->assertContains(
+            '<input type="text" id="dynamic_form_name" name="dynamic_form[name]" />',
+            $content
+        );
     }
 
     public function testRenderDynamicFormSelects()
@@ -58,16 +67,44 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render start (date) as selects
-        $this->assertContains('<select id="dynamic_form_start_day" name="dynamic_form[start][day]">', $content);
-        $this->assertContains('<select id="dynamic_form_start_month" name="dynamic_form[start][month]">', $content);
-        $this->assertContains('<select id="dynamic_form_start_year" name="dynamic_form[start][year]">', $content);
+        $this->assertContains(
+            '<select id="dynamic_form_start_day" name="dynamic_form[start][day]">',
+            $content
+        );
+        $this->assertContains(
+            '<select id="dynamic_form_start_month" name="dynamic_form[start][month]">',
+            $content
+        );
+        $this->assertContains(
+            '<select id="dynamic_form_start_year" name="dynamic_form[start][year]">',
+            $content
+        );
 
         // render break (datetime) as selects
-        $this->assertContains('<select id="dynamic_form_break_date_day" name="dynamic_form[break][date][day]">', $content);
-        $this->assertContains('<select id="dynamic_form_break_date_month" name="dynamic_form[break][date][month]">', $content);
-        $this->assertContains('<select id="dynamic_form_break_date_year" name="dynamic_form[break][date][year]">', $content);
-        $this->assertContains('<select id="dynamic_form_break_time_hour" name="dynamic_form[break][time][hour]">', $content);
-        $this->assertContains('<select id="dynamic_form_break_time_minute" name="dynamic_form[break][time][minute]">', $content);
+        $this->assertContains(
+            '<select id="dynamic_form_break_date_day" name="dynamic_form[break][date][day]">',
+            $content
+        );
+
+        $this->assertContains(
+            '<select id="dynamic_form_break_date_month" name="dynamic_form[break][date][month]">',
+            $content
+        );
+
+        $this->assertContains(
+            '<select id="dynamic_form_break_date_year" name="dynamic_form[break][date][year]">',
+            $content
+        );
+
+        $this->assertContains(
+            '<select id="dynamic_form_break_time_hour" name="dynamic_form[break][time][hour]">',
+            $content
+        );
+
+        $this->assertContains(
+            '<select id="dynamic_form_break_time_minute" name="dynamic_form[break][time][minute]">',
+            $content
+        );
     }
 
     public function testRenderDynamicFormDifcferentFormsOfGenderFields()
@@ -75,9 +112,27 @@ class DynamicFormTest extends WebTestCase
         $content = $this->createFormTemplate();
 
         // render gender forms as checkboxes, radio-buttons ans select
-        $this->assertContains('<input type="radio" id="dynamic_form_gender-radio_placeholder" name="dynamic_form[gender-radio]" value="" checked="checked" />', $content);
-        $this->assertContains('<input type="checkbox" id="dynamic_form_gender-check_0" name="dynamic_form[gender-check][]" value="männlich" />', $content);
-        $this->assertContains('<select id="dynamic_form_gender-select" name="dynamic_form[gender-select]">', $content);
+        $this->assertContains(
+            '<input type="radio" 
+                    id="dynamic_form_gender-radio_placeholder"
+                    name="dynamic_form[gender-radio]"
+                    value=""
+                    checked="checked" />',
+            $content
+        );
+
+        $this->assertContains(
+            '<input type="checkbox"
+                    id="dynamic_form_gender-check_0"
+                    name="dynamic_form[gender-check][]"
+                    value="männlich" />',
+            $content
+        );
+
+        $this->assertContains(
+            '<select id="dynamic_form_gender-select" name="dynamic_form[gender-select]">',
+            $content
+        );
     }
 
     /**

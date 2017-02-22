@@ -28,12 +28,18 @@ class DynamicFormExtensionTest extends \PHPUnit_Framework_TestCase
 
     public function testDynamicFormFunctionExecuteTwigRendererWithExpectedTemplate()
     {
-        $this->extension->dynamicForm($this->getTwigEnvironment('@DynamicForm/block/dynamic_form.html.twig'), new FormView);
+        $this->extension->dynamicForm(
+            $this->getTwigEnvironment('@DynamicForm/block/dynamic_form.html.twig'),
+            new FormView
+        );
     }
 
     public function testFormElementFunctionExecuteTwigRendererWithExpectedTemplate()
     {
-        $this->extension->formElement($this->getTwigEnvironment('@DynamicForm/block/form_element/form_headline.html.twig'), new FormHeadline);
+        $this->extension->formElement(
+            $this->getTwigEnvironment('@DynamicForm/block/form_element/form_headline.html.twig'),
+            new FormHeadline
+        );
     }
 
     private function getTwigEnvironment($expectedTemplate)

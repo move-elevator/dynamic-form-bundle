@@ -89,6 +89,10 @@ class WebTestCase extends BaseTestCase
      */
     protected function getAliceFixturePath($fixtureFile)
     {
-        return sprintf('%s/../../../DataFixtures/ORM/%s', $this->getContainer()->get('kernel')->getRootDir(), $fixtureFile);
+        return sprintf(
+            '%s/../../../DataFixtures/ORM/%s',
+            $this->getContainer()->get('kernel')->getRootDir(),
+            $fixtureFile
+        );
     }
 }

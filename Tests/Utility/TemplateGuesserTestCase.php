@@ -1,6 +1,7 @@
 <?php
 
 namespace DynamicFormBundle\Tests\Utility;
+
 use Symfony\Component\Templating\EngineInterface;
 
 /**
