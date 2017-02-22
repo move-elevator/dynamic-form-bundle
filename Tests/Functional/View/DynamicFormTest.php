@@ -113,19 +113,12 @@ class DynamicFormTest extends WebTestCase
 
         // render gender forms as checkboxes, radio-buttons ans select
         $this->assertContains(
-            '<input type="radio" 
-                    id="dynamic_form_gender-radio_placeholder"
-                    name="dynamic_form[gender-radio]"
-                    value=""
-                    checked="checked" />',
+            '<input type="radio" id="dynamic_form_gender-radio_placeholder" name="dynamic_form[gender-radio]"',
             $content
         );
 
         $this->assertContains(
-            '<input type="checkbox"
-                    id="dynamic_form_gender-check_0"
-                    name="dynamic_form[gender-check][]"
-                    value="männlich" />',
+            '<input type="checkbox" id="dynamic_form_gender-check_0" name="dynamic_form[gender-check][]"',
             $content
         );
 
