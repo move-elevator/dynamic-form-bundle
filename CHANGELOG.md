@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0.1], 2016-02-23
+
+### Fixed
+
+ * Fixed License in composer,json
+
 ## [0.4.0], 2016-02-21
 
 ### Changed
