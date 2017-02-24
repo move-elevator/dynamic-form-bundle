@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SecurityBundle\SecurityBundle,
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle,
             new Symfony\Bundle\TwigBundle\TwigBundle,
+            new Knp\Bundle\MenuBundle\KnpMenuBundle()
         ];
     }
 

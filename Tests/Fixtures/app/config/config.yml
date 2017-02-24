@@ -1,6 +1,7 @@
 
 
 framework:
+  translator: { fallback: 'de' }
   secret: 'dynamic_form'
   test: true
   session:
