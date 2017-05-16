@@ -18,17 +18,22 @@ class FileListenerTest extends \PHPUnit_Framework_TestCase
      */
     private $listener;
 
+    /**
+     * @var string
+     */
+    private $path;
+
     protected function setUp()
     {
-        $kernel = sprintf('%s/../../../Fixtures/app', __DIR__);
+        $this->path = sprintf('%s/../../../Fixtures/app/../web/uploads', __DIR__);
 
-        $this->listener = new FileListener($kernel, 'uploads');
+        $this->listener = new FileListener($this->path);
     }
 
     public function testPostLoadSetContentToFileInstance()
     {
         $fileValue = new FileValue();
-        $fileValue->setFileUri('uploads/test.txt');
+        $fileValue->setFileUri(sprintf('%s/test.txt', $this->path));
 
         $this->listener->convertContent($fileValue, $this->getEvent());
 
@@ -80,7 +85,7 @@ class FileListenerTest extends \PHPUnit_Framework_TestCase
         $uploadedFile
             ->expects($this->exactly($expectedCalls))
             ->method('move')
-            ->with(sprintf('%s/../../../Fixtures/app/../web/uploads', __DIR__), $this->anything())
+            ->with($this->path, $this->anything())
             ->willReturn($this->createMock(File::class));
 
         return $uploadedFile;

@@ -36,4 +36,4 @@ doctrine:
           DynamicFormBundle: ~
 
 dynamic_form:
-  file_upload_dir: 'uploads'
+  file_upload_dir: '%kernel.root_dir%/../web/uploads'

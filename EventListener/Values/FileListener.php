@@ -15,16 +15,14 @@ class FileListener
     /**
      * @var string
      */
-    private $webPath;
+    private $path;
 
     /**
-     * @param string $kernelPath
-     * @param string $webPath
+     * @param string $path
      */
-    public function __construct($kernelPath, $webPath)
+    public function __construct($path)
     {
-        $this->kernelPath = $kernelPath;
-        $this->webPath = $webPath;
+        $this->path = $path;
     }
 
     /**
@@ -44,10 +42,7 @@ class FileListener
             return;
         }
 
-        $absolutePath = sprintf('%s/../web/%s', $this->kernelPath, ltrim($fileValue->getFileUri(), '/'));
-        $file = new File($absolutePath);
-
-        $fileValue->setFile($file);
+        $fileValue->setFile(new File($fileValue->getFileUri()));
     }
 
     /**
@@ -91,11 +86,10 @@ class FileListener
             return;
         }
 
-        $absolutePath = sprintf('%s/../web/%s', $this->kernelPath, ltrim($this->webPath, '/'));
         $filename = sprintf('%s_%s', uniqid(), $uploadedFile->getClientOriginalName());
-        $file = $uploadedFile->move($absolutePath, $filename);
+        $file = $uploadedFile->move($this->path, $filename);
 
-        $fileValue->setFileUri(sprintf('%s/%s', ltrim($this->webPath, '/'), $file->getFilename()));
+        $fileValue->setFileUri(sprintf('%s/%s', ltrim($this->path, '/'), $file->getFilename()));
     }
 
     /**
