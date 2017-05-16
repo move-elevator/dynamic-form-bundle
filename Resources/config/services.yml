@@ -11,7 +11,7 @@ services:
 
   dynamic_form.file_value.listener:
     class: 'DynamicFormBundle\EventListener\Values\FileListener'
-    arguments: ['%kernel.root_dir%', '%dynamic_form.file_upload_dir%']
+    arguments: ['%dynamic_form.file_upload_dir%']
     tags:
       - { name: 'doctrine.orm.entity_listener' }
 
