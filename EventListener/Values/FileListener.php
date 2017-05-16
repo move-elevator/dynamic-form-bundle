@@ -89,7 +89,7 @@ class FileListener
         $filename = sprintf('%s_%s', uniqid(), $uploadedFile->getClientOriginalName());
         $file = $uploadedFile->move($this->path, $filename);
 
-        $fileValue->setFileUri(sprintf('%s/%s', ltrim($this->path, '/'), $file->getFilename()));
+        $fileValue->setFileUri(sprintf('%s/%s', $this->path, $file->getFilename()));
     }
 
     /**
