@@ -33,7 +33,7 @@ class FileListenerTest extends \PHPUnit_Framework_TestCase
     public function testPostLoadSetContentToFileInstance()
     {
         $fileValue = new FileValue();
-        $fileValue->setFileUri(sprintf('%s/test.txt', $this->path));
+        $fileValue->setFileUri('test.txt');
 
         $this->listener->convertContent($fileValue, $this->getEvent());
 

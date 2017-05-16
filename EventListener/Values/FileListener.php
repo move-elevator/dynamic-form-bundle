@@ -42,7 +42,7 @@ class FileListener
             return;
         }
 
-        $fileValue->setFile(new File($fileValue->getFileUri()));
+        $fileValue->setFile(new File(sprintf('%s/%s', $this->path, $fileValue->getFileUri())));
     }
 
     /**
@@ -89,7 +89,7 @@ class FileListener
         $filename = sprintf('%s_%s', uniqid(), $uploadedFile->getClientOriginalName());
         $file = $uploadedFile->move($this->path, $filename);
 
-        $fileValue->setFileUri(sprintf('%s/%s', $this->path, $file->getFilename()));
+        $fileValue->setFileUri($file->getFilename());
     }
 
     /**
