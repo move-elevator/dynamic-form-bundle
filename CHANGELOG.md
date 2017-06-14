@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0], 2016-05-14
+
+### Changed
+
+ * Changed Symfony support to 3.x
+
 ## [0.5.0], 2016-04-16
 
 ### Changed
