@@ -40,9 +40,9 @@ class CollectionFieldBuilder extends SingleFieldBuilder
     {
         return array_merge(parent::getFormOptions(), [
             'entry_type' => $this->configuration->getFormTypeClass(),
+            'entry_options' => ['label' => false],
             'allow_add' => true,
             'allow_delete' => true,
-            'options' => ['label' => false],
             'required' => true
         ]);
     }
