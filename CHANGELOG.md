@@ -4,6 +4,12 @@
 
 ### Changed
 
+ * Add Configuration to add global field options
+
+## [0.6.1], 2016-08-15
+
+### Fixed
+
  * Fix onDelete Error in FormFields
 
 ## [0.6.0], 2016-05-14
