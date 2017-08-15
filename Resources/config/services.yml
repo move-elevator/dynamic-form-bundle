@@ -49,40 +49,48 @@ services:
 
   dynamic_form.text.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.textarea.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.checkbox_group.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\CheckboxGroupTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.radio_group.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\RadioGroupTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.select.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\SelectTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.date.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\DateTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.date_time.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\DateTimeTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
   dynamic_form.file.type_configuration:
     class: 'DynamicFormBundle\Services\FormType\Configuration\FileTypeConfiguration'
+    arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }

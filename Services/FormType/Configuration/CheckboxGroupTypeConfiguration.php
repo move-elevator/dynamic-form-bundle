@@ -35,12 +35,4 @@ class CheckboxGroupTypeConfiguration extends AbstractChoiceConfiguration
     {
         return ChoicesValue::class;
     }
-
-    /**
-     * @return array
-     */
-    public function getAvailableOptions()
-    {
-        return ChoiceOptions::all();
-    }
 }

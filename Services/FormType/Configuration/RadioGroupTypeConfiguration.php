@@ -35,12 +35,4 @@ class RadioGroupTypeConfiguration extends AbstractChoiceConfiguration
     {
         return ChoiceValue::class;
     }
-
-    /**
-     * @return array
-     */
-    public function getAvailableOptions()
-    {
-        return ChoiceOptions::all();
-    }
 }

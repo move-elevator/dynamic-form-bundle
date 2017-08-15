@@ -14,6 +14,19 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 class FileTypeConfiguration implements ConfigurationInterface
 {
     /**
+     * @var array
+     */
+    private $globalOptions;
+
+    /**
+     * @param array $globalOptions
+     */
+    public function __construct(array $globalOptions)
+    {
+        $this->globalOptions = $globalOptions;
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -42,6 +55,6 @@ class FileTypeConfiguration implements ConfigurationInterface
      */
     public function getAvailableOptions()
     {
-        return BaseOptions::all();
+        return array_merge(BaseOptions::all(), $this->globalOptions);
     }
 }

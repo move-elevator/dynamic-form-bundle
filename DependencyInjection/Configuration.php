@@ -33,6 +33,11 @@ class Configuration implements ConfigurationInterface
                             ->prototype('scalar')
                             ->end()
                         ->end()
+                        ->arrayNode('global_options')
+                            ->prototype('scalar')
+                            ->defaultValue([])
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();

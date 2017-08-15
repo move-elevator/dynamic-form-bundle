@@ -12,6 +12,19 @@ use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
 abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterface
 {
     /**
+     * @var array
+     */
+    private $globalOptions;
+
+    /**
+     * @param array $globalOptions
+     */
+    public function __construct(array $globalOptions)
+    {
+        $this->globalOptions = $globalOptions;
+    }
+
+    /**
      * @return \Closure
      */
     public function getChoiceLabelFunction()
@@ -36,6 +49,6 @@ abstract class AbstractChoiceConfiguration implements ChoiceConfigurationInterfa
      */
     public function getAvailableOptions()
     {
-        return ChoiceOptions::all();
+        return array_merge(ChoiceOptions::all(), $this->globalOptions);
     }
 }
