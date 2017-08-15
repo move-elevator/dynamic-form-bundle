@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.1], 2016-08-15
+
+### Changed
+
+ * Fix onDelete Error in FormFields
+
 ## [0.6.0], 2016-05-14
 
 ### Changed
