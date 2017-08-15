@@ -61,7 +61,7 @@ class FormField implements SortableInterface
      * )
      * @ORM\JoinTable(name="dynamic_form_field_to_option_value",
      *      joinColumns={@ORM\JoinColumn(name="field_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="option_value_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $optionValues;
