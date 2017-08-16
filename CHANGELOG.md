@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.3], 2016-08-16
+
+### Fixed
+
+ * Fix Naming Problems with Symfony form_div_layout
+
 ## [0.6.2], 2016-08-15
 
 ### Changed

@@ -11,7 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @package DynamicFormBundle\Admin\Form\Type\BaseType
  */
-class ChoiceType extends AbstractType
+class ChoiceValueType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder

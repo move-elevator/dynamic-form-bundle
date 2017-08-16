@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Admin\Services\FormField\Option\Configuration;
 
-use DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceType;
+use DynamicFormBundle\Admin\Form\Type\BaseType\ChoiceValueType;
 use DynamicFormBundle\Admin\Services\FormField\Option\CollectionConfigurationInterface;
 use DynamicFormBundle\Entity\DynamicForm\ConfigValue\ChoicesValue;
 use DynamicFormBundle\Statics\FormFieldOptions\ChoiceOptions;
@@ -18,7 +18,7 @@ class ChoicesConfiguration implements CollectionConfigurationInterface
      */
     public function getFormTypeClass()
     {
-        return ChoiceType::class;
+        return ChoiceValueType::class;
     }
 
     /**
