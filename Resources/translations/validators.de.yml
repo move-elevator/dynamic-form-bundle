@@ -1,0 +1,2 @@
+error:
+  name_too_long: 'Der Name darf maximal 255 Zeichen lang sein.'

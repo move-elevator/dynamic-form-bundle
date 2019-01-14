@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * @package DynamicFormBundle\Admin\Form\Type\DynamicForm
@@ -46,7 +47,10 @@ class FormFieldType extends AbstractType implements DataMapperInterface
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['required' => false])
+            ->add('name', TextType::class, [
+                'required' => false,
+                'constraints' => new Length(['max' => 255, 'maxMessage' => 'error.name_too_long'])
+            ])
             ->addEventListener(FormEvents::PRE_SET_DATA, [$this, 'addOptionFields'])
             ->setDataMapper($this);
     }
