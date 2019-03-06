@@ -6,11 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DisabledConfiguration;
 use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\RequiredConfiguration;
 use DynamicFormBundle\Services\FormField\OptionFilter;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Services\FormField
  */
-class OptionFilterTest extends \PHPUnit_Framework_TestCase
+class OptionFilterTest extends TestCase
 {
     public function testDoNothingWithoutDisabledOptions()
     {

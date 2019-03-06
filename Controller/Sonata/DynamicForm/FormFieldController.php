@@ -2,7 +2,11 @@
 
 namespace DynamicFormBundle\Controller\Sonata\DynamicForm;
 
+use DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory;
 use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType;
+use DynamicFormBundle\Admin\Services\Actions\FormField\CloneAction;
+use DynamicFormBundle\Admin\Services\Actions\FormField\DeleteAction;
+use DynamicFormBundle\Admin\Services\FormField\TemplateGuesser;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -33,13 +37,13 @@ class FormFieldController extends Controller
     public function createAction(Request $request, $formType, DynamicForm $dynamicForm)
     {
         $formField = $this
-            ->get('dynamic_form.admin.form_field.factory')
+            ->get(FormFieldFactory::class)
             ->create($dynamicForm, $formType);
 
         $form = $this->createForm(FormFieldType::class, $formField);
         $form->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             $entityManager = $this
                 ->getDoctrine()
                 ->getManager();
@@ -56,7 +60,7 @@ class FormFieldController extends Controller
             ]);
         }
 
-        return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
+        return $this->get(TemplateGuesser::class)->render($formField, [
             'form' => $form->createView(),
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
@@ -78,14 +82,14 @@ class FormFieldController extends Controller
     public function editAction(Request $request, DynamicForm $dynamicForm, FormField $formField)
     {
         $this
-            ->get('dynamic_form.admin.form_field.factory')
+            ->get(FormFieldFactory::class)
             ->initOptions($formField);
 
         $form = $this
             ->createForm(FormFieldType::class, $formField)
             ->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             $this
                 ->getDoctrine()
                 ->getManager()
@@ -96,7 +100,7 @@ class FormFieldController extends Controller
             return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
-        return $this->get('dynamic_form.admin.form_field.template_guesser')->render($formField, [
+        return $this->get(TemplateGuesser::class)->render($formField, [
             'form' => $form->createView(),
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
@@ -116,7 +120,7 @@ class FormFieldController extends Controller
      */
     public function deleteAction(DynamicForm $dynamicForm, FormField $formField)
     {
-        $this->get('dynamic_form.admin.action.form_field.delete')->action($formField);
+        $this->get(DeleteAction::class)->action($formField);
 
         $this->addSuccessFlash($formField);
 
@@ -136,7 +140,7 @@ class FormFieldController extends Controller
      */
     public function cloneAction(DynamicForm $dynamicForm, FormField $formField)
     {
-        $this->get('dynamic_form.admin.action.form_field.clone')->action($formField);
+        $this->get(CloneAction::class)->action($formField);
 
         $this->addSuccessFlash($formField);
 

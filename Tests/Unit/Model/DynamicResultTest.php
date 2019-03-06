@@ -6,11 +6,12 @@ use DynamicFormBundle\Entity\DynamicResult;
 use DynamicFormBundle\Entity\DynamicResult\ResultValue\StringValue;
 use DynamicFormBundle\Entity\DynamicResult\FieldValue;
 use DynamicFormBundle\Entity\DynamicForm\FormField;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Model
  */
-class DynamicResultTest extends \PHPUnit_Framework_TestCase
+class DynamicResultTest extends TestCase
 {
     /**
      * @var DynamicResult

@@ -2,6 +2,8 @@
 
 namespace DynamicFormBundle\DependencyInjection\Compiler;
 
+use DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry;
+use DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -16,14 +18,14 @@ class DynamicFormFieldOptionPass extends AbstractCompilerPass
     {
         $this->addTaggedServiceToRegistry(
             $container,
-            'dynamic_form.admin.form_field.option.registry',
+            Registry::class,
             'addConfiguration',
             'form_field.option_configuration'
         );
 
         $this->addTaggedServiceToRegistry(
             $container,
-            'dynamic_form.admin.form_field.option_field_configurator',
+            OptionFieldConfigurator::class,
             'addOptionFieldBuilder',
             'form_field.option_field_builder'
         );

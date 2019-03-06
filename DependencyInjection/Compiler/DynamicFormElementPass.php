@@ -2,6 +2,7 @@
 
 namespace DynamicFormBundle\DependencyInjection\Compiler;
 
+use DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -16,7 +17,7 @@ class DynamicFormElementPass extends AbstractCompilerPass
     {
         $this->addTaggedServiceToRegistry(
             $container,
-            'dynamic_form.admin.form_element.registry',
+            Registry::class,
             'addConfiguration',
             'form_element.configuration'
         );

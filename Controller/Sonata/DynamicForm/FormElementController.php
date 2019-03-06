@@ -2,7 +2,11 @@
 
 namespace DynamicFormBundle\Controller\Sonata\DynamicForm;
 
+use DynamicFormBundle\Admin\Factory\DynamicForm\FormElementFactory;
 use DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType;
+use DynamicFormBundle\Admin\Services\Actions\FormElement\CloneAction;
+use DynamicFormBundle\Admin\Services\Actions\FormElement\DeleteAction;
+use DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser;
 use DynamicFormBundle\Entity\DynamicForm;
 use DynamicFormBundle\Entity\DynamicForm\FormElement;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -33,13 +37,13 @@ class FormElementController extends Controller
     public function createAction(Request $request, $formElementType, DynamicForm $dynamicForm)
     {
         $formElement = $this
-            ->get('dynamic_form.admin.form_element.factory')
+            ->get(FormElementFactory::class)
             ->create($dynamicForm, $formElementType);
 
         $form = $this->createForm(FormElementType::class, $formElement);
         $form->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             $this
                 ->getDoctrine()
                 ->getManager()
@@ -53,7 +57,7 @@ class FormElementController extends Controller
             ]);
         }
 
-        return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
+        return $this->get(TemplateGuesser::class)->render($formElement, [
             'form' => $form->createView(),
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
@@ -77,7 +81,7 @@ class FormElementController extends Controller
         $form = $this->createForm(FormElementType::class, $formElement);
         $form->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             $this
                 ->getDoctrine()
                 ->getManager()
@@ -88,7 +92,7 @@ class FormElementController extends Controller
             return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
         }
 
-        return $this->get('dynamic_form.admin.form_element.template_guesser')->render($formElement, [
+        return $this->get(TemplateGuesser::class)->render($formElement, [
             'form' => $form->createView(),
             'dynamicForm' => $dynamicForm,
             'admin_pool' => $this->container->get('sonata.admin.pool')
@@ -108,7 +112,7 @@ class FormElementController extends Controller
      */
     public function deleteAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
-        $this->get('dynamic_form.admin.action.form_element.delete')->action($formElement);
+        $this->get(DeleteAction::class)->action($formElement);
 
         return $this->redirectToRoute('dynamicform_sonata_dynamicform_edit', ['id' => $dynamicForm->getId()]);
     }
@@ -126,7 +130,7 @@ class FormElementController extends Controller
      */
     public function cloneAction(DynamicForm $dynamicForm, FormElement $formElement)
     {
-        $this->get('dynamic_form.admin.action.form_element.clone')->action($formElement);
+        $this->get(CloneAction::class)->action($formElement);
 
         $this->addSuccessFlash($formElement);
 

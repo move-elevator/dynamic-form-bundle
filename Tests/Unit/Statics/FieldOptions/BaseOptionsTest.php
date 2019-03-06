@@ -3,11 +3,12 @@
 namespace DynamicFormBundle\Tests\Unit\Statics\FieldOptions;
 
 use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Statics\FieldOptions
  */
-class BaseOptionsTest extends \PHPUnit_Framework_TestCase
+class BaseOptionsTest extends TestCase
 {
     public function testAllReturnExpectedStructure()
     {

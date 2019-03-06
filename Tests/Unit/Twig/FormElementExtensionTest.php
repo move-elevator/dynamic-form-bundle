@@ -5,11 +5,12 @@ namespace DynamicFormBundle\Tests\Unit\Twig;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormText;
 use DynamicFormBundle\Twig\FormElementExtension;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Twig
  */
-class FormElementExtensionTest extends \PHPUnit_Framework_TestCase
+class FormElementExtensionTest extends TestCase
 {
     /**
      * @var FormElementExtension

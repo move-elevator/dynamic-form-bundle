@@ -4,12 +4,13 @@ namespace DynamicFormBundle\Tests\Unit\Twig;
 
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline;
 use DynamicFormBundle\Twig\DynamicFormExtension;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormView;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Twig
  */
-class DynamicFormExtensionTest extends \PHPUnit_Framework_TestCase
+class DynamicFormExtensionTest extends TestCase
 {
     /**
      * @var DynamicFormExtension

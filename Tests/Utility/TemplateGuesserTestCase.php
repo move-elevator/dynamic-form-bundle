@@ -2,12 +2,13 @@
 
 namespace DynamicFormBundle\Tests\Utility;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Admin\Services
  */
-class TemplateGuesserTestCase extends \PHPUnit_Framework_TestCase
+class TemplateGuesserTestCase extends TestCase
 {
     /**
      * @param string $renderTemplatePath

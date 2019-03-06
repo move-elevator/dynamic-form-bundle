@@ -12,11 +12,12 @@ use DynamicFormBundle\Services\DynamicResultFieldBuilder;
 use DynamicFormBundle\Services\FormType\Configuration\Registry;
 use DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration;
 use DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit
  */
-class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
+class DynamicResultsFieldBuilderTest extends TestCase
 {
     /**
      * @var DynamicResultFieldBuilder
@@ -26,8 +27,8 @@ class DynamicResultsFieldBuilderTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $registry = new Registry();
-        $registry->addConfiguration(new TextTypeConfiguration);
-        $registry->addConfiguration(new TextAreaTypeConfiguration);
+        $registry->addConfiguration(new TextTypeConfiguration([]));
+        $registry->addConfiguration(new TextAreaTypeConfiguration([]));
 
         $this->builder = new DynamicResultFieldBuilder($registry);
     }

@@ -2,6 +2,7 @@
 
 namespace DynamicFormBundle\DependencyInjection\Compiler;
 
+use DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValueFactory;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
@@ -16,7 +17,7 @@ class DynamicFormConfigValueFactoryPass extends AbstractCompilerPass
     {
         $this->addTaggedServiceToRegistry(
             $container,
-            'dynamic_form.config_value.factory',
+            ConfigValueFactory::class,
             'addFactory',
             'config_value.factory'
         );

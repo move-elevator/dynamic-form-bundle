@@ -31,7 +31,7 @@
     <php>
         <ini name="memory_limit" value="-1" />
         <ini name="xdebug.idekey" value="PHPSTORM" />
-        <server name="KERNEL_DIR" value="Tests/Fixtures/app/" />
+        <server name="KERNEL_CLASS" value="DynamicFormBundle\Tests\AppKernel" />
     </php>
 
 </phpunit>

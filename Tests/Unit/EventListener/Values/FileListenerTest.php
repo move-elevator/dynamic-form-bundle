@@ -5,13 +5,14 @@ namespace DynamicFormBundle\Tests\Unit\EventListener\Values;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use DynamicFormBundle\Entity\DynamicResult\ResultValue\FileValue;
 use DynamicFormBundle\EventListener\Values\FileListener;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\EventListener\Values
  */
-class FileListenerTest extends \PHPUnit_Framework_TestCase
+class FileListenerTest extends TestCase
 {
     /**
      * @var FileListener

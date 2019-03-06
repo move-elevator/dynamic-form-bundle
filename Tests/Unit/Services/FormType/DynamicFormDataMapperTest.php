@@ -13,12 +13,13 @@ use DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration;
 use DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration;
 use DynamicFormBundle\Services\FormType\DynamicFormDataMapper;
 use DynamicFormBundle\Tests\Utility\IteratorWrapper;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Form;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Services\FormType
  */
-class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
+class DynamicFormDataMapperTest extends TestCase
 {
     /**
      * @var DynamicFormDataMapper
@@ -28,8 +29,8 @@ class DynamicFormDataMapperTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $registry = new Registry();
-        $registry->addConfiguration(new TextTypeConfiguration);
-        $registry->addConfiguration(new TextAreaTypeConfiguration());
+        $registry->addConfiguration(new TextTypeConfiguration([]));
+        $registry->addConfiguration(new TextAreaTypeConfiguration([]));
         $builder = new DynamicResultFieldBuilder($registry);
 
         $this->mapper = new DynamicFormDataMapper($builder);

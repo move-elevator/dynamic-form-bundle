@@ -1,122 +1,130 @@
 services:
-  dynamic_form.admin.form_field.form_type:
-    class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType'
-    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.form_field.option_field_configurator']
+  DynamicFormBundle\Admin\Form\Type\DynamicForm\FormFieldType:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Services\FormType\Configuration\Registry'
+      - '@DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator'
     tags:
       - { name: 'form.type' }
 
-  dynamic_form.admin.form_field.single.option_field_builder:
-    class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\SingleFieldBuilder'
+  DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\SingleFieldBuilder:
+    public: true
     tags:
       - { name: 'form_field.option_field_builder' }
 
-  dynamic_form.admin.form_field.collection.option_field_builder:
-    class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\CollectionFieldBuilder'
+  DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\CollectionFieldBuilder:
+    public: true
     tags:
       - { name: 'form_field.option_field_builder' }
 
-  dynamic_form.admin.form_field.choices.option_field_builder:
-    class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\ChoiceFieldBuilder'
+  DynamicFormBundle\Admin\Services\FormField\OptionFieldBuilder\ChoiceFieldBuilder:
+    public: true
     tags:
       - { name: 'form_field.option_field_builder' }
 
-  dynamic_form.admin.form_field.option_field_configurator:
-    class: 'DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator'
-    arguments: ['@dynamic_form.admin.form_field.option.registry', '@dynamic_form.option_filter']
+  DynamicFormBundle\Admin\Services\FormField\OptionFieldConfigurator:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry'
+      - '@DynamicFormBundle\Services\FormField\OptionFilter'
 
-  dynamic_form.admin.option_value.factory:
-    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory'
-    arguments: ['@dynamic_form.admin.form_field.option.registry', '@dynamic_form.config_value.factory']
+  DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry'
+      - '@DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValueFactory'
 
-  dynamic_form.admin.form_field.factory:
-    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory'
-    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.admin.option_value.factory']
+  DynamicFormBundle\Admin\Factory\DynamicForm\FormFieldFactory:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Services\FormType\Configuration\Registry'
+      - '@DynamicFormBundle\Admin\Factory\DynamicForm\FormField\OptionValueFactory'
 
-  dynamic_form.admin.form_field.template_guesser:
-    class: 'DynamicFormBundle\Admin\Services\FormField\TemplateGuesser'
+  DynamicFormBundle\Admin\Services\FormField\TemplateGuesser:
+    public: true
     arguments: ['@templating']
 
-  dynamic_form.admin.form_field.option.registry:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry:
+    public: true
 
-  dynamic_form.admin.form_field.label.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\LabelConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\LabelConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
-  dynamic_form.admin.form_field.required.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\RequiredConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\RequiredConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
-  dynamic_form.admin.form_field.disabled.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DisabledConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DisabledConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
-  dynamic_form.admin.form_field.choices.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\ChoicesConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\ChoicesConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
-  dynamic_form.admin.form_field.date_time.empty_data.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DateTime\EmptyDataConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\DateTime\EmptyDataConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
-  dynamic_form.admin.form_field.placeholder.option:
-    class: 'DynamicFormBundle\Admin\Services\FormField\Option\Configuration\PlaceholderConfiguration'
+  DynamicFormBundle\Admin\Services\FormField\Option\Configuration\PlaceholderConfiguration:
+    public: true
     tags:
       - { name: 'form_field.option_configuration' }
 
 
-  dynamic_form.admin.form_element.type:
-    class: 'DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType'
-    arguments: ['@dynamic_form.admin.form_element.registry']
+  DynamicFormBundle\Admin\Form\Type\DynamicForm\FormElementType:
+    public: true
+    arguments: ['@DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry']
     tags:
       - { name: 'form.type' }
 
-  dynamic_form.admin.form_element.template_guesser:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser'
+  DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser:
+    public: true
     arguments: ['@templating']
 
-  dynamic_form.admin.form_element.factory:
-    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormElementFactory'
-    arguments: ['@dynamic_form.admin.form_element.registry']
+  DynamicFormBundle\Admin\Factory\DynamicForm\FormElementFactory:
+    public: true
+    arguments: ['@DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry']
 
-  dynamic_form.admin.form_element.registry:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry'
+  DynamicFormBundle\Admin\Services\FormElement\Configuration\Registry:
+    public: true
 
-  dynamic_form.admin.form_element.headline:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\FormHeadlineConfiguration'
+  DynamicFormBundle\Admin\Services\FormElement\Configuration\FormHeadlineConfiguration:
+    public: true
     tags:
       - { name: 'form_element.configuration' }
 
-  dynamic_form.admin.form_element.text:
-    class: 'DynamicFormBundle\Admin\Services\FormElement\Configuration\FormTextConfiguration'
+  DynamicFormBundle\Admin\Services\FormElement\Configuration\FormTextConfiguration:
+    public: true
     tags:
       - { name: 'form_element.configuration' }
 
-  dynamic_form.config_value.factory:
-    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValueFactory'
+  DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValueFactory:
+    public: true
 
-  dynamic_form.choice_value.factory:
-    class: 'DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValue\ChoiceValueFactory'
+  DynamicFormBundle\Admin\Factory\DynamicForm\FormField\ConfigValue\ChoiceValueFactory:
+    public: true
     tags:
       - { name: 'config_value.factory' }
 
-  dynamic_form.admin.action.form_field.clone:
-    class: 'DynamicFormBundle\Admin\Services\Actions\FormField\CloneAction'
+  DynamicFormBundle\Admin\Services\Actions\FormField\CloneAction:
+    public: true
     arguments: ['@doctrine.orm.entity_manager']
 
-  dynamic_form.admin.action.form_field.delete:
-    class: 'DynamicFormBundle\Admin\Services\Actions\FormField\DeleteAction'
+  DynamicFormBundle\Admin\Services\Actions\FormField\DeleteAction:
+    public: true
     arguments: ['@doctrine.orm.entity_manager']
 
-  dynamic_form.admin.action.form_element.clone:
-    class: 'DynamicFormBundle\Admin\Services\Actions\FormElement\CloneAction'
+  DynamicFormBundle\Admin\Services\Actions\FormElement\CloneAction:
+    public: true
     arguments: ['@doctrine.orm.entity_manager']
 
-  dynamic_form.admin.action.form_element.delete:
-    class: 'DynamicFormBundle\Admin\Services\Actions\FormElement\DeleteAction'
+  DynamicFormBundle\Admin\Services\Actions\FormElement\DeleteAction:
+    public: true
     arguments: ['@doctrine.orm.entity_manager']

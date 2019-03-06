@@ -3,7 +3,6 @@
 namespace DynamicFormBundle\Tests\Utility;
 
 use Doctrine\ORM\EntityManager;
-use Nelmio\Alice\Persister\Doctrine;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseTestCase;
@@ -33,10 +32,15 @@ class WebTestCase extends BaseTestCase
      */
     protected function loadAliceFixtures(array $fixtureFiles)
     {
-        $this->client
+        $fixtures = $this->client
             ->getContainer()
-            ->get('hautelook_alice.fixtures.loader')
-            ->load(new Doctrine($this->getEntityManager()), $fixtureFiles);
+            ->get('nelmio_alice.files_loader')->loadFiles($fixtureFiles);
+
+        foreach ($fixtures->getObjects() as $object) {
+            $this->getEntityManager()->persist($object);
+        }
+
+        $this->getEntityManager()->flush();
 
         $this
             ->getEntityManager()
@@ -90,7 +94,7 @@ class WebTestCase extends BaseTestCase
     protected function getAliceFixturePath($fixtureFile)
     {
         return sprintf(
-            '%s/../../../DataFixtures/ORM/%s',
+            '%s/../../DataFixtures/ORM/%s',
             $this->getContainer()->get('kernel')->getRootDir(),
             $fixtureFile
         );

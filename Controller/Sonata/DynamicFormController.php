@@ -28,7 +28,7 @@ class DynamicFormController extends Controller
         $form = $this->createForm(DynamicFormType::class);
         $form->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             /** @var DynamicForm $dynamicForm */
             $dynamicForm = $form->getData();
 
@@ -61,7 +61,7 @@ class DynamicFormController extends Controller
         $form = $this->createForm(DynamicFormType::class, $dynamicForm);
         $form->handleRequest($request);
 
-        if (true === $form->isValid()) {
+        if (true === $form->isSubmitted() && true === $form->isValid()) {
             $this
                 ->getDoctrine()
                 ->getManager()

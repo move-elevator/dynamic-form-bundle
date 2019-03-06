@@ -15,6 +15,7 @@ use DynamicFormBundle\Entity\DynamicForm\FormField\OptionValue;
 use DynamicFormBundle\Services\FormField\OptionFilter;
 use DynamicFormBundle\Statics\FormFieldOptions\BaseOptions;
 use DynamicFormBundle\Statics\SymfonyFieldOptions;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
@@ -22,7 +23,7 @@ use Symfony\Component\Form\FormInterface;
 /**
  * @package DynamicFormBundle\Tests\Unit\Admin\Services\FormField
  */
-class OptionFieldConfiguratorTest extends \PHPUnit_Framework_TestCase
+class OptionFieldConfiguratorTest extends TestCase
 {
     /**
      * @var OptionFieldConfigurator

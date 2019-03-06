@@ -7,11 +7,12 @@ use DynamicFormBundle\Entity\DynamicForm\FormField;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormHeadline;
 use DynamicFormBundle\Entity\DynamicForm\FormElement\FormText;
 use DynamicFormBundle\Statics\FormElements;
+use PHPUnit\Framework\TestCase;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Model
  */
-class DynamicFormTest extends \PHPUnit_Framework_TestCase
+class DynamicFormTest extends TestCase
 {
     /**
      * @var DynamicForm

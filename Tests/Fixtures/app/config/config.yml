@@ -9,7 +9,7 @@ framework:
   serializer:
     enabled: true
   router:
-    resource: "%kernel.root_dir%/config/routing.yml"
+    resource: "%kernel.root_dir%/app/config/routing.yml"
   templating:
     engines: ['twig']
   form: ~
@@ -18,7 +18,7 @@ imports:
 
 twig:
   paths:
-    '%kernel.root_dir%/views': ~
+    '%kernel.root_dir%/app/views': ~
 
 doctrine:
   dbal:
@@ -36,4 +36,4 @@ doctrine:
           DynamicFormBundle: ~
 
 dynamic_form:
-  file_upload_dir: '%kernel.root_dir%/../web/uploads'
+  file_upload_dir: '%kernel.root_dir%/web/uploads'

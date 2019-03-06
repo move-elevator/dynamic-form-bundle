@@ -43,6 +43,14 @@ class ChoicesValue extends BaseValue
     }
 
     /**
+     * @return Collection|Choice[]
+     */
+    public function getChoices()
+    {
+        return $this->choices;
+    }
+
+    /**
      * @param Collection $content
      */
     public function setContent(Collection $content)

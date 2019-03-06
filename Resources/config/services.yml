@@ -1,96 +1,101 @@
 services:
-  dynamic_form.twig.form_element.extention:
-    class: 'DynamicFormBundle\Twig\FormElementExtension'
+  DynamicFormBundle\Twig\FormElementExtension:
+    public: true
     tags:
       - { name: 'twig.extension' }
 
-  dynamic_form.twig.dynamic_form.extention:
-    class: 'DynamicFormBundle\Twig\DynamicFormExtension'
+  DynamicFormBundle\Twig\DynamicFormExtension:
+    public: true
     tags:
       - { name: 'twig.extension' }
 
-  dynamic_form.file_value.listener:
-    class: 'DynamicFormBundle\EventListener\Values\FileListener'
+  DynamicFormBundle\EventListener\Values\FileListener:
+    public: true
     arguments: ['%dynamic_form.file_upload_dir%']
     tags:
       - { name: 'doctrine.orm.entity_listener' }
 
-  dynamic_form.type:
-    class: 'DynamicFormBundle\Form\Type\DynamicFormType'
-    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.data_mapper', '@dynamic_form.option_builder']
+  DynamicFormBundle\Form\Type\DynamicFormType:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Services\FormType\Configuration\Registry'
+      - '@DynamicFormBundle\Services\FormType\DynamicFormDataMapper'
+      - '@DynamicFormBundle\Services\FormField\OptionBuilder'
     tags:
       - { name: 'form.type' }
 
-  dynamic_form.field_value.type:
-    class: 'DynamicFormBundle\Form\Type\FieldValueType'
-    arguments: ['@dynamic_form.form_type.registry', '@dynamic_form.option_builder']
+  DynamicFormBundle\Form\Type\FieldValueType:
+    public: true
+    arguments:
+      - '@DynamicFormBundle\Services\FormType\Configuration\Registry'
+      - '@DynamicFormBundle\Services\FormField\OptionBuilder'
     tags:
       - { name: 'form.type' }
 
-  dynamic_form.data_mapper:
-    class: 'DynamicFormBundle\Services\FormType\DynamicFormDataMapper'
-    arguments: ['@dynamic_form.result_field_builder']
+  DynamicFormBundle\Services\FormType\DynamicFormDataMapper:
+    public: true
+    arguments: ['@DynamicFormBundle\Services\DynamicResultFieldBuilder']
 
-  dynamic_form.option_builder:
-    class: 'DynamicFormBundle\Services\FormField\OptionBuilder'
-    arguments: ['@dynamic_form.option_filter']
+  DynamicFormBundle\Services\FormField\OptionBuilder:
+    public: true
+    arguments: ['@DynamicFormBundle\Services\FormField\OptionFilter']
 
-  dynamic_form.option_filter:
-    class: 'DynamicFormBundle\Services\FormField\OptionFilter'
+  DynamicFormBundle\Services\FormField\OptionFilter:
+    public: true
     arguments: ['%dynamic_form.form_field.disable_options%']
 
-  dynamic_form.result_field_builder:
-    class: 'DynamicFormBundle\Services\DynamicResultFieldBuilder'
-    arguments: ['@dynamic_form.form_type.registry']
+  DynamicFormBundle\Services\DynamicResultFieldBuilder:
+    public: true
+    arguments: ['@DynamicFormBundle\Services\FormType\Configuration\Registry']
 
-  dynamic_form.form_type.registry:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\Registry'
+  DynamicFormBundle\Services\FormType\Configuration\Registry:
+    public: true
     arguments: ['%dynamic_form.form_field.disable_form_types%']
 
-  dynamic_form.text.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\TextTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.textarea.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\TextAreaTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.checkbox_group.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\CheckboxGroupTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\CheckboxGroupTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.radio_group.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\RadioGroupTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\RadioGroupTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.select.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\SelectTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\SelectTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.date.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\DateTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\DateTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.date_time.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\DateTimeTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\DateTimeTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
 
-  dynamic_form.file.type_configuration:
-    class: 'DynamicFormBundle\Services\FormType\Configuration\FileTypeConfiguration'
+  DynamicFormBundle\Services\FormType\Configuration\FileTypeConfiguration:
+    public: true
     arguments: ['%dynamic_form.form_field.global_options%']
     tags:
       - { name: 'form.type_configuration' }
