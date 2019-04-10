@@ -106,7 +106,6 @@ class DynamicResult extends BaseModel
      */
     public function setForm(DynamicForm $form)
     {
-        $form->addResult($this);
         $this->form = $form;
     }
 }
