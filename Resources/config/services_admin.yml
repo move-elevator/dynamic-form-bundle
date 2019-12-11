@@ -42,7 +42,7 @@ services:
 
   DynamicFormBundle\Admin\Services\FormField\TemplateGuesser:
     public: true
-    arguments: ['@templating']
+    arguments: ['@twig']
 
   DynamicFormBundle\Admin\Services\FormField\Option\Configuration\Registry:
     public: true
@@ -86,7 +86,7 @@ services:
 
   DynamicFormBundle\Admin\Services\FormElement\TemplateGuesser:
     public: true
-    arguments: ['@templating']
+    arguments: ['@twig']
 
   DynamicFormBundle\Admin\Factory\DynamicForm\FormElementFactory:
     public: true
