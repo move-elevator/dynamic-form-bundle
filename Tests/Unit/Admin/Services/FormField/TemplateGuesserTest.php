@@ -15,7 +15,7 @@ class TemplateGuesserTest extends TemplateGuesserTestCase
     {
         $formField = new FormField();
 
-        $engine = $this->getTemplateEngineMock(
+        $engine = $this->getTwigEnvironmentMock(
             '@DynamicForm/sonata-admin/form/form_field.html.twig',
             ['formField' => $formField],
             false
@@ -30,7 +30,7 @@ class TemplateGuesserTest extends TemplateGuesserTestCase
         $formField = new FormField();
         $formField->setFormType('text');
 
-        $engine = $this->getTemplateEngineMock(
+        $engine = $this->getTwigEnvironmentMock(
             '@DynamicForm/sonata-admin/form/form_field/text.html.twig',
             ['formField' => $formField],
             true
@@ -45,7 +45,7 @@ class TemplateGuesserTest extends TemplateGuesserTestCase
         $formField = new FormField();
         $formField->setFormType('text');
 
-        $engine = $this->getTemplateEngineMock(
+        $engine = $this->getTwigEnvironmentMock(
             '@DynamicForm/sonata-admin/form/form_field/text.html.twig',
             ['formField' => $formField, 'param' => 'render'],
             true

@@ -2,7 +2,7 @@
 
 namespace DynamicFormBundle\Admin\Services;
 
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 /**
  * @package AppBundle\Service
@@ -10,31 +10,23 @@ use Symfony\Component\Templating\EngineInterface;
 abstract class TemplateGuesser
 {
     /**
-     * @var EngineInterface
+     * @var Environment
      */
-    protected $templateEngine;
+    protected $twig;
 
-    /**
-     * @param EngineInterface $templateEngine
-     */
-    public function __construct(EngineInterface $templateEngine)
+    public function __construct(Environment $twig)
     {
-        $this->templateEngine = $templateEngine;
+        $this->twig = $twig;
     }
 
     /**
-     * @param string $folder
-     * @param string $name
-     *
-     * @return string
-     *
      * @throws \LogicException
      */
     protected function getTemplatePath($folder, $name)
     {
         $path = sprintf('@DynamicForm/sonata-admin/form/%s/%s.html.twig', $folder, $name);
 
-        if (true === $this->templateEngine->exists($path)) {
+        if (true === $this->twig->getLoader()->exists($path)) {
             return $path;
         }
 

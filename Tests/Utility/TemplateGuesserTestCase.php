@@ -3,37 +3,41 @@
 namespace DynamicFormBundle\Tests\Utility;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
+use Twig\Loader\LoaderInterface;
 
 /**
  * @package DynamicFormBundle\Tests\Unit\Admin\Services
  */
 class TemplateGuesserTestCase extends TestCase
 {
-    /**
-     * @param string $renderTemplatePath
-     * @param array  $renderParams
-     * @param bool   $existReturn
-     *
-     * @return EngineInterface
-     */
-    protected function getTemplateEngineMock($renderTemplatePath, array $renderParams, $existReturn = true)
+    protected function getTwigEnvironmentMock($renderTemplatePath, array $renderParams, $existReturn = true)
     {
-        $engine = $this
-            ->getMockBuilder(EngineInterface::class)
+        $loader = $this
+            ->getMockBuilder(LoaderInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $engine
+        $loader
             ->expects($this->once())
             ->method('exists')
             ->willReturn($existReturn);
 
-        $engine
+        $environment = $this
+            ->getMockBuilder(Environment::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $environment
+            ->expects($this->once())
+            ->method('getLoader')
+            ->willReturn($loader);
+
+        $environment
             ->expects($this->once())
             ->method('render')
             ->with($renderTemplatePath, $renderParams);
 
-        return $engine;
+        return $environment;
     }
 }

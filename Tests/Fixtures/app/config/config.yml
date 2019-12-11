@@ -10,8 +10,6 @@ framework:
     enabled: true
   router:
     resource: "%kernel.root_dir%/app/config/routing.yml"
-  templating:
-    engines: ['twig']
   form: ~
 imports:
     - { resource: security.yml }

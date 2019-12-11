@@ -4,7 +4,7 @@ namespace DynamicFormBundle\Admin\Services\FormField;
 
 use DynamicFormBundle\Entity\DynamicForm\FormField;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Templating\EngineInterface;
+use Twig\Environment;
 
 /**
  * @package AppBundle\Service
@@ -12,16 +12,13 @@ use Symfony\Component\Templating\EngineInterface;
 class FormFieldTemplateGuesser
 {
     /**
-     * @var EngineInterface
+     * @var Environment
      */
-    private $templateEngine;
+    private $twig;
 
-    /**
-     * @param EngineInterface $templateEngine
-     */
-    public function __construct(EngineInterface $templateEngine)
+    public function __construct(Environment $twig)
     {
-        $this->templateEngine = $templateEngine;
+        $this->twig = $twig;
     }
 
     /**
@@ -37,23 +34,19 @@ class FormFieldTemplateGuesser
         $parameter = array_merge($parameter, ['form_field' => $formField]);
 
         $response = new Response;
-        $response->setContent($this->templateEngine->render($templatePath, $parameter));
+        $response->setContent($this->twig->render($templatePath, $parameter));
 
         return $response;
     }
 
     /**
-     * @param FormField $formField
-     *
-     * @return string
-     *
      * @throws \LogicException
      */
     private function getTemplatePath(FormField $formField)
     {
         $path = sprintf('@DynamicForm/sonata-admin/form/form_field/%s.html.twig', $formField->getFormType());
 
-        if (true === $this->templateEngine->exists($path)) {
+        if (true === $this->twig->getLoader()->exists($path)) {
             return $path;
         }
 

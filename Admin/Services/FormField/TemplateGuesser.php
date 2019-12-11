@@ -24,7 +24,7 @@ class TemplateGuesser extends BaseGuesser
         $parameter = array_merge($parameter, ['formField' => $formField]);
 
         $response = new Response;
-        $response->setContent($this->templateEngine->render($templatePath, $parameter));
+        $response->setContent($this->twig->render($templatePath, $parameter));
 
         return $response;
     }
