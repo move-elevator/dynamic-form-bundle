@@ -1,5 +1,5 @@
 {
-  "name": "fjogeleit/dynamic-form-bundle",
+  "name": "move-elevator/dynamic-form-bundle",
   "description": "DynamicForm creates database driven forms and persist results",
   "type": "symfony-bundle",
   "time": "2016-11-15",
